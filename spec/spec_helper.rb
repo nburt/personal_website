@@ -1,3 +1,11 @@
+require 'sequel'
+require 'capybara/rspec'
+require 'dotenv'
+
+Dotenv.load
+
+DB = Sequel.connect(ENV['TEST_DATABASE_URL'])
+
 ENV['RACK_ENV'] = 'test'
 
 RSpec.configure do |config|

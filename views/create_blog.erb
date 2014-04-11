@@ -1,0 +1,9 @@
+<h1>Create New Blog</h1>
+<p id="error_message"><%= session[:message] %></p>
+<% session.delete(:message) %>
+<form action="/blog" method="post">
+  <input type="text" placeholder="Blog Title" name="title">
+  <input type="text" placeholder="Blog Subtitle" name="subtitle">
+  <input type="text" placeholder="Blog Post Body" name="post_body">
+  <button type="submit">Create Post</button>
+</form>
