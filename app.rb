@@ -33,24 +33,24 @@ class App < Sinatra::Application
   post '/blog' do
     validation_result = BlogTitleValidator.new(DB).validate(params[:title], params[:subtitle])
     if validation_result.success?
-      posts_repository.create(params[:title], params[:post_body], params[:subtitle])
-      title = params[:title].gsub(' ', '-')
-      subtitle = params[:subtitle].gsub(' ', '-')
-      redirect "/blog/#{title}/#{subtitle}"
+      id = posts_repository.create(params[:title], params[:post_body], params[:subtitle])
+      title = params[:title].gsub(' ', '-').downcase
+      subtitle = params[:subtitle].gsub(' ', '-').downcase
+      full_title = "#{title}-#{subtitle}"
+      redirect "/blog/#{id}/#{full_title}"
     else
       session[:message] = validation_result.error_message
       redirect '/blog/new'
     end
   end
 
-  get '/blog/:title/:subtitle' do
-    title = params[:title].gsub('-', ' ')
-    subtitle = params[:subtitle].gsub('-', ' ')
-    @title = title
-    erb :individual_blog_page, locals: {:title => title,
-                                        :subtitle => subtitle,
-                                        :post_body => posts_repository.get_post_body(title),
-                                        :date => posts_repository.get_date(title).strftime('%-m/%-d/%Y')}
+  get '/blog/:id/:full_title' do
+    id = params[:id]
+    @title = posts_repository.get_title(id)
+    erb :individual_blog_page, locals: {:title => @title,
+                                        :subtitle => posts_repository.get_subtitle(id),
+                                        :post_body => posts_repository.get_post_body(id),
+                                        :date => posts_repository.get_date(id).strftime('%-m/%-d/%Y')}
   end
 
 

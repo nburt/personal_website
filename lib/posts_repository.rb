@@ -16,16 +16,20 @@ class PostsRepository
     @posts_table.all
   end
 
-  def get_post_body(title)
-    @posts_table[:title => title][:post_body]
+  def get_title(id)
+    @posts_table[:id => id][:title]
   end
 
-  def get_subtitle(title)
-    @posts_table[:title => title][:subtitle]
+  def get_post_body(id)
+    @posts_table[:id => id][:post_body]
   end
 
-  def get_date(title)
-    @posts_table[:title => title][:date]
+  def get_subtitle(id)
+    @posts_table[:id => id][:subtitle]
+  end
+
+  def get_date(id)
+    @posts_table[:id => id][:date]
   end
 
 end

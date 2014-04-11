@@ -28,11 +28,12 @@ describe PostsRepository do
 
   it 'should allow users to grab individual columns from the table by title' do
     posts_repository = PostsRepository.new(DB)
-    posts_repository.create('Sinatra 101', 'This is the body text', 'An Intro')
+    id = posts_repository.create('Sinatra 101', 'This is the body text', 'An Intro')
 
-    expect(posts_repository.get_post_body('Sinatra 101')).to eq 'This is the body text'
-    expect(posts_repository.get_subtitle('Sinatra 101')).to eq 'An Intro'
-    expect(posts_repository.get_date('Sinatra 101')).to eq Date.today
+    expect(posts_repository.get_title(id)).to eq 'Sinatra 101'
+    expect(posts_repository.get_post_body(id)).to eq 'This is the body text'
+    expect(posts_repository.get_subtitle(id)).to eq 'An Intro'
+    expect(posts_repository.get_date(id)).to eq Date.today
   end
 
 end
