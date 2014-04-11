@@ -1,0 +1,49 @@
+body {
+  background: url("/images/fresh_snow.png") no-repeat center center fixed;
+  background-size: cover;
+}
+
+#top_header {
+  margin: 3% inherit;
+  text-align: center;
+  font-size: 2em;
+}
+
+#top_header a:link, #top_header a:visited {
+  text-decoration: none;
+  color: #000;
+}
+
+#top_header a:hover {
+  color: #3381E8;
+}
+
+
+#menubar {
+  display: block;
+  margin: 3% inherit;
+  text-align: center;
+  list-style: none;
+}
+
+#menubar li {
+  display: inline;
+  font-size: 1.5em;
+}
+
+#menubar a:link, #menubar a:visited {
+  display: inline-block;
+  padding: .5em;
+  color: #000;
+  text-decoration: none;
+}
+
+#menubar a:hover {
+  color: #3381E8;
+}
+
+#menubar a.current:link, #menubar a.current:visited, #menubar a.current:hover {
+  border: 1px solid #000;
+  background: url("/images/fresh_snow_blue.png");
+  color: #000;
+}

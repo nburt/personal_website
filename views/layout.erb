@@ -2,14 +2,18 @@
 <html>
 <head>
   <title><%= @title %></title>
+  <link type="text/css" rel="stylesheet" href=<%= url('css/reset.css') %>>
+  <link type="text/css" rel="stylesheet" href=<%= url('css/stylesheet.css') %>>
 </head>
 <body>
-<nav>
+<div id="top_header">
+  <a href="/">Nathanael Burt</a>
+</div>
+<nav id="menubar">
   <ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="/resume">Resume</a></li>
-    <li><a href="/blog">Blog</a></li>
-    <li><a href="/portfolio">Portfolio</a></li>
+    <li><a href="/resume" class="<%= "current" if @current == "resume" %>">Resume</a></li>
+    <li><a href="/blog" class="<%= "current" if @current == "blog" %>">Blog</a></li>
+    <li><a href="/portfolio" class="<%= "current" if @current == "portfolio" %>">Portfolio</a></li>
   </ul>
 </nav>
 <%= yield %>

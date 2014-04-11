@@ -9,14 +9,6 @@ feature 'Visitor can view and visit all the pages' do
   scenario 'visitor can visit the homepage and follow links to the other pages' do
     visit '/'
     within 'nav' do
-      click_link 'Home'
-    end
-    within 'h1' do
-      expect(page).to have_content 'Nathanael Burt'
-    end
-
-    visit '/'
-    within 'nav' do
       click_link 'Resume'
     end
     within 'h1' do

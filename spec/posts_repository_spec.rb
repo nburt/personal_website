@@ -9,31 +9,33 @@ describe PostsRepository do
 
   it 'should allow users to create a blog post with a title, body text, date, id, and an optional subtitle' do
     posts_repository = PostsRepository.new(DB)
-    id1 = posts_repository.create('Sinatra 101', 'This is the body text', 'An Intro')
-    id2 =posts_repository.create('Sinatra 102', 'This is new body text', '')
+    id1 = posts_repository.create('Sinatra 101', 'This is the body text', 'An Intro', 'sinatra-101-an-intro')
+    id2 =posts_repository.create('Sinatra 102', 'This is new body text', '', 'sinatra-102')
 
     expect(posts_repository.display_all).to eq [
                                                 {:id => id1,
                                                   :title => 'Sinatra 101',
                                                   :post_body => 'This is the body text',
                                                   :subtitle => 'An Intro',
-                                                  :date => Date.today},
+                                                  :date => Date.today,
+                                                  :slug => 'sinatra-101-an-intro'},
                                                 {:id => id2,
                                                   :title => 'Sinatra 102',
                                                   :post_body => 'This is new body text',
                                                   :subtitle => nil,
-                                                  :date => Date.today}
+                                                  :date => Date.today,
+                                                  :slug => 'sinatra-102'}
                                                ]
   end
 
   it 'should allow users to grab individual columns from the table by title' do
     posts_repository = PostsRepository.new(DB)
-    id = posts_repository.create('Sinatra 101', 'This is the body text', 'An Intro')
+    posts_repository.create('Sinatra 101', 'This is the body text', 'An Intro', 'sinatra-101-an-intro')
 
-    expect(posts_repository.get_title(id)).to eq 'Sinatra 101'
-    expect(posts_repository.get_post_body(id)).to eq 'This is the body text'
-    expect(posts_repository.get_subtitle(id)).to eq 'An Intro'
-    expect(posts_repository.get_date(id)).to eq Date.today
+    expect(posts_repository.get_title('sinatra-101-an-intro')).to eq 'Sinatra 101'
+    expect(posts_repository.get_post_body('sinatra-101-an-intro')).to eq 'This is the body text'
+    expect(posts_repository.get_subtitle('sinatra-101-an-intro')).to eq 'An Intro'
+    expect(posts_repository.get_date('sinatra-101-an-intro')).to eq Date.today
   end
 
 end

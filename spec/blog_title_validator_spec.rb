@@ -10,7 +10,7 @@ describe BlogTitleValidator do
 
   it 'should display an error if the blog title has already been used' do
     posts_repository = PostsRepository.new(DB)
-    posts_repository.create('Sinatra 101', 'This is the body text', 'An Intro')
+    posts_repository.create('Sinatra 101', 'This is the body text', 'An Intro', 'sinatra-101-an-intro')
     blog_title_validator = BlogTitleValidator.new(DB)
     result = blog_title_validator.validate('Sinatra 101', 'An Intro')
 
@@ -20,7 +20,7 @@ describe BlogTitleValidator do
 
   it 'should not display an error if the blog title is the same but the subtitle is different' do
     posts_repository = PostsRepository.new(DB)
-    posts_repository.create('Sinatra 101', 'This is the body text', 'An Intro')
+    posts_repository.create('Sinatra 101', 'This is the body text', 'An Intro', 'sinatra-101-an-intro')
     blog_title_validator = BlogTitleValidator.new(DB)
     result = blog_title_validator.validate('Sinatra 101', 'An Ending')
 
