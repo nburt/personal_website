@@ -6,30 +6,12 @@ Capybara.app = App
 
 feature 'Visitor can view and visit all the pages' do
 
-  scenario 'visitor can visit the homepage and follow links to the other pages' do
-    visit '/'
-    within 'nav' do
-      click_link 'Resume'
-    end
-    within 'h1' do
-      expect(page).to have_content 'Nathanael Burt\'s Resume'
-    end
-
-    visit '/'
-    within 'nav' do
-      click_link 'Blog'
-    end
-    within 'h1' do
-      expect(page).to have_content 'Nathanael Burt\'s Blog'
-    end
-
-    visit '/'
-    within 'nav' do
-      click_link 'Portfolio'
-    end
-    within 'h1' do
-      expect(page).to have_content 'Nathanael Burt\'s Portfolio'
-    end
+  before do
+    visit '/login'
+    fill_in 'password', :with => ENV['PASSWORD']
+    click_button 'Login'
+    expect(page).to have_content 'Welcome, admin!'
+    DB[:posts].delete
   end
 
   scenario 'a user can create a new blog post' do

@@ -1,2 +1,7 @@
+<% if logged_in %>
+  <p>Welcome, admin!</p>
+<% end %>
 <% @current = "blog" %>
-<a href="/blog/new">Create a New Blog Post</a>
+<% if logged_in == true %>
+  <a href="/blog/new">Create a New Blog Post</a>
+<% end %>

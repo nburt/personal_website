@@ -11,9 +11,12 @@
 </div>
 <nav id="menubar">
   <ul>
-    <li><a href="/resume" class="<%= "current" if @current == "resume" %>">Resume</a></li>
     <li><a href="/blog" class="<%= "current" if @current == "blog" %>">Blog</a></li>
+    <li><a href="/resume" class="<%= "current" if @current == "resume" %>">Resume</a></li>
     <li><a href="/portfolio" class="<%= "current" if @current == "portfolio" %>">Portfolio</a></li>
+    <% if logged_in %>
+      <li><a href="/logout">Logout</a></li>
+    <% end %>
   </ul>
 </nav>
 <%= yield %>

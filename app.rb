@@ -12,22 +12,45 @@ class App < Sinatra::Application
 
   get '/' do
     @title = "Nathanael Burt | Home"
-    erb :index
+    erb :index, locals: {:logged_in => session[:logged_in]}
+  end
+
+  get '/login' do
+    @title = "Login"
+    erb :login, locals: {:error_message => nil, :logged_in => session[:logged_in]}
+  end
+
+  post '/login' do
+    if params[:password] == ENV['PASSWORD']
+      session[:logged_in] = true
+      redirect '/'
+    else
+      erb :login, locals: {:error_message => "Incorrect password"}
+    end
+  end
+
+  get '/logout' do
+    session[:logged_in] = false
+    redirect '/'
   end
 
   get '/resume' do
     @title = "Nathanael Burt | Resume"
-    erb :resume
+    erb :resume, locals: {:logged_in => session[:logged_in]}
   end
 
   get '/blog' do
     @title = "Nathanael Burt | Blog"
-    erb :blog
+    erb :blog, locals: {:logged_in => session[:logged_in]}
   end
 
   get '/blog/new' do
-    @title = "Create Blog"
-    erb :create_blog
+    if session[:logged_in] == true
+      @title = "Create Blog"
+      erb :create_blog, locals: {:logged_in => session[:logged_in]}
+    else
+      redirect '/'
+    end
   end
 
   post '/blog' do
@@ -53,13 +76,14 @@ class App < Sinatra::Application
     erb :individual_blog_page, locals: {:title => @title,
                                         :subtitle => posts_repository.get_subtitle(slug),
                                         :post_body => posts_repository.get_post_body(slug),
-                                        :date => posts_repository.get_date(slug).strftime('%-m/%-d/%Y')}
+                                        :date => posts_repository.get_date(slug).strftime('%-m/%-d/%Y'),
+                                        :logged_in => session[:logged_in]}
   end
 
 
   get '/portfolio' do
     @title = "Nathanael Burt | Portfolio"
-    erb :portfolio
+    erb :portfolio, locals: {:logged_in => session[:logged_in]}
   end
 
 end
