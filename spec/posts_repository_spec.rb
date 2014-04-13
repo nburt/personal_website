@@ -15,16 +15,18 @@ describe PostsRepository do
     expect(posts_repository.display_all).to eq [
                                                 {:id => id1,
                                                   :title => 'Sinatra 101',
-                                                  :post_body => 'This is the body text',
+                                                  :original_text => 'This is the body text',
                                                   :subtitle => 'An Intro',
                                                   :date => Date.today,
-                                                  :slug => 'sinatra-101-an-intro'},
+                                                  :slug => 'sinatra-101-an-intro',
+                                                  :rendered_text => nil},
                                                 {:id => id2,
                                                   :title => 'Sinatra 102',
-                                                  :post_body => 'This is new body text',
+                                                  :original_text => 'This is new body text',
                                                   :subtitle => nil,
                                                   :date => Date.today,
-                                                  :slug => 'sinatra-102'}
+                                                  :slug => 'sinatra-102',
+                                                  :rendered_text => nil}
                                                ]
   end
 
@@ -33,7 +35,7 @@ describe PostsRepository do
     posts_repository.create('Sinatra 101', 'This is the body text', 'An Intro', 'sinatra-101-an-intro')
 
     expect(posts_repository.get_title('sinatra-101-an-intro')).to eq 'Sinatra 101'
-    expect(posts_repository.get_post_body('sinatra-101-an-intro')).to eq 'This is the body text'
+    expect(posts_repository.get_original_text('sinatra-101-an-intro')).to eq 'This is the body text'
     expect(posts_repository.get_subtitle('sinatra-101-an-intro')).to eq 'An Intro'
     expect(posts_repository.get_date('sinatra-101-an-intro')).to eq Date.today
   end

@@ -75,7 +75,7 @@ class App < Sinatra::Application
     @title = posts_repository.get_title(slug)
     erb :individual_blog_page, locals: {:title => @title,
                                         :subtitle => posts_repository.get_subtitle(slug),
-                                        :post_body => posts_repository.get_post_body(slug),
+                                        :post_body => posts_repository.get_original_text(slug),
                                         :date => posts_repository.get_date(slug).strftime('%-m/%-d/%Y'),
                                         :logged_in => session[:logged_in]}
   end
