@@ -192,7 +192,14 @@ hr {
 
 #post_container {
   width: 60%;
-  margin: 1em 30% auto 10%;
+  margin: 2.5% 2.5% 5% 10%;
+  float: left;
+}
+
+#blog_list_container {
+  width: 20%;
+  float: right;
+  margin: 11% 5% 5% 2.5%;
 }
 
 #blog_title {
@@ -215,15 +222,6 @@ hr {
 
 #post_container #blog_post_layout {
   list-style: none;
-  float: left;
-  position: relative;
-}
-
-#blog_list_container {
-  width: 20%;
-  float: right;
-  position: relative;
-  margin: 6.5% auto 0 auto;
 }
 
 #blog_list_container #blog_post_list {
@@ -232,7 +230,7 @@ hr {
 
 #resume_container {
   width: 50%;
-  margin: auto auto 5% auto;
+  margin: 0 auto;
 }
 
 .section_headers {
@@ -262,8 +260,7 @@ hr {
 }
 
 footer {
-  margin: 0 auto 5%;
-  padding: 5% 0;
+  margin: 5% auto;
   text-align: center;
 }
 

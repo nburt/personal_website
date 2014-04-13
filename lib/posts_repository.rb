@@ -4,11 +4,11 @@ class PostsRepository
     @posts_table = db[:posts]
   end
 
-  def create(title, original_text, subtitle, slug)
+  def create(title, original_text, subtitle, slug, rendered_text)
     if subtitle == ''
-      @posts_table.insert(:title => title, :original_text => original_text, :subtitle => nil, :date => Date.today, :slug => slug)
+      @posts_table.insert(:title => title, :original_text => original_text, :subtitle => nil, :date => Date.today, :slug => slug, :rendered_text => rendered_text)
     else
-      @posts_table.insert(:title => title, :original_text => original_text, :subtitle => subtitle, :date => Date.today, :slug => slug)
+      @posts_table.insert(:title => title, :original_text => original_text, :subtitle => subtitle, :date => Date.today, :slug => slug, :rendered_text => rendered_text)
     end
   end
 
@@ -32,4 +32,7 @@ class PostsRepository
     @posts_table[:slug => slug][:date]
   end
 
+  def get_rendered_text(slug)
+    @posts_table[:slug => slug][:rendered_text]
+  end
 end

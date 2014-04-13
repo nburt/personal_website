@@ -13,8 +13,15 @@
       <li><input class="textbox" type="text" name="title" required></li>
       <label for="subtitle">Subtitle:</label>
       <li><input class="textbox" type="text" name="subtitle"></li>
-      <label for="post_body">Blog Post Body: <span class="asterisk">*</span></label>
-      <li><textarea name="post_body" cols="40" rows="6" required></textarea></li>
+      <label>Document Type:</label>
+      <li>
+        <select class="dropdown" name="blog_format">
+          <option value="html">HTML</option>
+          <option value="markdown">Markdown</option>
+        </select>
+      </li>
+      <label for="original_text">Blog Post Body: <span class="asterisk">*</span></label>
+      <li><textarea name="original_text" cols="40" rows="6" required></textarea></li>
       <li><button class="form_button" type="submit">Create Post</button></li>
       <hr>
     </form>

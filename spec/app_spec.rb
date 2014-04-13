@@ -22,7 +22,7 @@ feature 'Visitor can view and visit all the pages' do
     end
     fill_in 'title', :with => 'Sinatra 103'
     fill_in 'subtitle', :with => 'A Brief Intro'
-    fill_in 'post_body', :with => 'This is the body of my blog post'
+    fill_in 'original_text', :with => 'This is the body of my blog post'
     click_button 'Create Post'
 
     within 'h1' do

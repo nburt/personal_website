@@ -1,6 +1,7 @@
 require 'sinatra'
 require './lib/posts_repository'
 require './lib/blog_title_validator'
+require './lib/blog_formatter'
 
 class App < Sinatra::Application
 
@@ -62,8 +63,15 @@ class App < Sinatra::Application
       if subtitle.empty?
         full_title = "#{title}"
       end
-      posts_repository.create(params[:title], params[:post_body], params[:subtitle], full_title)
-      redirect "/blog/#{full_title}"
+      if params[:blog_format] == "markdown"
+        rendered_text = BlogFormatter.new(params[:original_text]).format
+        posts_repository.create(params[:title], params[:original_text], params[:subtitle], full_title, rendered_text)
+        redirect "/blog/#{full_title}"
+      else
+        rendered_text = params[:original_text]
+        posts_repository.create(params[:title], params[:original_text], params[:subtitle], full_title, rendered_text)
+        redirect "/blog/#{full_title}"
+      end
     else
       session[:message] = validation_result.error_message
       redirect '/blog/new'
@@ -75,7 +83,7 @@ class App < Sinatra::Application
     @title = posts_repository.get_title(slug)
     erb :individual_blog_page, locals: {:title => @title,
                                         :subtitle => posts_repository.get_subtitle(slug),
-                                        :post_body => posts_repository.get_original_text(slug),
+                                        :rendered_text => posts_repository.get_rendered_text(slug),
                                         :date => posts_repository.get_date(slug).strftime('%-m/%-d/%Y'),
                                         :logged_in => session[:logged_in]}
   end
