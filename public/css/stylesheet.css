@@ -14,10 +14,11 @@ body {
   color: #000;
 }
 
-#top_header a:hover {
-  color: #3381E8;
+#top_header a:hover, #menubar a:hover {
+  background: url("/images/fresh_snow_blue.png");
+  border-radius: .2em;
+  padding: .2em;
 }
-
 
 #menubar {
   display: block;
@@ -38,12 +39,137 @@ body {
   text-decoration: none;
 }
 
-#menubar a:hover {
-  color: #3381E8;
-}
-
 #menubar a.current:link, #menubar a.current:visited, #menubar a.current:hover {
-  border: 1px solid #000;
+  border: 1px solid #00749d;
+  border-radius: .2em;
   background: url("/images/fresh_snow_blue.png");
   color: #000;
+}
+
+div.form_container {
+  width: 90%;
+  margin: auto;
+}
+
+ul.form_list {
+  width: 90%;
+  list-style: none;
+  list-style-position: outside;
+  margin: auto;
+}
+
+hr {
+  color: #777;
+  width: 100%;
+  margin: auto
+}
+
+.form_container .form_list li:first-child, .form_container .form_list li:last-child {
+  width: 90%;
+}
+
+.form_list li {
+  padding: 1em;
+  margin: auto;
+}
+
+#form_header {
+  padding: 0;
+}
+
+.form_list h1 {
+  display: inline;
+  font-size: 2em;
+}
+
+.required_notification {
+  float: right;
+  color: #d45252;
+  display: inline;
+  margin: 1em 0 0 0;
+}
+
+.asterisk {
+  color: #d45252;
+}
+
+.admin_welcome {
+  margin: 2% 0 0 5%;
+}
+
+.create_blog_form label {
+  width: 17.5%;
+  margin-top: .2em;
+  display: inline-block;
+  float: left;
+  padding: 3px;
+}
+
+.create_blog_form input, .login_form input {
+  height: 2em;
+  width: 20%;
+  padding: .25em .35em;
+  background: url("/images/fresh_snow.png");
+  border: 0.1em solid #aaa;
+  border-radius: 0.5em;
+}
+
+.create_blog_form textarea {
+  padding: .35em;
+  width: 45%;
+  background: url("/images/fresh_snow.png");
+  border: 0.1em solid #aaa;
+  border-radius: 0.5em;
+}
+
+.create_blog_form button {
+  margin-left: 17%;
+  background: url("/images/fresh_snow.png");
+  border-radius: 0.5em;
+  border: 1px solid #00749d;
+  padding: .25em;
+  font-size: 1.25em;
+}
+
+.create_blog_form button:hover {
+  background: url("/images/fresh_snow_blue.png");
+  cursor: pointer;
+}
+
+.login_form .form_button:hover {
+  background: url("/images/fresh_snow_blue.png");
+  cursor: pointer;
+}
+
+.login_form .form_button {
+  background: url("/images/fresh_snow.png");
+  border-radius: 0.5em;
+  border: 1px solid #00749d;
+  padding: .25em;
+  font-size: 1.25em;
+  margin: auto;
+}
+
+.login_form {
+  text-align: center;
+}
+
+#link_container {
+  width: 90%;
+  margin: auto;
+  text-align: center;
+}
+
+#create_blog_link {
+  border: 1px solid #00749d;
+  border-radius: 0.5em;
+  padding: .25em;
+  font-size: 1.25em;
+  text-decoration: none;
+  color: #000;
+}
+
+#create_blog_link:hover {
+  background: url("/images/fresh_snow_blue.png");
+  border: 1px solid #00749d;
 }

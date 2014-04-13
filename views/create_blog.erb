@@ -1,12 +1,21 @@
-<% if logged_in %>
-  <p>Welcome, admin!</p>
-<% end %>
-<h1>Create New Blog</h1>
 <p id="error_message"><%= session[:message] %></p>
 <% session.delete(:message) %>
-<form action="/blog" method="post">
-  <input type="text" placeholder="Blog Title" name="title"></br>
-  <input type="text" placeholder="Blog Subtitle" name="subtitle"></br>
-  <textarea placeholder="Blog Post Body" name="post_body"></textarea></br>
-  <button type="submit">Create Post</button>
-</form>
+<div class="form_container">
+  <ul class="form_list">
+    <li>
+      <h1 id="form_header">Create New Blog</h1>
+      <span class="required_notification">* Denotes a required field</span>
+    </li>
+    <form class="create_blog_form" action="/blog" method="post">
+      <hr>
+      <label for="title">Blog Title: <span class="asterisk">*</span></label>
+      <li><input class="textbox" type="text" name="title" required></li>
+      <label for="subtitle">Subtitle:</label>
+      <li><input class="textbox" type="text" name="subtitle"></li>
+      <label for="post_body">Blog Post Body: <span class="asterisk">*</span></label>
+      <li><textarea name="post_body" cols="40" rows="6" required></textarea></li>
+      <li><button class="form_button" type="submit">Create Post</button></li>
+      <hr>
+    </form>
+  </ul>
+</div>
