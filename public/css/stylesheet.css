@@ -1,6 +1,11 @@
 body {
-  background: url("/images/fresh_snow.png") no-repeat center center fixed;
-  background-size: cover;
+  background-color: #BABABA;
+  font-family: "Sniglit", sans-serif;
+}
+
+#background_picture {
+  background: url("/images/background.jpg") no-repeat;
+  background-size: 100% 100%;
 }
 
 #top_header {
@@ -11,18 +16,21 @@ body {
 
 #top_header a:link, #top_header a:visited {
   text-decoration: none;
-  color: #000;
+  color: #fff;
+  padding: .25em .5em;
+  border-radius: 0.2em;
 }
 
-#top_header a:hover, #menubar a:hover {
-  background: url("/images/fresh_snow_blue.png");
-  border-radius: .2em;
-  padding: .2em;
+#top_header a:hover, #menubar ul li a:hover {
+  border: 1px solid #00749d;
+  background-color: #00749d;
+  border-radius: 0.2em;
+  padding: .25em .5em;
 }
 
 #menubar {
   display: block;
-  margin: 3% inherit;
+  margin: 2% inherit;
   text-align: center;
   list-style: none;
 }
@@ -32,18 +40,21 @@ body {
   font-size: 1.5em;
 }
 
-#menubar a:link, #menubar a:visited {
+#menubar ul li a:link, #menubar ul li a:visited {
   display: inline-block;
   padding: .5em;
-  color: #000;
+  color: #fff;
   text-decoration: none;
+  margin-bottom: 5%;
+  border-radius: .2em;
+  border: 1px;
 }
 
 #menubar a.current:link, #menubar a.current:visited, #menubar a.current:hover {
   border: 1px solid #00749d;
   border-radius: .2em;
-  background: url("/images/fresh_snow_blue.png");
-  color: #000;
+  background-color: #00749d;
+  color: #fff;
 }
 
 div.form_container {
@@ -59,7 +70,7 @@ ul.form_list {
 }
 
 hr {
-  color: #777;
+  background-color: #000;
   width: 100%;
   margin: auto
 }
@@ -93,8 +104,9 @@ hr {
   color: #d45252;
 }
 
-.admin_welcome {
+#admin_welcome {
   margin: 2% 0 0 5%;
+  color: #fff;
 }
 
 .create_blog_form label {
@@ -109,7 +121,6 @@ hr {
   height: 2em;
   width: 20%;
   padding: .25em .35em;
-  background: url("/images/fresh_snow.png");
   border: 0.1em solid #aaa;
   border-radius: 0.5em;
 }
@@ -117,37 +128,41 @@ hr {
 .create_blog_form textarea {
   padding: .35em;
   width: 45%;
-  background: url("/images/fresh_snow.png");
   border: 0.1em solid #aaa;
   border-radius: 0.5em;
 }
 
 .create_blog_form button {
   margin-left: 17%;
-  background: url("/images/fresh_snow.png");
   border-radius: 0.5em;
-  border: 1px solid #00749d;
-  padding: .25em;
+  border: 1px solid #BABABA;
+  padding: .25em .5em;
   font-size: 1.25em;
+  background-color: #BABABA;
 }
 
 .create_blog_form button:hover {
-  background: url("/images/fresh_snow_blue.png");
+  background-color: #00749d;
+  border: 1px solid #00749d;
   cursor: pointer;
+  border-radius: 0.5em;
+  padding: .25em .5em;
+  color: #fff;
 }
 
 .login_form .form_button:hover {
-  background: url("/images/fresh_snow_blue.png");
+  background-color: #00749d;
   cursor: pointer;
 }
 
 .login_form .form_button {
-  background: url("/images/fresh_snow.png");
   border-radius: 0.5em;
-  border: 1px solid #00749d;
   padding: .25em;
   font-size: 1.25em;
   margin: auto;
+  border-style: none;
+  background-color: #BABABA;
+  color: white;
 }
 
 .login_form {
@@ -161,17 +176,17 @@ hr {
 }
 
 #create_blog_link {
-  border: 1px solid #00749d;
   border-radius: 0.5em;
   padding: .25em;
   font-size: 1.25em;
   text-decoration: none;
-  color: #000;
+  color: #fff;
 }
 
 #create_blog_link:hover {
-  background: url("/images/fresh_snow_blue.png");
   border: 1px solid #00749d;
+  background-color: #00749d;
+  color: #fff;
 }
 
 #post_container {
@@ -212,4 +227,35 @@ hr {
 
 #blog_list_container #blog_post_list {
   list-style: none;
+}
+
+#resume_container {
+  width: 50%;
+  margin: auto auto 5% auto;
+}
+
+.resume_sections {
+  font-size: 2em;
+  padding: 0 0 .5em 0;
+}
+
+#resume_container li {
+  list-style: none;
+  padding: .2em;
+}
+
+.location {
+  font-size: 1.25em;
+  display: inline;
+}
+
+.years {
+  font-size 1.25em;
+  display: inline;
+  float: right;
+}
+
+#resume_container li.list_items {
+  list-style: circle;
+  margin-left: 3.5%;
 }
