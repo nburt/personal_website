@@ -102,7 +102,7 @@ hr {
   margin-top: .2em;
   display: inline-block;
   float: left;
-  padding: 3px;
+  padding: .2em;
 }
 
 .create_blog_form input, .login_form input {
@@ -172,4 +172,44 @@ hr {
 #create_blog_link:hover {
   background: url("/images/fresh_snow_blue.png");
   border: 1px solid #00749d;
+}
+
+#post_container {
+  width: 60%;
+  margin: 1em 30% auto 10%;
+}
+
+#blog_title {
+  width: 90%;
+  font-size: 2em;
+  display: inline;
+  text-align: left;
+}
+
+#blog_subtitle {
+  width: 90%;
+  font-size: 1.25em;
+}
+
+#blog_date {
+  display: inline;
+  float: right;
+  margin: 1em 0 0 0;
+}
+
+#post_container #blog_post_layout {
+  list-style: none;
+  float: left;
+  position: relative;
+}
+
+#blog_list_container {
+  width: 20%;
+  float: right;
+  position: relative;
+  margin: 6.5% auto 0 auto;
+}
+
+#blog_list_container #blog_post_list {
+  list-style: none;
 }
