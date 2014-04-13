@@ -136,8 +136,8 @@ hr {
   margin-left: 17%;
   border-radius: 0.5em;
   border: 1px solid #BABABA;
-  padding: .25em .5em;
-  font-size: 1.25em;
+  padding: .5em;
+  font-size: 1.5em;
   background-color: #BABABA;
 }
 
@@ -146,23 +146,24 @@ hr {
   border: 1px solid #00749d;
   cursor: pointer;
   border-radius: 0.5em;
-  padding: .25em .5em;
+  padding: .5em;
   color: #fff;
+}
+
+.login_form .form_button {
+  border-radius: 0.5em;
+  padding: .5em;
+  font-size: 1.5em;
+  margin: auto;
+  border-style: none;
+  background-color: #BABABA;
+  color: #000;
 }
 
 .login_form .form_button:hover {
   background-color: #00749d;
   cursor: pointer;
-}
-
-.login_form .form_button {
-  border-radius: 0.5em;
-  padding: .25em;
-  font-size: 1.25em;
-  margin: auto;
-  border-style: none;
-  background-color: #BABABA;
-  color: white;
+  color: #fff
 }
 
 .login_form {
@@ -177,10 +178,10 @@ hr {
 
 #create_blog_link {
   border-radius: 0.5em;
-  padding: .25em;
-  font-size: 1.25em;
+  padding: .5em;
+  font-size: 1.5em;
   text-decoration: none;
-  color: #fff;
+  color: #000;
 }
 
 #create_blog_link:hover {
@@ -234,7 +235,7 @@ hr {
   margin: auto auto 5% auto;
 }
 
-.resume_sections {
+.section_headers {
   font-size: 2em;
   padding: 0 0 .5em 0;
 }
@@ -250,7 +251,7 @@ hr {
 }
 
 .years {
-  font-size 1.25em;
+  font-size: 1.25em;
   display: inline;
   float: right;
 }
@@ -258,4 +259,20 @@ hr {
 #resume_container li.list_items {
   list-style: circle;
   margin-left: 3.5%;
+}
+
+footer {
+  margin: 0 auto 5%;
+  padding: 5% 0;
+  text-align: center;
+}
+
+footer ul li {
+  display: inline;
+  padding: .5%;
+}
+
+footer ul li img {
+  width: 4%;
+  height: 4%;
 }
