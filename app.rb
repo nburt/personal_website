@@ -46,7 +46,7 @@ class App < Sinatra::Application
   end
 
   get '/blog/new' do
-    if session[:logged_in] == true
+    if session[:logged_in]
       @title = "Create Blog"
       erb :create_blog, locals: {:logged_in => session[:logged_in]}
     else
@@ -85,7 +85,9 @@ class App < Sinatra::Application
                                         :subtitle => posts_repository.get_subtitle(slug),
                                         :rendered_text => posts_repository.get_rendered_text(slug),
                                         :date => posts_repository.get_date(slug).strftime('%-m/%-d/%Y'),
-                                        :logged_in => session[:logged_in]}
+                                        :logged_in => session[:logged_in],
+                                        :recent_posts => posts_repository.get_recent_posts,
+                                        :url_host => request.base_url}
   end
 
 

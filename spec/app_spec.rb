@@ -33,6 +33,15 @@ feature 'Visitor can view and visit all the pages' do
     end
     expect(page).to have_content 'This is the body of my blog post'
     expect(page).to have_content Date.today.strftime('%-m/%-d/%Y')
+
+    and_the 'user will see the latest blog posts on the right hand side of individual blog pages' do
+      within '#blog_list_container' do
+        click_link 'Sinatra 103: A Brief Intro'
+      end
+      within 'h1' do
+        expect(page).to have_content 'Sinatra 103'
+      end
+    end
   end
 
 end

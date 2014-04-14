@@ -14,14 +14,10 @@
   </div>
   <div id="blog_list_container">
     <ul>
-      <li id="blog_post_list">blog post links</li>
-      <br>
-      <li id="blog_post_list">blog post links</li>
-      <br>
-      <li id="blog_post_list">blog post links</li>
-      <br>
-      <li id="blog_post_list">blog post links</li>
-      <br>
+        <li class="recent_posts_header">Recent Posts</li><br>
+      <% recent_posts.each do |post| %>
+        <li id="blog_post_list"><a href="<%= url_host %>/blog/<%= post[:recent_urls] %>"><%= post[:recent_titles] %></a> - <%= post[:date].strftime('%-m/%-d/%Y') %></li><br>
+      <% end %>
     </ul>
   </div>
 </article>
