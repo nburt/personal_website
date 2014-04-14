@@ -42,7 +42,7 @@ class App < Sinatra::Application
 
   get '/blog' do
     @title = "Nathanael Burt | Blog"
-    erb :blog, locals: {:logged_in => session[:logged_in]}
+    erb :blog, locals: {:logged_in => session[:logged_in], :recent_posts => posts_repository.get_recent_posts, :url_host => request.base_url}
   end
 
   get '/blog/new' do

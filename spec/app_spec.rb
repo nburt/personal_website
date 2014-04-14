@@ -42,6 +42,10 @@ feature 'Visitor can view and visit all the pages' do
         expect(page).to have_content 'Sinatra 103'
       end
     end
-  end
 
+    and_the 'user can view recent blog posts on the main blog page' do
+      visit '/blog'
+      expect(page).to have_content 'Sinatra 103: A Brief Intro'
+    end
+  end
 end

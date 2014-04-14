@@ -183,12 +183,14 @@ hr {
   font-size: 1.5em;
   text-decoration: none;
   color: #000;
+  margin-bottom: 5%;
 }
 
 #create_blog_link:hover {
   border: 1px solid #00749d;
   background-color: #00749d;
   color: #fff;
+  margin-bottom: 5%;
 }
 
 article {
@@ -322,8 +324,21 @@ h3 {
   width: 70%;
 }
 
-.recent_posts_header {
+#recent_posts_header_sidebar {
   font-size: 1.5em;
   list-style: none;
   text-decoration: underline;
+}
+
+#recent_posts_header {
+  font-size: 2em;
+  text-decoration: underline;
+  list-style: none;
+  text-align: center;
+  margin-top: 2.5%;
+}
+
+#recent_posts_container {
+  width: 80%;
+  margin: auto;
 }
