@@ -20,7 +20,6 @@ def the(message)
   yield
 end
 
-def and_the(message)
-  yield
-end
+alias and_the the
+
 

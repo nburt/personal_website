@@ -17,15 +17,16 @@ feature 'Visitor can view and visit all the pages' do
   scenario 'a user can create a new blog post' do
     visit '/blog'
     click_link 'Create a New Blog Post'
-    within 'h1' do
+    within '#form_header' do
       expect(page).to have_content 'Create New Blog'
     end
+
     fill_in 'title', :with => 'Sinatra 103'
     fill_in 'subtitle', :with => 'A Brief Intro'
     fill_in 'original_text', :with => 'This is the body of my blog post'
     click_button 'Create Post'
 
-    within 'h1' do
+    within '#blog_title' do
       expect(page).to have_content 'Sinatra 103'
     end
     within 'h4' do
@@ -38,7 +39,7 @@ feature 'Visitor can view and visit all the pages' do
       within '#blog_list_container' do
         click_link 'Sinatra 103: A Brief Intro'
       end
-      within 'h1' do
+      within '#blog_title' do
         expect(page).to have_content 'Sinatra 103'
       end
     end

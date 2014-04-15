@@ -1,7 +1,7 @@
 require 'sinatra'
 require './lib/posts_repository'
 require './lib/blog_title_validator'
-require './lib/blog_formatter'
+require './lib/post_formatter'
 
 class App < Sinatra::Application
 
@@ -26,12 +26,13 @@ class App < Sinatra::Application
       session[:logged_in] = true
       redirect '/'
     else
-      erb :login, locals: {:error_message => "Incorrect password"}
+      session[:logged_in] = false
+      erb :login, locals: {:error_message => "Incorrect password", :logged_in => session[:logged_in]}
     end
   end
 
   get '/logout' do
-    session[:logged_in] = false
+    session[:logged_in] = false #change to session.clear ?
     redirect '/'
   end
 

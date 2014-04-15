@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'blog_formatter'
+require 'post_formatter'
 
 describe BlogFormatter do
   it 'will convert a blog from markdown to html' do

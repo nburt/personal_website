@@ -1,5 +1,5 @@
 body {
-  background-color: #BABABA;
+  background-color: #E0E0E0;
   font-family: "Sniglit", sans-serif;
 }
 
@@ -85,7 +85,8 @@ hr {
 }
 
 #form_header {
-  padding: 0;
+  font-weight: bold;
+  font-size: 2em;
 }
 
 .form_list h1 {
@@ -97,7 +98,6 @@ hr {
   float: right;
   color: #d45252;
   display: inline;
-  margin: 1em 0 0 0;
 }
 
 .asterisk {
@@ -107,6 +107,10 @@ hr {
 #admin_welcome {
   margin: 2% 0 0 5%;
   color: #fff;
+}
+
+hr {
+  margin: 1em 0;
 }
 
 .create_blog_form label {
@@ -136,10 +140,10 @@ hr {
 .create_blog_form button {
   margin-left: 17%;
   border-radius: 0.5em;
-  border: 1px solid #BABABA;
+  border: 1px solid #E0E0E0;
   padding: .5em;
   font-size: 1.5em;
-  background-color: #BABABA;
+  background-color: #E0E0E0;
 }
 
 .create_blog_form button:hover {
@@ -157,7 +161,7 @@ hr {
   font-size: 1.5em;
   margin: auto;
   border-style: none;
-  background-color: #BABABA;
+  background-color: #E0E0E0;
   color: #000;
 }
 
@@ -169,6 +173,11 @@ hr {
 
 .login_form {
   text-align: center;
+}
+
+#incorrect_login {
+  text-align: center;
+  color: #d45252;
 }
 
 #link_container {
@@ -214,11 +223,13 @@ article {
   font-size: 2em;
   display: inline;
   text-align: left;
+  font-weight: bold;
 }
 
 #blog_subtitle {
   width: 90%;
   font-size: 1.25em;
+  padding: 1em 0;
 }
 
 #blog_date {
@@ -233,6 +244,7 @@ article {
 
 #blog_list_container #blog_post_list {
   list-style: none;
+  margin: 1em 0 0;
 }
 
 #resume_container {
@@ -242,7 +254,12 @@ article {
 
 .section_headers {
   font-size: 2em;
-  padding: 0 0 .5em 0;
+  margin: .5em 0 .5em 0;
+  text-decoration: underline;
+}
+
+#resume_container ul {
+  margin: 1em 0 0 0;
 }
 
 #resume_container li {
@@ -253,6 +270,11 @@ article {
 .location {
   font-size: 1.25em;
   display: inline;
+  font-weight: bold;
+}
+
+.work_title {
+  font-weight: bold;
 }
 
 .years {
@@ -305,17 +327,19 @@ h3 {
 }
 
 #blog_post_layout #rendered_text p {
-  margin: 1em;
+  margin: 1em 0;
 }
 
 #blog_post_layout #rendered_text .image_left {
   float: left;
   padding: 1.5em 1.5em 1.5em 0;
+  width: 20%;
 }
 
 #blog_post_layout #rendered_text .image_right {
   float: right;
   padding: 1.5em 1.5em 1.5em 0;
+  width: 20%;
 }
 
 #blog_post_layout #rendered_text .image_full {
