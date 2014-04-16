@@ -60,9 +60,6 @@ class App < Sinatra::Application
     if validation_result.success?
       post = Post.new({:title => params[:title], :subtitle => params[:subtitle]})
       full_title = post.create_slug
-      if params[:subtitle].empty?
-        full_title = post.create_slug
-      end
       if params[:blog_format] == "markdown"
         rendered_text = BlogFormatter.new(params[:original_text]).format
         posts_repository.create(params[:title], params[:original_text], params[:subtitle], full_title, rendered_text)
