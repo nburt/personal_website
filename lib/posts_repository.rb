@@ -1,3 +1,5 @@
+require './lib/post'
+
 class PostsRepository
 
   def initialize(db)
@@ -16,24 +18,15 @@ class PostsRepository
     @posts_table.all
   end
 
-  def get_title(slug)
-    @posts_table[:slug => slug][:title]
-  end
-
-  def get_original_text(slug)
-    @posts_table[:slug => slug][:original_text]
-  end
-
-  def get_subtitle(slug)
-    @posts_table[:slug => slug][:subtitle]
-  end
-
-  def get_date(slug)
-    @posts_table[:slug => slug][:date]
-  end
-
-  def get_rendered_text(slug)
-    @posts_table[:slug => slug][:rendered_text]
+  def get_post_by_slug(slug)
+    row = @posts_table[:slug => slug]
+    attributes = {
+      :title => row[:title],
+      :subtitle => row[:subtitle],
+      :rendered_text => row[:rendered_text],
+      :date => row[:date].strftime('%-m/%-d/%Y')
+    }
+    Post.new(attributes)
   end
 
   def get_recent_posts

@@ -81,14 +81,9 @@ class App < Sinatra::Application
 
   get '/blog/:full_title' do
     slug = params[:full_title]
-    @title = posts_repository.get_title(slug)
+    post = posts_repository.get_post_by_slug(slug)
     erb :individual_blog_page, locals: {
-      :post => {
-        :title => @title,
-        :subtitle => posts_repository.get_subtitle(slug),
-        :rendered_text => posts_repository.get_rendered_text(slug),
-        :date => posts_repository.get_date(slug).strftime('%-m/%-d/%Y'),
-      },
+      :post => post.attributes,
       :logged_in => session[:logged_in],
       :recent_posts => posts_repository.get_recent_posts,
       :url_host => request.base_url

@@ -30,17 +30,6 @@ describe PostsRepository do
                                                ]
   end
 
-  it 'should allow users to grab individual columns from the table by title' do
-    posts_repository = PostsRepository.new(DB)
-    posts_repository.create('Sinatra 101', 'This is the body text', 'An Intro', 'sinatra-101-an-intro', %Q{<h1 id="header">Header</h1>\n})
-
-    expect(posts_repository.get_title('sinatra-101-an-intro')).to eq 'Sinatra 101'
-    expect(posts_repository.get_original_text('sinatra-101-an-intro')).to eq 'This is the body text'
-    expect(posts_repository.get_subtitle('sinatra-101-an-intro')).to eq 'An Intro'
-    expect(posts_repository.get_date('sinatra-101-an-intro')).to eq Date.today
-    expect(posts_repository.get_rendered_text('sinatra-101-an-intro')).to eq %Q{<h1 id="header">Header</h1>\n}
-  end
-
   it 'should allow a user to grab the 10 most recent blog posts' do
     posts_repository = PostsRepository.new(DB)
     posts_repository.create('Sinatra 101', 'This is the body text', 'An Intro', 'sinatra-101-an-intro', %Q{<h1 id="header">Header1</h1>\n})
@@ -67,6 +56,15 @@ describe PostsRepository do
                                                       {:recent_titles => 'Sinatra 110', :recent_urls => 'sinatra-110', :date => Date.today}
 
                                                     ]
+  end
+
+  it 'should allow a user to access a table row with a slug' do
+    posts_repository = PostsRepository.new(DB)
+    id = posts_repository.create('Sinatra 101', '#Header', 'An Intro', 'sinatra-101-an-intro', %Q{<h1 id="header">Header</h1>\n})
+    expect(posts_repository.get_post_by_slug('sinatra-101-an-intro').attributes).to eq ({:title => 'Sinatra 101',
+                                                                              :subtitle => 'An Intro',
+                                                                              :date => Date.today.strftime('%-m/%-d/%Y'),
+                                                                              :rendered_text => %Q{<h1 id="header">Header</h1>\n}})
   end
 
 end
