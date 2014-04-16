@@ -2,18 +2,22 @@
   <div id="post_container">
     <ul id="blog_post_layout">
       <li>
-        <div id="blog_title"><%= title %></div>
-        <span id="blog_date"><%= date %></span>
+        <div id="blog_title"><%= post[:title] %></div>
+        <span id="blog_date"><%= post[:date] %></span>
       </li>
-      <li id="blog_subtitle"><h4><%= subtitle %></h4></li>
-      <li id="rendered_text"><%= rendered_text %></li>
+      <li id="blog_subtitle"><h4><%= post[:subtitle] %></h4></li>
+      <li id="rendered_text"><%= post[:rendered_text] %></li>
     </ul>
   </div>
   <div id="blog_list_container">
     <ul>
-        <li id="recent_posts_header_sidebar">Recent Posts</li>
-      <% recent_posts.each do |post| %>
-        <li id="blog_post_list"><a href="<%= url_host %>/blog/<%= post[:recent_urls] %>"><%= post[:recent_titles] %></a> - <%= post[:date].strftime('%-m/%-d/%Y') %></li>
+      <li id="recent_posts_header_sidebar">Recent Posts</li>
+      <% recent_posts.each do |recent_post| %>
+        <li id="blog_post_list">
+          <a href="<%= url_host %>/blog/<%= recent_post[:recent_urls] %>">
+            <%= recent_post[:recent_titles] %>
+          </a> - <%= recent_post[:date].strftime('%-m/%-d/%Y') %>
+        </li>
       <% end %>
     </ul>
   </div>
