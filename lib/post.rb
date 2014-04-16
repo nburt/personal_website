@@ -12,11 +12,11 @@ class Post
     else
       title = @attributes[:title].gsub(' ', '-').downcase
       subtitle = @attributes[:subtitle].gsub(' ', '-').downcase
-      "#{title}-#{subtitle}"
+      @attributes[:slug] = "#{title}-#{subtitle}"
     end
   end
 
   def render_text
-    PostFormatter.new(@attributes[:original_text]).format
+    @attributes[:rendered_text] = PostFormatter.new(@attributes[:original_text]).format
   end
 end
