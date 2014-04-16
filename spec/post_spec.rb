@@ -17,4 +17,9 @@ describe Post do
     post = Post.new({:title => 'Sinatra 101', :subtitle => ''})
     expect(post.create_slug).to eq('sinatra-101')
   end
+
+  it 'should allow a user to create the rendered_text from the original text' do
+    post = Post.new({:original_text => '#Header'})
+    expect(post.render_text).to eq(%Q{<h1 id="header">Header</h1>\n})
+  end
 end

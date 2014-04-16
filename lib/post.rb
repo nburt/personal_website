@@ -1,3 +1,5 @@
+require './lib/post_formatter'
+
 class Post
   attr_reader :attributes
   def initialize(attributes)
@@ -12,5 +14,9 @@ class Post
       subtitle = @attributes[:subtitle].gsub(' ', '-').downcase
       "#{title}-#{subtitle}"
     end
+  end
+
+  def render_text
+    PostFormatter.new(@attributes[:original_text]).format
   end
 end

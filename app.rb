@@ -58,10 +58,10 @@ class App < Sinatra::Application
   post '/blog' do
     validation_result = BlogTitleValidator.new(DB).validate(params[:title], params[:subtitle])
     if validation_result.success?
-      post = Post.new({:title => params[:title], :subtitle => params[:subtitle]})
+      post = Post.new({:title => params[:title], :subtitle => params[:subtitle], :original_text => params[:original_text]})
       full_title = post.create_slug
       if params[:blog_format] == "markdown"
-        rendered_text = BlogFormatter.new(params[:original_text]).format
+        rendered_text = post.render_text
         posts_repository.create(params[:title], params[:original_text], params[:subtitle], full_title, rendered_text)
         redirect "/blog/#{full_title}"
       else

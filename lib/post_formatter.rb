@@ -1,6 +1,6 @@
 require 'kramdown'
 
-class BlogFormatter
+class PostFormatter
   attr_reader :formatted_post
 
   def initialize(text)
