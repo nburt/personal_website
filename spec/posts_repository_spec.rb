@@ -60,11 +60,10 @@ describe PostsRepository do
 
   it 'should allow a user to access a table row with a slug' do
     posts_repository = PostsRepository.new(DB)
-    id = posts_repository.create('Sinatra 101', '#Header', 'An Intro', 'sinatra-101-an-intro', %Q{<h1 id="header">Header</h1>\n})
+    posts_repository.create('Sinatra 101', '#Header', 'An Intro', 'sinatra-101-an-intro', %Q{<h1 id="header">Header</h1>\n})
     expect(posts_repository.get_post_by_slug('sinatra-101-an-intro').attributes).to eq ({:title => 'Sinatra 101',
                                                                               :subtitle => 'An Intro',
                                                                               :date => Date.today.strftime('%-m/%-d/%Y'),
                                                                               :rendered_text => %Q{<h1 id="header">Header</h1>\n}})
   end
-
 end

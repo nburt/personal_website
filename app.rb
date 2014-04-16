@@ -32,7 +32,7 @@ class App < Sinatra::Application
   end
 
   get '/logout' do
-    session[:logged_in] = false #change to session.clear ?
+    session.clear
     redirect '/'
   end
 
@@ -58,11 +58,10 @@ class App < Sinatra::Application
   post '/blog' do
     validation_result = BlogTitleValidator.new(DB).validate(params[:title], params[:subtitle])
     if validation_result.success?
-      title = params[:title].gsub(' ', '-').downcase
-      subtitle = params[:subtitle].gsub(' ', '-').downcase
-      full_title = "#{title}-#{subtitle}"
-      if subtitle.empty?
-        full_title = "#{title}"
+      post = Post.new({:title => params[:title], :subtitle => params[:subtitle]})
+      full_title = post.create_slug
+      if params[:subtitle].empty?
+        full_title = post.create_slug
       end
       if params[:blog_format] == "markdown"
         rendered_text = BlogFormatter.new(params[:original_text]).format
@@ -89,7 +88,6 @@ class App < Sinatra::Application
       :url_host => request.base_url
     }
   end
-
 
   get '/portfolio' do
     @title = "Nathanael Burt | Portfolio"
