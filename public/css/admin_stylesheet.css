@@ -1,0 +1,139 @@
+body {
+  background-color: #E0E0E0;
+  font-family: "Sniglit", sans-serif;
+}
+
+#top_header {
+  margin: 3% inherit;
+  text-align: center;
+  font-size: 2em;
+}
+
+#top_header a:link, #top_header a:visited {
+  text-decoration: none;
+  color: #000;
+  padding: .25em .5em;
+  border-radius: 0.2em;
+}
+
+#top_header a:hover, #menubar ul li a:hover {
+  border: 1px solid #00749d;
+  background-color: #00749d;
+  border-radius: 0.2em;
+  padding: .25em .5em;
+}
+
+#menubar {
+  display: block;
+  margin: 2% inherit;
+  text-align: center;
+  list-style: none;
+}
+
+#menubar li {
+  display: inline;
+  font-size: 1.5em;
+}
+
+#menubar ul li a:link, #menubar ul li a:visited {
+  display: inline-block;
+  padding: .5em;
+  color: #000;
+  text-decoration: none;
+  border-radius: .2em;
+  border: 1px;
+}
+
+#admin_welcome {
+  margin: 2% 0 0 5%;
+  color: #000;
+}
+
+div.form_container {
+  width: 90%;
+  margin: auto;
+}
+
+ul.form_list {
+  width: 90%;
+  list-style: none;
+  list-style-position: outside;
+  margin: auto;
+}
+
+hr {
+  background-color: #000;
+  width: 100%;
+  margin: auto
+}
+
+.form_container .form_list li:first-child, .form_container .form_list li:last-child {
+  width: 90%;
+}
+
+.form_list li {
+  padding: 1em;
+  margin: auto;
+}
+
+.required_notification {
+  float: right;
+  color: #d45252;
+  display: inline;
+}
+
+.asterisk {
+  color: #d45252;
+}
+
+#form_header {
+  font-weight: bold;
+  font-size: 2em;
+}
+
+.form_list h1 {
+  display: inline;
+  font-size: 2em;
+}
+
+.create_blog_form label {
+  width: 17.5%;
+  margin-top: .2em;
+  display: inline-block;
+  float: left;
+  padding: .2em;
+}
+
+.create_blog_form input {
+  height: 2em;
+  width: 20%;
+  padding: .25em .35em;
+  border: 0.1em solid #aaa;
+  border-radius: 0.5em;
+}
+
+.create_blog_form textarea{
+  padding: .35em;
+  width: 100%;
+  height: 20em;
+  border: 0.1em solid #aaa;
+  border-radius: 0.5em;
+}
+
+.create_blog_form button {
+  margin-left: 17%;
+  border-radius: 0.5em;
+  border: 1px solid #E0E0E0;
+  padding: .5em;
+  font-size: 1.5em;
+  background-color: #E0E0E0;
+}
+
+.create_blog_form button:hover {
+  background-color: #00749d;
+  border: 1px solid #00749d;
+  cursor: pointer;
+  border-radius: 0.5em;
+  padding: .5em;
+  color: #fff;
+}

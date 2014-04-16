@@ -20,3 +20,4 @@ The .env file will be ignored by git, see `.gitignore`
 1. `rerun rackup`
     * running rerun will reload app when file changes are detected
 1. Run tests using `rspec`.
+1. To access the admin section of the website, visit '/login' and enter your password

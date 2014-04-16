@@ -51,77 +51,17 @@ body {
 }
 
 #menubar a.current:link, #menubar a.current:visited, #menubar a.current:hover {
-  border: 1px solid #00749d;
-  border-radius: .2em;
   background-color: #00749d;
-  color: #fff;
-}
-
-div.form_container {
-  width: 90%;
-  margin: auto;
-}
-
-ul.form_list {
-  width: 90%;
-  list-style: none;
-  list-style-position: outside;
-  margin: auto;
-}
-
-hr {
-  background-color: #000;
-  width: 100%;
-  margin: auto
-}
-
-.form_container .form_list li:first-child, .form_container .form_list li:last-child {
-  width: 90%;
-}
-
-.form_list li {
-  padding: 1em;
-  margin: auto;
-}
-
-#form_header {
-  font-weight: bold;
-  font-size: 2em;
-}
-
-.form_list h1 {
-  display: inline;
-  font-size: 2em;
-}
-
-.required_notification {
-  float: right;
-  color: #d45252;
-  display: inline;
-}
-
-.asterisk {
-  color: #d45252;
-}
-
-#admin_welcome {
-  margin: 2% 0 0 5%;
-  color: #fff;
-}
-
-hr {
-  margin: 1em 0;
-}
-
-.create_blog_form label {
-  width: 17.5%;
-  margin-top: .2em;
   display: inline-block;
-  float: left;
-  padding: .2em;
+  padding: .5em;
+  color: #fff;
+  text-decoration: none;
+  margin-bottom: 5%;
+  border-radius: .2em;
+  border: 1px;
 }
 
-.create_blog_form input, .login_form input {
+.login_form input {
   height: 2em;
   width: 20%;
   padding: .25em .35em;
@@ -129,37 +69,11 @@ hr {
   border-radius: 0.5em;
 }
 
-.create_blog_form textarea{
-  padding: .35em;
-  width: 100%;
-  height: 20em;
-  border: 0.1em solid #aaa;
-  border-radius: 0.5em;
-}
-
-.create_blog_form button {
-  margin-left: 17%;
-  border-radius: 0.5em;
-  border: 1px solid #E0E0E0;
-  padding: .5em;
-  font-size: 1.5em;
-  background-color: #E0E0E0;
-}
-
-.create_blog_form button:hover {
-  background-color: #00749d;
-  border: 1px solid #00749d;
-  cursor: pointer;
-  border-radius: 0.5em;
-  padding: .5em;
-  color: #fff;
-}
-
 .login_form .form_button {
   border-radius: 0.5em;
   padding: .5em;
   font-size: 1.5em;
-  margin: auto;
+  margin: 1em auto;
   border-style: none;
   background-color: #E0E0E0;
   color: #000;
@@ -178,6 +92,15 @@ hr {
 #incorrect_login {
   text-align: center;
   color: #d45252;
+}
+
+#admin_welcome {
+  margin: 2% 0 0 5%;
+  color: #fff;
+}
+
+hr {
+  margin: 1em 0;
 }
 
 #link_container {

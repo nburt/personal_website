@@ -49,7 +49,7 @@ class App < Sinatra::Application
   get '/blog/new' do
     if session[:logged_in]
       @title = "Create Blog"
-      erb :create_blog, locals: {:logged_in => session[:logged_in]}
+      erb :create_blog, :layout => :admin_layout, locals: {:logged_in => session[:logged_in]}
     else
       redirect '/'
     end
