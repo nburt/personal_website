@@ -9,39 +9,53 @@ describe PostsRepository do
 
   it 'should allow users to create a blog post with a title, body text, date, id, and an optional subtitle' do
     posts_repository = PostsRepository.new(DB)
-    id1 = posts_repository.create('Sinatra 101', 'This is the body text', 'An Intro', 'sinatra-101-an-intro', %Q{<h1 id="header">Header</h1>\n})
-    id2 =posts_repository.create('Sinatra 102', 'This is new body text', '', 'sinatra-102', %Q{<h1 id="header">Header</h1>\n})
+    id1 = posts_repository.create({:title => 'Sinatra 101',
+                                   :original_text => '#Header',
+                                   :subtitle => 'An Intro',
+                                   :slug => 'sinatra-101-an-intro',
+                                   :rendered_text => %Q{<h1 id="header">Header</h1>\n},
+                                   :date => Date.today,
+                                   :original_post_format => 'markdown'})
+    id2 =posts_repository.create({:title => 'Sinatra 102',
+                                  :original_text => '#Header',
+                                  :subtitle => '',
+                                  :slug => 'sinatra-102',
+                                  :rendered_text => %Q{<h1 id="header">Header</h1>\n},
+                                  :date => Date.today,
+                                  :original_post_format => 'markdown'})
 
     expect(posts_repository.display_all).to eq [
                                                  {:id => id1,
                                                   :title => 'Sinatra 101',
-                                                  :original_text => 'This is the body text',
                                                   :subtitle => 'An Intro',
+                                                  :original_text => '#Header',
                                                   :date => Date.today,
                                                   :slug => 'sinatra-101-an-intro',
-                                                  :rendered_text => %Q{<h1 id="header">Header</h1>\n}},
+                                                  :rendered_text => %Q{<h1 id="header">Header</h1>\n},
+                                                  :original_post_format => 'markdown'},
                                                  {:id => id2,
                                                   :title => 'Sinatra 102',
-                                                  :original_text => 'This is new body text',
-                                                  :subtitle => nil,
+                                                  :subtitle => '',
+                                                  :original_text => '#Header',
                                                   :date => Date.today,
                                                   :slug => 'sinatra-102',
-                                                  :rendered_text => %Q{<h1 id="header">Header</h1>\n}}
+                                                  :rendered_text => %Q{<h1 id="header">Header</h1>\n},
+                                                  :original_post_format => 'markdown'}
                                                ]
   end
 
   it 'should allow a user to grab the 10 most recent blog posts' do
     posts_repository = PostsRepository.new(DB)
-    posts_repository.create('Sinatra 101', 'This is the body text', 'An Intro', 'sinatra-101-an-intro', %Q{<h1 id="header">Header1</h1>\n})
-    posts_repository.create('Sinatra 102', 'This is the body text', 'An Intro', 'sinatra-102-an-intro', %Q{<h1 id="header">Header2</h1>\n})
-    posts_repository.create('Sinatra 103', 'This is the body text', 'An Intro', 'sinatra-103-an-intro', %Q{<h1 id="header">Header3</h1>\n})
-    posts_repository.create('Sinatra 104', 'This is the body text', 'An Intro', 'sinatra-104-an-intro', %Q{<h1 id="header">Header4</h1>\n})
-    posts_repository.create('Sinatra 105', 'This is the body text', 'An Intro', 'sinatra-105-an-intro', %Q{<h1 id="header">Header5</h1>\n})
-    posts_repository.create('Sinatra 106', 'This is the body text', 'An Intro', 'sinatra-106-an-intro', %Q{<h1 id="header">Header6</h1>\n})
-    posts_repository.create('Sinatra 107', 'This is the body text', 'An Intro', 'sinatra-107-an-intro', %Q{<h1 id="header">Header7</h1>\n})
-    posts_repository.create('Sinatra 108', 'This is the body text', 'An Intro', 'sinatra-108-an-intro', %Q{<h1 id="header">Header8</h1>\n})
-    posts_repository.create('Sinatra 109', 'This is the body text', 'An Intro', 'sinatra-109-an-intro', %Q{<h1 id="header">Header9</h1>\n})
-    posts_repository.create('Sinatra 110', 'This is the body text', '', 'sinatra-110', %Q{<h1 id="header">Header10</h1>\n})
+    posts_repository.create({:title => 'Sinatra 101', :original_text => '#Header', :subtitle => 'An Intro', :slug => 'sinatra-101-an-intro', :rendered_text => %Q{<h1 id="header">Header</h1>\n}, :date => Date.today})
+    posts_repository.create({:title => 'Sinatra 102', :original_text => '#Header', :subtitle => 'An Intro', :slug => 'sinatra-102-an-intro', :rendered_text => %Q{<h1 id="header">Header</h1>\n}, :date => Date.today})
+    posts_repository.create({:title => 'Sinatra 103', :original_text => '#Header', :subtitle => 'An Intro', :slug => 'sinatra-103-an-intro', :rendered_text => %Q{<h1 id="header">Header</h1>\n}, :date => Date.today})
+    posts_repository.create({:title => 'Sinatra 104', :original_text => '#Header', :subtitle => 'An Intro', :slug => 'sinatra-104-an-intro', :rendered_text => %Q{<h1 id="header">Header</h1>\n}, :date => Date.today})
+    posts_repository.create({:title => 'Sinatra 105', :original_text => '#Header', :subtitle => 'An Intro', :slug => 'sinatra-105-an-intro', :rendered_text => %Q{<h1 id="header">Header</h1>\n}, :date => Date.today})
+    posts_repository.create({:title => 'Sinatra 106', :original_text => '#Header', :subtitle => 'An Intro', :slug => 'sinatra-106-an-intro', :rendered_text => %Q{<h1 id="header">Header</h1>\n}, :date => Date.today})
+    posts_repository.create({:title => 'Sinatra 107', :original_text => '#Header', :subtitle => 'An Intro', :slug => 'sinatra-107-an-intro', :rendered_text => %Q{<h1 id="header">Header</h1>\n}, :date => Date.today})
+    posts_repository.create({:title => 'Sinatra 108', :original_text => '#Header', :subtitle => 'An Intro', :slug => 'sinatra-108-an-intro', :rendered_text => %Q{<h1 id="header">Header</h1>\n}, :date => Date.today})
+    posts_repository.create({:title => 'Sinatra 109', :original_text => '#Header', :subtitle => 'An Intro', :slug => 'sinatra-109-an-intro', :rendered_text => %Q{<h1 id="header">Header</h1>\n}, :date => Date.today})
+    posts_repository.create({:title => 'Sinatra 110', :original_text => '#Header', :subtitle => '', :slug => 'sinatra-110', :rendered_text => %Q{<h1 id="header">Header</h1>\n}, :date => Date.today})
 
     expect(posts_repository.get_recent_posts).to eq [
                                                       {:recent_titles => 'Sinatra 101: An Intro', :recent_urls => 'sinatra-101-an-intro', :date => Date.today},
@@ -60,10 +74,10 @@ describe PostsRepository do
 
   it 'should allow a user to access a table row with a slug' do
     posts_repository = PostsRepository.new(DB)
-    posts_repository.create('Sinatra 101', '#Header', 'An Intro', 'sinatra-101-an-intro', %Q{<h1 id="header">Header</h1>\n})
+    posts_repository.create({:title => 'Sinatra 101', :original_text => '#Header', :subtitle => 'An Intro', :slug => 'sinatra-101-an-intro', :rendered_text => %Q{<h1 id="header">Header</h1>\n}, :date => Date.today})
     expect(posts_repository.get_post_by_slug('sinatra-101-an-intro').attributes).to eq ({:title => 'Sinatra 101',
-                                                                              :subtitle => 'An Intro',
-                                                                              :date => Date.today.strftime('%-m/%-d/%Y'),
-                                                                              :rendered_text => %Q{<h1 id="header">Header</h1>\n}})
+                                                                                         :subtitle => 'An Intro',
+                                                                                         :rendered_text => %Q{<h1 id="header">Header</h1>\n},
+                                                                                         :date => Date.today.strftime('%-m/%-d/%Y')})
   end
 end

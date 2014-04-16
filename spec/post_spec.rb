@@ -3,9 +3,9 @@ require './lib/post'
 
 describe Post do
 
-  it 'can take a slug hash and access all the attributes of a post' do
+  it 'can take a slug hash and access all the attributes of a post and should initialize with the date' do
     post = Post.new({:slug => 'title2-subtitle'})
-    expect(post.attributes).to eq({:slug => 'title2-subtitle'})
+    expect(post.attributes).to eq({:slug => 'title2-subtitle', :date => Date.today})
   end
 
   it 'should allow a user to create a slug with the title and subtitle' do
@@ -19,7 +19,7 @@ describe Post do
   end
 
   it 'should allow a user to create the rendered_text from the original text' do
-    post = Post.new({:original_text => '#Header', :blog_format => 'markdown'})
+    post = Post.new({:original_text => '#Header', :original_post_format => 'markdown'})
     expect(post.render_text).to eq(%Q{<h1 id="header">Header</h1>\n})
   end
 

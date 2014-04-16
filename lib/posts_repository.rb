@@ -6,12 +6,8 @@ class PostsRepository
     @posts_table = db[:posts]
   end
 
-  def create(title, original_text, subtitle, slug, rendered_text)
-    if subtitle == ''
-      @posts_table.insert(:title => title, :original_text => original_text, :subtitle => nil, :date => Date.today, :slug => slug, :rendered_text => rendered_text)
-    else
-      @posts_table.insert(:title => title, :original_text => original_text, :subtitle => subtitle, :date => Date.today, :slug => slug, :rendered_text => rendered_text)
-    end
+  def create(attributes)
+    @posts_table.insert(attributes)
   end
 
   def display_all
@@ -26,6 +22,7 @@ class PostsRepository
       :rendered_text => row[:rendered_text],
       :date => row[:date].strftime('%-m/%-d/%Y')
     }
+
     Post.new(attributes)
   end
 
@@ -34,7 +31,7 @@ class PostsRepository
     ordered_posts = @posts_table.order(:date).reverse
     recent_posts_hash = ordered_posts.select(:title, :subtitle, :slug, :date).limit(10).to_a
     recent_posts_hash.each do |post|
-      if post[:subtitle].nil?
+      if post[:subtitle].empty?
         hash_to_insert = {:recent_titles => post[:title], :recent_urls => post[:slug], :date => post[:date]}
         recent_posts_array << hash_to_insert
       else

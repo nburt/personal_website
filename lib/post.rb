@@ -4,11 +4,12 @@ class Post
   attr_reader :attributes
   def initialize(attributes)
     @attributes = attributes
+    @attributes[:date] ||= Date.today
   end
 
   def create_slug
     if @attributes[:subtitle].empty?
-      "#{@attributes[:title].gsub(' ', '-').downcase}"
+      @attributes[:slug] = "#{@attributes[:title].gsub(' ', '-').downcase}"
     else
       title = @attributes[:title].gsub(' ', '-').downcase
       subtitle = @attributes[:subtitle].gsub(' ', '-').downcase
@@ -17,7 +18,7 @@ class Post
   end
 
   def render_text
-    if @attributes[:blog_format] == 'markdown'
+    if @attributes[:original_post_format] == 'markdown'
       @attributes[:rendered_text] = PostFormatter.new(@attributes[:original_text]).format
     else
       @attributes[:rendered_text] = @attributes[:original_text]
