@@ -17,6 +17,10 @@ class Post
   end
 
   def render_text
-    @attributes[:rendered_text] = PostFormatter.new(@attributes[:original_text]).format
+    if @attributes[:blog_format] == 'markdown'
+      @attributes[:rendered_text] = PostFormatter.new(@attributes[:original_text]).format
+    else
+      @attributes[:rendered_text] = @attributes[:original_text]
+    end
   end
 end
