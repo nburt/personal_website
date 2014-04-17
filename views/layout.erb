@@ -5,11 +5,10 @@
   <link type="text/css" rel="stylesheet" href=<%= url('css/reset.css') %>>
   <link href='http://fonts.googleapis.com/css?family=Sniglet' rel='stylesheet' type='text/css'>
   <link type="text/css" rel="stylesheet" href=<%= url('css/stylesheet.css') %>>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
 </head>
 <body>
 <div id="background_picture">
-  <br>
-  <br>
   <% if logged_in %>
     <p id="admin_welcome">Welcome, admin!</p>
   <% end %>
@@ -30,7 +29,6 @@
   <br>
   <br>
 </div>
-<br>
 <%= yield %>
 <footer>
   <ul>

@@ -13,12 +13,12 @@ class App < Sinatra::Application
 
   get '/' do
     @title = "Nathanael Burt | Home"
-    erb :index, locals: {:logged_in => session[:logged_in]}
+    erb :index, :locals => {:logged_in => session[:logged_in]}
   end
 
   get '/login' do
     @title = "Login"
-    erb :login, locals: {:error_message => nil, :logged_in => session[:logged_in]}
+    erb :login, :locals => {:error_message => nil, :logged_in => session[:logged_in]}
   end
 
   post '/login' do
@@ -27,7 +27,7 @@ class App < Sinatra::Application
       redirect '/'
     else
       session[:logged_in] = false
-      erb :login, locals: {:error_message => "Incorrect password", :logged_in => session[:logged_in]}
+      erb :login, :locals => {:error_message => "Incorrect password", :logged_in => session[:logged_in]}
     end
   end
 
@@ -38,18 +38,18 @@ class App < Sinatra::Application
 
   get '/resume' do
     @title = "Nathanael Burt | Resume"
-    erb :resume, locals: {:logged_in => session[:logged_in]}
+    erb :resume, :locals => {:logged_in => session[:logged_in]}
   end
 
   get '/blog' do
     @title = "Nathanael Burt | Blog"
-    erb :blog, locals: {:logged_in => session[:logged_in], :recent_posts => posts_repository.get_recent_posts, :url_host => request.base_url}
+    erb :blog, :locals => {:logged_in => session[:logged_in], :recent_posts => posts_repository.get_recent_posts, :url_host => request.base_url}
   end
 
   get '/blog/new' do
     if session[:logged_in]
       @title = "Create Blog"
-      erb :create_blog, :layout => :admin_layout, locals: {:logged_in => session[:logged_in]}
+      erb :create_blog, :layout => :admin_layout, :locals => {:logged_in => session[:logged_in]}
     else
       redirect '/'
     end
@@ -86,7 +86,7 @@ class App < Sinatra::Application
     if session[:logged_in]
       @title = "Edit Blog"
       post = posts_repository.get_post_by_slug(params[:full_title])
-      erb :edit_blog, :layout => :admin_layout, locals: {:logged_in => session[:logged_in], :post => post.attributes}
+      erb :edit_blog, :layout => :admin_layout, :locals => {:logged_in => session[:logged_in], :post => post.attributes}
     else
       redirect '/blog/:full_title'
     end
@@ -112,7 +112,7 @@ class App < Sinatra::Application
 
   get '/portfolio' do
     @title = "Nathanael Burt | Portfolio"
-    erb :portfolio, locals: {:logged_in => session[:logged_in]}
+    erb :portfolio, :locals => {:logged_in => session[:logged_in]}
   end
 
 end

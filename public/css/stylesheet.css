@@ -95,7 +95,7 @@ body {
 }
 
 #admin_welcome {
-  margin: 2% 0 0 5%;
+  padding: 5% 0 0 5%;
   color: #fff;
 }
 
@@ -105,7 +105,7 @@ hr {
 
 .link_container {
   width: 90%;
-  margin: auto;
+  margin: 2.5% auto 2.5%;
   text-align: center;
 }
 
@@ -123,26 +123,29 @@ hr {
   border: 1px solid #00749d;
   background-color: #00749d;
   color: #fff;
-  margin: 0 auto 5%;
+  margin: 0 auto %;
   padding: .5em;
   border-radius: .5em
-
 }
 
 article {
   overflow: hidden;
+  background-color: #F2F2F2;
+  width: 90%;
+  margin: 2.5% auto;
 }
 
 #post_container {
   width: 60%;
-  margin: 2.5% 2.5% 5% 10%;
+  margin: 2.5% 0 2.5% 7.5%;
   float: left;
+  padding: 1% 2.5%;
 }
 
 #blog_list_container {
   width: 20%;
   float: right;
-  margin: 11% 5% 5% 2.5%;
+  margin: 5% 5% 0 2.5%;
 }
 
 #blog_title {
@@ -175,8 +178,10 @@ article {
 }
 
 #resume_container {
-  width: 62.5%;
+  width: 80%;
   margin: 2% auto;
+  background-color: #F2F2F2;
+  padding: 1% 5%;
 }
 
 .section_headers {
@@ -292,4 +297,6 @@ h3 {
 #recent_posts_container {
   width: 80%;
   margin: auto;
+  background-color: #F2F2F2;
+  padding: 1% 5%;
 }
