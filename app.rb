@@ -88,7 +88,16 @@ class App < Sinatra::Application
       post = posts_repository.get_post_by_slug(params[:full_title])
       erb :edit_blog, :layout => :admin_layout, locals: {:logged_in => session[:logged_in], :post => post.attributes}
     else
-      redirect '/'
+      redirect '/blog/:full_title'
+    end
+  end
+
+  get '/blog/:full_title/delete' do
+    if session[:logged_in]
+      posts_repository.delete(params[:full_title])
+      redirect '/blog'
+    else
+      redirect '/blog/:full_title'
     end
   end
 
@@ -107,4 +116,3 @@ class App < Sinatra::Application
   end
 
 end
-

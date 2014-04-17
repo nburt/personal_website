@@ -83,7 +83,7 @@ describe PostsRepository do
                                                                                         :date => Date.today.strftime('%-m/%-d/%Y')})
   end
 
-  it 'should allow a user to update a blog post' do
+  it 'should allow an admin to update a blog post' do
     posts_repository = PostsRepository.new(DB)
     posts_repository.create({:title => 'Sinatra 101', :original_text => '#Header', :subtitle => 'An Intro', :slug => 'sinatra-101-an-intro', :rendered_text => %Q{<h1 id="header">Header</h1>\n}, :date => Date.today})
     posts_repository.update('sinatra-101-an-intro', {:subtitle => 'A New Intro', :original_text => '#Header2', :slug => 'sinatra-101-a-new-intro', :rendered_text => %Q{<h1 id="header">Header2</h1>\n}})
@@ -93,5 +93,12 @@ describe PostsRepository do
                                                                                 :rendered_text => %Q{<h1 id="header">Header2</h1>\n},
                                                                                 :slug => 'sinatra-101-a-new-intro',
                                                                                 :date => posts_repository.get_date_by_slug('sinatra-101-a-new-intro')})
+  end
+
+  it 'should allow an admin to update a blog post' do
+    posts_repository = PostsRepository.new(DB)
+    posts_repository.create({:title => 'Sinatra 101', :original_text => '#Header', :subtitle => 'An Intro', :slug => 'sinatra-101-an-intro', :rendered_text => %Q{<h1 id="header">Header</h1>\n}, :date => Date.today})
+    posts_repository.delete('sinatra-101-an-intro')
+    expect(posts_repository.get_post_by_slug('sinatra-101-an-intro')).to eq nil
   end
 end

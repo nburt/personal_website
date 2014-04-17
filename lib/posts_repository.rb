@@ -16,16 +16,20 @@ class PostsRepository
 
   def get_post_by_slug(slug)
     row = @posts_table[:slug => slug]
-    attributes = {
-      :title => row[:title],
-      :subtitle => row[:subtitle],
-      :original_text => row[:original_text],
-      :rendered_text => row[:rendered_text],
-      :slug => slug,
-      :date => row[:date].strftime('%-m/%-d/%Y')
-    }
+    if row.nil?
+      nil
+    else
+      attributes = {
+        :title => row[:title],
+        :subtitle => row[:subtitle],
+        :original_text => row[:original_text],
+        :rendered_text => row[:rendered_text],
+        :slug => slug,
+        :date => row[:date].strftime('%-m/%-d/%Y')
+      }
 
-    Post.new(attributes)
+      Post.new(attributes)
+    end
   end
 
   def get_recent_posts
@@ -50,5 +54,9 @@ class PostsRepository
 
   def get_date_by_slug(slug)
     @posts_table[:slug => slug][:date].strftime('%-m/%-d/%Y')
+  end
+
+  def delete(slug)
+    @posts_table.where(:slug => slug).delete
   end
 end

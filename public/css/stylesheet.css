@@ -109,20 +109,24 @@ hr {
   text-align: center;
 }
 
-#create_blog_link, #edit_blog_link {
+#create_blog_link, #edit_blog_link, #delete_blog_link {
   border-radius: 0.5em;
   padding: .5em;
   font-size: 1.5em;
   text-decoration: none;
   color: #000;
-  margin-bottom: 5%;
+  margin: 0 auto 5%;
+  border: 1px solid #E0E0E0;
 }
 
-#create_blog_link:hover, #edit_blog_link:hover {
+#create_blog_link:hover, #edit_blog_link:hover, #delete_blog_link:hover {
   border: 1px solid #00749d;
   background-color: #00749d;
   color: #fff;
-  margin-bottom: 5%;
+  margin: 0 auto 5%;
+  padding: .5em;
+  border-radius: .5em
+
 }
 
 article {
