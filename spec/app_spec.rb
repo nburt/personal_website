@@ -86,6 +86,7 @@ feature 'Visitor can view and visit all the pages' do
     within 'textarea' do
       expect(page).to have_content 'This is the body of my blog post'
     end
+    fill_in 'title', :with => 'New Title'
     fill_in 'subtitle', :with => 'Now there is a subtitle'
     fill_in 'original_text', :with => 'This is the new body'
     click_button 'Edit Blog Post'
