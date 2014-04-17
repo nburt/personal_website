@@ -72,7 +72,8 @@ class App < Sinatra::Application
   get '/blog/:full_title' do
     slug = params[:full_title]
     post = posts_repository.get_post_by_slug(slug)
-    erb :individual_blog_page, locals: {
+    @title = post.attributes[:title]
+      erb :individual_blog_page, locals: {
       :post => post.attributes,
       :logged_in => session[:logged_in],
       :recent_posts => posts_repository.get_recent_posts,
@@ -82,8 +83,13 @@ class App < Sinatra::Application
   end
 
   get '/blog/:full_title/edit' do
-    post = posts_repository.get_post_by_slug(params[:full_title])
-    erb :edit_blog, :layout => :admin_layout, locals: {:logged_in => session[:logged_in], :post => post.attributes}
+    if session[:logged_in]
+      @title = "Edit Blog"
+      post = posts_repository.get_post_by_slug(params[:full_title])
+      erb :edit_blog, :layout => :admin_layout, locals: {:logged_in => session[:logged_in], :post => post.attributes}
+    else
+      redirect '/'
+    end
   end
 
   put '/blog' do

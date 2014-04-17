@@ -282,7 +282,7 @@ h3 {
   text-decoration: underline;
   list-style: none;
   text-align: center;
-  margin-top: 2.5%;
+  margin: 2.5% 0;
 }
 
 #recent_posts_container {
