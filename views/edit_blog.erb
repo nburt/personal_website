@@ -1,0 +1,33 @@
+<p id="error_message"><%= session[:message] %></p>
+<% session.delete(:message) %>
+<div class="form_container">
+  <ul class="form_list">
+    <li>
+      <div id="form_header">Edit Blog Post</div>
+    </li>
+    <form class="create_blog_form" action="/blog" method="post">
+      <hr>
+      <input type="hidden" name="_method" value="put">
+      <li><input class="textbox" type="hidden" name="title" value="<%= post[:title] %>"></li>
+      <li><input class="textbox" type="hidden" name="date" value="<%= post[:date] %>"></li>
+      <li><input class="textbox" type="hidden" name="slug" value="<%= post[:slug] %>"></li>
+      <label for="subtitle">Edit Subtitle:</label>
+      <li><input class="textbox" type="text" name="subtitle" value="<%= post[:subtitle] %>"></li>
+      <label>Document Type:</label>
+      <li>
+        <select class="dropdown" name="post_format">
+          <option value="html">HTML</option>
+          <option value="markdown">Markdown</option>
+        </select>
+      </li>
+      <label for="original_text">Edit Blog Post Body:</label>
+      <li><textarea name="original_text" cols="40" rows="6"><%= post[:original_text] %></textarea></li>
+      <li><button class="form_button" type="submit">Edit Blog Post</button></li>
+      <hr>
+    </form>
+  </ul>
+  <br>
+  <br>
+  <br>
+  <br>
+</div>

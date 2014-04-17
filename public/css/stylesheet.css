@@ -103,13 +103,13 @@ hr {
   margin: 1em 0;
 }
 
-#link_container {
+.link_container {
   width: 90%;
   margin: auto;
   text-align: center;
 }
 
-#create_blog_link {
+#create_blog_link, #edit_blog_link {
   border-radius: 0.5em;
   padding: .5em;
   font-size: 1.5em;
@@ -118,7 +118,7 @@ hr {
   margin-bottom: 5%;
 }
 
-#create_blog_link:hover {
+#create_blog_link:hover, #edit_blog_link:hover {
   border: 1px solid #00749d;
   background-color: #00749d;
   color: #fff;

@@ -76,8 +76,23 @@ class App < Sinatra::Application
       :post => post.attributes,
       :logged_in => session[:logged_in],
       :recent_posts => posts_repository.get_recent_posts,
-      :url_host => request.base_url
+      :url_host => request.base_url,
+      :slug => slug
     }
+  end
+
+  get '/blog/:full_title/edit' do
+    post = posts_repository.get_post_by_slug(params[:full_title])
+    erb :edit_blog, :layout => :admin_layout, locals: {:logged_in => session[:logged_in], :post => post.attributes}
+  end
+
+  put '/blog' do
+    original_slug = params[:slug]
+    post = Post.new(:title => params[:title], :subtitle => params[:subtitle], :original_text => params[:original_text], :original_post_format => params[:post_format])
+    slug = post.create_slug
+    rendered_text = post.render_text
+    posts_repository.update(original_slug, post.attributes)
+    redirect "blog/#{slug}"
   end
 
   get '/portfolio' do
