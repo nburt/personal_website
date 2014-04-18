@@ -109,4 +109,11 @@ feature 'Visitor can view and visit all the pages' do
     expect(page).to_not have_content 'Sinatra 103'
     expect(page).to_not have_content 'Params'
   end
+
+  scenario 'a user will be redirected to a 404 page if the page does not exist' do
+    visit '/blog/blog'
+    expect(page).to have_content 'Sorry, the page you were looking for cannot be found.'
+    visit '/bloggy'
+    expect(page).to have_content 'Sorry, the page you were looking for cannot be found.'
+  end
 end

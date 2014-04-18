@@ -69,17 +69,25 @@ class App < Sinatra::Application
     end
   end
 
+  not_found do
+    erb :not_found, :locals => {:logged_in => session[:logged_in]}
+  end
+
   get '/blog/:full_title' do
     slug = params[:full_title]
     post = posts_repository.get_post_by_slug(slug)
-    @title = post.attributes[:title]
+    if post.nil?
+      redirect not_found
+    else
+      @title = post.attributes[:title]
       erb :individual_blog_page, locals: {
-      :post => post.attributes,
-      :logged_in => session[:logged_in],
-      :recent_posts => posts_repository.get_recent_posts,
-      :url_host => request.base_url,
-      :slug => slug
-    }
+        :post => post.attributes,
+        :logged_in => session[:logged_in],
+        :recent_posts => posts_repository.get_recent_posts,
+        :url_host => request.base_url,
+        :slug => slug
+      }
+    end
   end
 
   get '/blog/:full_title/edit' do
