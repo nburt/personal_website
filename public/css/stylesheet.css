@@ -292,16 +292,13 @@ h3 {
   width: 70%;
 }
 
-#recent_posts_header_sidebar {
+#recent_posts_sidebar {
   font-size: 1.5em;
   list-style: none;
   text-decoration: underline;
 }
 
-#recent_posts_header {
-  font-size: 2em;
-  text-decoration: underline;
-  list-style: none;
+#not_found {
   text-align: center;
-  margin: 2.5% 0;
+  color: #d45252;
 }

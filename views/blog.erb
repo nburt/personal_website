@@ -6,7 +6,6 @@
   </div>
 <% end %>
 <div id="recent_posts_container">
-  <h1 id="recent_posts_header">Recent Posts</h1>
   <ol>
     <% recent_posts.each do |post| %>
       <li id="blog_post_list"><a href="<%= url_host %>/blog/<%= post[:recent_urls] %>"><%= post[:recent_titles] %></a>
