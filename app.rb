@@ -58,7 +58,7 @@ class App < Sinatra::Application
   post '/blog' do
     validation_result = BlogTitleValidator.new(DB).validate(params[:title], params[:subtitle])
     if validation_result.success?
-      post = Post.new({:title => params[:title], :subtitle => params[:subtitle], :original_text => params[:original_text], :original_post_format => params[:post_format]})
+      post = Post.new({:title => params[:title], :subtitle => params[:subtitle], :original_text => params[:original_text], :original_post_format => params[:post_format], :post_description => params[:post_description]})
       slug = post.create_slug
       rendered_text = post.render_text
       posts_repository.create(post.attributes)

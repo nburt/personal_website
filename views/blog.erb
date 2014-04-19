@@ -10,7 +10,7 @@
     <% recent_posts.each do |post| %>
       <li id="blog_post_list"><a href="<%= url_host %>/blog/<%= post[:slug] %>"><%= post[:full_title] %></a>
         - <%= post[:date].strftime('%-m/%-d/%Y') %></li>
-      <br>
+      <p><%= post[:post_description] %></p>
     <% end %>
   </ol>
 </div>

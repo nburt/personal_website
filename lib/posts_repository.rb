@@ -34,7 +34,7 @@ class PostsRepository
 
   def get_recent_posts
     ordered_posts = @posts_table.order(:date).reverse
-    recent_posts = ordered_posts.select(:title, :subtitle, :slug, :date).limit(10).to_a
+    recent_posts = ordered_posts.select(:title, :subtitle, :slug, :date, :post_description).limit(10).to_a
     recent_posts.map { |post| Post.new(post).recent_post }
   end
 

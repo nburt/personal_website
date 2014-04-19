@@ -22,6 +22,7 @@ feature 'Visitor can view and visit all the pages' do
 
     fill_in 'title', :with => 'Sinatra 103'
     fill_in 'subtitle', :with => 'A Brief Intro'
+    fill_in 'post_description', :with => 'This is the description'
     fill_in 'original_text', :with => 'This is the body of my blog post'
     click_button 'Create Post'
 
@@ -46,6 +47,7 @@ feature 'Visitor can view and visit all the pages' do
     and_the 'user can view recent blog posts on the main blog page' do
       visit '/blog'
       expect(page).to have_content 'Sinatra 103: A Brief Intro'
+      expect(page).to have_content 'This is the description'
     end
   end
 
@@ -58,6 +60,7 @@ feature 'Visitor can view and visit all the pages' do
 
     fill_in 'title', :with => 'Sinatra 103'
     fill_in 'subtitle', :with => ''
+    fill_in 'post_description', :with => 'This is the description'
     fill_in 'original_text', :with => 'This is the body of my blog post'
     click_button 'Create Post'
 
@@ -67,6 +70,9 @@ feature 'Visitor can view and visit all the pages' do
 
     expect(page).to have_content 'This is the body of my blog post'
     expect(page).to have_content Date.today.strftime('%-m/%-d/%Y')
+
+    visit '/blog'
+    expect(page).to have_content 'This is the description'
   end
 
   scenario 'an admin can edit a blog that has previously been created, the fields will be populated with the post\'s original information' do

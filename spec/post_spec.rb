@@ -32,4 +32,9 @@ describe Post do
     post = Post.new({:title => 'Sinatra 101', :subtitle => 'Subtitle', :slug => 'sinatra-101-subtitle', :date => Date.today})
     expect(post.recent_post).to eq({:title => 'Sinatra 101', :subtitle => 'Subtitle', :full_title => 'Sinatra 101: Subtitle', :slug => 'sinatra-101-subtitle', :date => Date.today})
   end
+
+  it 'returns the description of a post' do
+    post = Post.new({:title => 'Sinatra 101', :subtitle => 'Subtitle', :slug => 'sinatra-101-subtitle', :date => Date.today, :description => 'A Description'})
+    expect(post.description).to eq 'A Description'
+  end
 end

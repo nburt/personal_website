@@ -42,4 +42,8 @@ class Post
     @attributes
   end
 
+  def description
+    @attributes[:description]
+  end
+
 end
