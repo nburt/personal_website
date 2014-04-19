@@ -35,7 +35,7 @@ class PostsRepository
 
   def get_recent_posts(page_number = 0, per_page = 10)
     ordered_posts = @posts_table.order(:date).reverse
-    recent_posts = ordered_posts.select(:title, :subtitle, :slug, :date, :post_description).offset(page_number * per_page).limit(10).to_a
+    recent_posts = ordered_posts.select(:title, :subtitle, :slug, :date, :post_description).offset(page_number * per_page).limit(per_page).to_a
     recent_posts.map { |post| Post.new(post).recent_post }
   end
 

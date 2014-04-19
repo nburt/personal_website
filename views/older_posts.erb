@@ -13,7 +13,14 @@
       <p><%= post[:post_description] %></p>
     <% end %>
   </ol>
-  <% if recent_posts.length == 10 %>
-    <a href="/blog/page/<%= next_page %>">Older Posts</a>
-  <% end %>
+  <div class="older_posts_container">
+    <% if previous_page == 0 %>
+      <a id="newer_posts" href="/blog">Newer Posts</a>
+    <% else %>
+      <a id="newer_posts" href="/blog/page/<%= previous_page %>">Newer Posts</a>
+    <% end %>
+    <% if recent_posts.length == 10 %>
+      <a class="older_posts" href="/blog/page/<%= next_page %>">Older Posts</a>
+    <% end %>
+  </div>
 </div>

@@ -16,30 +16,46 @@ body {
   border-radius: 0.2em;
 }
 
-#top_header a:hover, #menubar ul li a:hover {
+#top_header a:hover, #nav_container ul li a:hover {
   border: 1px solid #00749d;
   background-color: #00749d;
   border-radius: 0.2em;
   padding: .25em .5em;
 }
 
-#menubar {
+#nav_container {
   display: block;
-  margin: 2% inherit;
+  margin: 0 inherit 2%;
   text-align: center;
-  list-style: none;
 }
 
-#menubar li {
+#nav_container ul {
+  list-style: none;
+  padding: 0;
+}
+
+#nav_container li {
   display: inline;
   font-size: 1.5em;
 }
 
-#menubar ul li a:link, #menubar ul li a:visited {
+#nav_container ul li a:link, #nav_container ul li a:visited {
   display: inline-block;
   padding: .5em;
   color: #000;
   text-decoration: none;
+  margin-bottom: 5%;
+  border-radius: .2em;
+  border: 1px;
+}
+
+#nav_container a.current:link, #nav_container a.current:visited, #nav_container a.current:hover {
+  background-color: #00749d;
+  display: inline-block;
+  padding: .5em;
+  color: #000;
+  text-decoration:  none;
+  margin-bottom: 5%;
   border-radius: .2em;
   border: 1px;
 }

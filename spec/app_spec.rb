@@ -29,7 +29,7 @@ feature 'Visitor can view and visit all the pages' do
     within '#blog_title' do
       expect(page).to have_content 'Sinatra 103'
     end
-    within 'h4' do
+    within '#blog_subtitle' do
       expect(page).to have_content 'A Brief Intro'
     end
     expect(page).to have_content 'This is the body of my blog post'
