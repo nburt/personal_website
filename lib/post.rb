@@ -25,14 +25,6 @@ class Post
     end
   end
 
-  def recent_urls
-    @attributes[:recent_urls]
-  end
-
-  def date
-    @attributes[:date]
-  end
-
   def recent_titles
     if @attributes[:subtitle].empty?
       @attributes[:title]
@@ -47,8 +39,6 @@ class Post
     else
       @attributes[:full_title] = "#{@attributes[:title]}: #{@attributes[:subtitle]}"
     end
-    @attributes.delete(:title)
-    @attributes.delete(:subtitle)
     @attributes
   end
 
