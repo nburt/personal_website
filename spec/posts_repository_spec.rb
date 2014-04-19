@@ -58,17 +58,16 @@ describe PostsRepository do
     posts_repository.create({:title => 'Sinatra 110', :original_text => '#Header', :subtitle => '', :slug => 'sinatra-110', :rendered_text => %Q{<h1 id="header">Header</h1>\n}, :date => Date.today})
 
     expect(posts_repository.get_recent_posts).to eq [
-                                                      {:recent_titles => 'Sinatra 101: An Intro', :recent_urls => 'sinatra-101-an-intro', :date => Date.today},
-                                                      {:recent_titles => 'Sinatra 102: An Intro', :recent_urls => 'sinatra-102-an-intro', :date => Date.today},
-                                                      {:recent_titles => 'Sinatra 103: An Intro', :recent_urls => 'sinatra-103-an-intro', :date => Date.today},
-                                                      {:recent_titles => 'Sinatra 104: An Intro', :recent_urls => 'sinatra-104-an-intro', :date => Date.today},
-                                                      {:recent_titles => 'Sinatra 105: An Intro', :recent_urls => 'sinatra-105-an-intro', :date => Date.today},
-                                                      {:recent_titles => 'Sinatra 106: An Intro', :recent_urls => 'sinatra-106-an-intro', :date => Date.today},
-                                                      {:recent_titles => 'Sinatra 107: An Intro', :recent_urls => 'sinatra-107-an-intro', :date => Date.today},
-                                                      {:recent_titles => 'Sinatra 108: An Intro', :recent_urls => 'sinatra-108-an-intro', :date => Date.today},
-                                                      {:recent_titles => 'Sinatra 109: An Intro', :recent_urls => 'sinatra-109-an-intro', :date => Date.today},
-                                                      {:recent_titles => 'Sinatra 110', :recent_urls => 'sinatra-110', :date => Date.today}
-
+                                                      {:slug => 'sinatra-101-an-intro', :date => Date.today, :full_title => 'Sinatra 101: An Intro'},
+                                                      {:slug => 'sinatra-102-an-intro', :date => Date.today, :full_title => 'Sinatra 102: An Intro'},
+                                                      {:slug => 'sinatra-103-an-intro', :date => Date.today, :full_title => 'Sinatra 103: An Intro'},
+                                                      {:slug => 'sinatra-104-an-intro', :date => Date.today, :full_title => 'Sinatra 104: An Intro'},
+                                                      {:slug => 'sinatra-105-an-intro', :date => Date.today, :full_title => 'Sinatra 105: An Intro'},
+                                                      {:slug => 'sinatra-106-an-intro', :date => Date.today, :full_title => 'Sinatra 106: An Intro'},
+                                                      {:slug => 'sinatra-107-an-intro', :date => Date.today, :full_title => 'Sinatra 107: An Intro'},
+                                                      {:slug => 'sinatra-108-an-intro', :date => Date.today, :full_title => 'Sinatra 108: An Intro'},
+                                                      {:slug => 'sinatra-109-an-intro', :date => Date.today, :full_title => 'Sinatra 109: An Intro'},
+                                                      {:slug => 'sinatra-110', :date => Date.today, :full_title => 'Sinatra 110'},
                                                     ]
   end
 
@@ -86,7 +85,7 @@ describe PostsRepository do
   it 'should allow an admin to update a blog post' do
     posts_repository = PostsRepository.new(DB)
     posts_repository.create({:title => 'Sinatra 101', :original_text => '#Header', :subtitle => 'An Intro', :slug => 'sinatra-101-an-intro', :rendered_text => %Q{<h1 id="header">Header</h1>\n}, :date => Date.today})
-    posts_repository.update('sinatra-101-an-intro', {:subtitle => 'A New Intro', :original_text => '#Header2', :slug => 'sinatra-101-a-new-intro', :rendered_text => %Q{<h1 id="header">Header2</h1>\n}})
+    posts_repository.update_by_slug('sinatra-101-an-intro', {:subtitle => 'A New Intro', :original_text => '#Header2', :slug => 'sinatra-101-a-new-intro', :rendered_text => %Q{<h1 id="header">Header2</h1>\n}})
     expect(posts_repository.get_post_by_slug('sinatra-101-a-new-intro').attributes).to eq({:title => 'Sinatra 101',
                                                                                 :subtitle => 'A New Intro',
                                                                                 :original_text => '#Header2',
@@ -98,7 +97,7 @@ describe PostsRepository do
   it 'should allow an admin to update a blog post' do
     posts_repository = PostsRepository.new(DB)
     posts_repository.create({:title => 'Sinatra 101', :original_text => '#Header', :subtitle => 'An Intro', :slug => 'sinatra-101-an-intro', :rendered_text => %Q{<h1 id="header">Header</h1>\n}, :date => Date.today})
-    posts_repository.delete('sinatra-101-an-intro')
+    posts_repository.delete_by_slug('sinatra-101-an-intro')
     expect(posts_repository.get_post_by_slug('sinatra-101-an-intro')).to eq nil
   end
 end

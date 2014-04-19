@@ -8,7 +8,7 @@
 <div id="recent_posts_container">
   <ol>
     <% recent_posts.each do |post| %>
-      <li id="blog_post_list"><a href="<%= url_host %>/blog/<%= post[:recent_urls] %>"><%= post[:recent_titles] %></a>
+      <li id="blog_post_list"><a href="<%= url_host %>/blog/<%= post[:slug] %>"><%= post[:full_title] %></a>
         - <%= post[:date].strftime('%-m/%-d/%Y') %></li>
       <br>
     <% end %>

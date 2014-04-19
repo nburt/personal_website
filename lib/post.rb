@@ -24,4 +24,32 @@ class Post
       @attributes[:rendered_text] = @attributes[:original_text]
     end
   end
+
+  def recent_urls
+    @attributes[:recent_urls]
+  end
+
+  def date
+    @attributes[:date]
+  end
+
+  def recent_titles
+    if @attributes[:subtitle].empty?
+      @attributes[:title]
+    else
+      "#{@attributes[:title]}: #{@attributes[:subtitle]}"
+    end
+  end
+
+  def recent_post
+    if @attributes[:subtitle].empty?
+      @attributes[:full_title] = @attributes[:title]
+    else
+      @attributes[:full_title] = "#{@attributes[:title]}: #{@attributes[:subtitle]}"
+    end
+    @attributes.delete(:title)
+    @attributes.delete(:subtitle)
+    @attributes
+  end
+
 end

@@ -27,4 +27,9 @@ describe Post do
     post = Post.new({:original_text => '<h1>Header</h1>'})
     expect(post.render_text).to eq('<h1>Header</h1>')
   end
+
+  it 'returns the necessary information for a recent post' do
+    post = Post.new({:title => 'Sinatra 101', :subtitle => 'Subtitle', :slug => 'sinatra-101-subtitle', :date => Date.today})
+    expect(post.recent_post).to eq({:full_title => 'Sinatra 101: Subtitle', :slug => 'sinatra-101-subtitle', :date => Date.today})
+  end
 end

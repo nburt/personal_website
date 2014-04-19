@@ -7,11 +7,10 @@ Capybara.app = App
 feature 'Visitor can view and visit all the pages' do
 
   before do
+    DB[:posts].delete
     visit '/login'
     fill_in 'password', :with => ENV['PASSWORD']
     click_button 'Login'
-    expect(page).to have_content 'Welcome, admin!'
-    DB[:posts].delete
   end
 
   scenario 'a user can create a new blog post' do

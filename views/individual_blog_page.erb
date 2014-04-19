@@ -21,8 +21,8 @@
       <li id="recent_posts_sidebar">Recent Posts</li>
       <% recent_posts.each do |recent_post| %>
         <li id="blog_post_list">
-          <a href="<%= url_host %>/blog/<%= recent_post[:recent_urls] %>">
-            <%= recent_post[:recent_titles] %>
+          <a href="<%= url_host %>/blog/<%= recent_post[:slug] %>">
+            <%= recent_post[:full_title] %>
           </a> - <%= recent_post[:date].strftime('%-m/%-d/%Y') %>
         </li>
       <% end %>

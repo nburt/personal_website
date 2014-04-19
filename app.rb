@@ -102,7 +102,7 @@ class App < Sinatra::Application
 
   get '/blog/:full_title/delete' do
     if session[:logged_in]
-      posts_repository.delete(params[:full_title])
+      posts_repository.delete_by_slug(params[:full_title])
       redirect '/blog'
     else
       redirect '/blog/:full_title'
@@ -114,7 +114,7 @@ class App < Sinatra::Application
     post = Post.new(:title => params[:title], :subtitle => params[:subtitle], :original_text => params[:original_text], :original_post_format => params[:post_format])
     slug = post.create_slug
     rendered_text = post.render_text
-    posts_repository.update(original_slug, post.attributes)
+    posts_repository.update_by_slug(original_slug, post.attributes)
     redirect "blog/#{slug}"
   end
 
