@@ -122,4 +122,87 @@ feature 'Visitor can view and visit all the pages' do
     visit '/bloggy'
     expect(page).to have_content 'Sorry, the page you were looking for cannot be found.'
   end
+
+  scenario 'if there are more then 10 blogs, the older ones will roll over onto the next page' do
+    visit '/blog/new'
+    fill_in 'title', :with => 'New Title 0'
+    fill_in 'subtitle', :with => 'Now there is a subtitle'
+    fill_in 'post_description', :with => 'This is a new description'
+    fill_in 'original_text', :with => 'This is the new body'
+    click_button 'Create Post'
+
+    visit '/blog/new'
+    fill_in 'title', :with => 'New Title 1'
+    fill_in 'subtitle', :with => 'Now there is a subtitle'
+    fill_in 'post_description', :with => 'This is a new description'
+    fill_in 'original_text', :with => 'This is the new body'
+    click_button 'Create Post'
+
+    visit '/blog/new'
+    fill_in 'title', :with => 'New Title 2'
+    fill_in 'subtitle', :with => 'Now there is a subtitle'
+    fill_in 'post_description', :with => 'This is a new description'
+    fill_in 'original_text', :with => 'This is the new body'
+    click_button 'Create Post'
+
+    visit '/blog/new'
+    fill_in 'title', :with => 'New Title 3'
+    fill_in 'subtitle', :with => 'Now there is a subtitle'
+    fill_in 'post_description', :with => 'This is a new description'
+    fill_in 'original_text', :with => 'This is the new body'
+    click_button 'Create Post'
+
+    visit '/blog/new'
+    fill_in 'title', :with => 'New Title 4'
+    fill_in 'subtitle', :with => 'Now there is a subtitle'
+    fill_in 'post_description', :with => 'This is a new description'
+    fill_in 'original_text', :with => 'This is the new body'
+    click_button 'Create Post'
+
+    visit '/blog/new'
+    fill_in 'title', :with => 'New Title 5'
+    fill_in 'subtitle', :with => 'Now there is a subtitle'
+    fill_in 'post_description', :with => 'This is a new description'
+    fill_in 'original_text', :with => 'This is the new body'
+    click_button 'Create Post'
+
+    visit '/blog/new'
+    fill_in 'title', :with => 'New Title 6'
+    fill_in 'subtitle', :with => 'Now there is a subtitle'
+    fill_in 'post_description', :with => 'This is a new description'
+    fill_in 'original_text', :with => 'This is the new body'
+    click_button 'Create Post'
+
+    visit '/blog/new'
+    fill_in 'title', :with => 'New Title 7'
+    fill_in 'subtitle', :with => 'Now there is a subtitle'
+    fill_in 'post_description', :with => 'This is a new description'
+    fill_in 'original_text', :with => 'This is the new body'
+    click_button 'Create Post'
+
+    visit '/blog/new'
+    fill_in 'title', :with => 'New Title 8'
+    fill_in 'subtitle', :with => 'Now there is a subtitle'
+    fill_in 'post_description', :with => 'This is a new description'
+    fill_in 'original_text', :with => 'This is the new body'
+    click_button 'Create Post'
+
+    visit '/blog/new'
+    fill_in 'title', :with => 'New Title 9'
+    fill_in 'subtitle', :with => 'Now there is a subtitle'
+    fill_in 'post_description', :with => 'This is a new description'
+    fill_in 'original_text', :with => 'This is the new body'
+    click_button 'Create Post'
+
+    visit '/blog/new'
+    fill_in 'title', :with => 'New Title 10'
+    fill_in 'subtitle', :with => 'Now there is a subtitle'
+    fill_in 'post_description', :with => 'This is a new description'
+    fill_in 'original_text', :with => 'This is the new body'
+    click_button 'Create Post'
+
+    visit '/blog'
+    click_link 'Older Posts'
+    expect(page).to have_content 'New Title 10'
+  end
 end

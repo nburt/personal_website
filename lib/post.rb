@@ -8,7 +8,7 @@ class Post
   end
 
   def create_slug
-    if @attributes[:subtitle].empty?
+    if @attributes[:subtitle].nil? || @attributes[:subtitle].empty?
       @attributes[:slug] = "#{@attributes[:title].gsub(' ', '-').downcase}"
     else
       title = @attributes[:title].gsub(' ', '-').downcase
@@ -26,7 +26,7 @@ class Post
   end
 
   def recent_titles
-    if @attributes[:subtitle].empty?
+    if @attributes[:subtitle].nil? || @attributes[:subtitle].empty?
       @attributes[:title]
     else
       "#{@attributes[:title]}: #{@attributes[:subtitle]}"
@@ -34,7 +34,7 @@ class Post
   end
 
   def recent_post
-    if @attributes[:subtitle].empty?
+    if @attributes[:subtitle].nil? || @attributes[:subtitle].empty?
       @attributes[:full_title] = @attributes[:title]
     else
       @attributes[:full_title] = "#{@attributes[:title]}: #{@attributes[:subtitle]}"

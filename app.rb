@@ -46,6 +46,11 @@ class App < Sinatra::Application
     erb :blog, :locals => {:logged_in => session[:logged_in], :recent_posts => posts_repository.get_recent_posts, :url_host => request.base_url}
   end
 
+  get '/blog/page/:page_number' do
+    recent_posts = posts_repository.get_recent_posts(params[:page_number].to_i - 1)
+    erb :older_posts, :locals => {:logged_in => session[:logged_in], :next_page => params[:page_number].to_i + 1, :recent_posts => recent_posts, :url_host => request.base_url}
+  end
+
   get '/blog/new' do
     if session[:logged_in]
       @title = "Create Blog"

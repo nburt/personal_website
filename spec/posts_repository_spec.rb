@@ -46,7 +46,7 @@ describe PostsRepository do
                                                ]
   end
 
-  it 'should allow a user to grab the 10 most recent blog posts' do
+  it 'should allow a user to grab the 10 most recent blog posts and the next 10 most recent blog posts' do
     posts_repository = PostsRepository.new(DB)
     posts_repository.create({:title => 'Sinatra 101', :original_text => '#Header', :subtitle => 'An Intro', :slug => 'sinatra-101-an-intro', :rendered_text => %Q{<h1 id="header">Header</h1>\n}, :date => Date.today, :post_description => 'A Description'})
     posts_repository.create({:title => 'Sinatra 102', :original_text => '#Header', :subtitle => 'An Intro', :slug => 'sinatra-102-an-intro', :rendered_text => %Q{<h1 id="header">Header</h1>\n}, :date => Date.today, :post_description => 'A Description'})
@@ -58,6 +58,16 @@ describe PostsRepository do
     posts_repository.create({:title => 'Sinatra 108', :original_text => '#Header', :subtitle => 'An Intro', :slug => 'sinatra-108-an-intro', :rendered_text => %Q{<h1 id="header">Header</h1>\n}, :date => Date.today, :post_description => 'A Description'})
     posts_repository.create({:title => 'Sinatra 109', :original_text => '#Header', :subtitle => 'An Intro', :slug => 'sinatra-109-an-intro', :rendered_text => %Q{<h1 id="header">Header</h1>\n}, :date => Date.today, :post_description => 'A Description'})
     posts_repository.create({:title => 'Sinatra 110', :original_text => '#Header', :subtitle => '', :slug => 'sinatra-110', :rendered_text => %Q{<h1 id="header">Header</h1>\n}, :date => Date.today, :post_description => 'A Description'})
+    posts_repository.create({:title => 'Sinatra 111', :original_text => '#Header', :subtitle => 'An Intro', :slug => 'sinatra-111-an-intro', :rendered_text => %Q{<h1 id="header">Header</h1>\n}, :date => Date.today, :post_description => 'A Description'})
+    posts_repository.create({:title => 'Sinatra 112', :original_text => '#Header', :subtitle => 'An Intro', :slug => 'sinatra-112-an-intro', :rendered_text => %Q{<h1 id="header">Header</h1>\n}, :date => Date.today, :post_description => 'A Description'})
+    posts_repository.create({:title => 'Sinatra 113', :original_text => '#Header', :subtitle => 'An Intro', :slug => 'sinatra-113-an-intro', :rendered_text => %Q{<h1 id="header">Header</h1>\n}, :date => Date.today, :post_description => 'A Description'})
+    posts_repository.create({:title => 'Sinatra 114', :original_text => '#Header', :subtitle => 'An Intro', :slug => 'sinatra-114-an-intro', :rendered_text => %Q{<h1 id="header">Header</h1>\n}, :date => Date.today, :post_description => 'A Description'})
+    posts_repository.create({:title => 'Sinatra 115', :original_text => '#Header', :subtitle => 'An Intro', :slug => 'sinatra-115-an-intro', :rendered_text => %Q{<h1 id="header">Header</h1>\n}, :date => Date.today, :post_description => 'A Description'})
+    posts_repository.create({:title => 'Sinatra 116', :original_text => '#Header', :subtitle => 'An Intro', :slug => 'sinatra-116-an-intro', :rendered_text => %Q{<h1 id="header">Header</h1>\n}, :date => Date.today, :post_description => 'A Description'})
+    posts_repository.create({:title => 'Sinatra 117', :original_text => '#Header', :subtitle => 'An Intro', :slug => 'sinatra-117-an-intro', :rendered_text => %Q{<h1 id="header">Header</h1>\n}, :date => Date.today, :post_description => 'A Description'})
+    posts_repository.create({:title => 'Sinatra 118', :original_text => '#Header', :subtitle => 'An Intro', :slug => 'sinatra-118-an-intro', :rendered_text => %Q{<h1 id="header">Header</h1>\n}, :date => Date.today, :post_description => 'A Description'})
+    posts_repository.create({:title => 'Sinatra 119', :original_text => '#Header', :subtitle => 'An Intro', :slug => 'sinatra-119-an-intro', :rendered_text => %Q{<h1 id="header">Header</h1>\n}, :date => Date.today, :post_description => 'A Description'})
+    posts_repository.create({:title => 'Sinatra 120', :original_text => '#Header', :subtitle => '', :slug => 'sinatra-120', :rendered_text => %Q{<h1 id="header">Header</h1>\n}, :date => Date.today, :post_description => 'A Description'})
 
     expect(posts_repository.get_recent_posts).to eq [
                                                       {:title => 'Sinatra 101', :subtitle => 'An Intro', :slug => 'sinatra-101-an-intro', :date => Date.today, :full_title => 'Sinatra 101: An Intro', :post_description => 'A Description'},
@@ -70,6 +80,19 @@ describe PostsRepository do
                                                       {:title => 'Sinatra 108', :subtitle => 'An Intro', :slug => 'sinatra-108-an-intro', :date => Date.today, :full_title => 'Sinatra 108: An Intro', :post_description => 'A Description'},
                                                       {:title => 'Sinatra 109', :subtitle => 'An Intro', :slug => 'sinatra-109-an-intro', :date => Date.today, :full_title => 'Sinatra 109: An Intro', :post_description => 'A Description'},
                                                       {:title => 'Sinatra 110', :subtitle => '', :slug => 'sinatra-110', :date => Date.today, :full_title => 'Sinatra 110', :post_description => 'A Description'},
+                                                    ]
+
+    expect(posts_repository.get_recent_posts(1, 10)).to eq [
+                                                      {:title => 'Sinatra 111', :subtitle => 'An Intro', :slug => 'sinatra-111-an-intro', :date => Date.today, :full_title => 'Sinatra 111: An Intro', :post_description => 'A Description'},
+                                                      {:title => 'Sinatra 112', :subtitle => 'An Intro', :slug => 'sinatra-112-an-intro', :date => Date.today, :full_title => 'Sinatra 112: An Intro', :post_description => 'A Description'},
+                                                      {:title => 'Sinatra 113', :subtitle => 'An Intro', :slug => 'sinatra-113-an-intro', :date => Date.today, :full_title => 'Sinatra 113: An Intro', :post_description => 'A Description'},
+                                                      {:title => 'Sinatra 114', :subtitle => 'An Intro', :slug => 'sinatra-114-an-intro', :date => Date.today, :full_title => 'Sinatra 114: An Intro', :post_description => 'A Description'},
+                                                      {:title => 'Sinatra 115', :subtitle => 'An Intro', :slug => 'sinatra-115-an-intro', :date => Date.today, :full_title => 'Sinatra 115: An Intro', :post_description => 'A Description'},
+                                                      {:title => 'Sinatra 116', :subtitle => 'An Intro', :slug => 'sinatra-116-an-intro', :date => Date.today, :full_title => 'Sinatra 116: An Intro', :post_description => 'A Description'},
+                                                      {:title => 'Sinatra 117', :subtitle => 'An Intro', :slug => 'sinatra-117-an-intro', :date => Date.today, :full_title => 'Sinatra 117: An Intro', :post_description => 'A Description'},
+                                                      {:title => 'Sinatra 118', :subtitle => 'An Intro', :slug => 'sinatra-118-an-intro', :date => Date.today, :full_title => 'Sinatra 118: An Intro', :post_description => 'A Description'},
+                                                      {:title => 'Sinatra 119', :subtitle => 'An Intro', :slug => 'sinatra-119-an-intro', :date => Date.today, :full_title => 'Sinatra 119: An Intro', :post_description => 'A Description'},
+                                                      {:title => 'Sinatra 120', :subtitle => '', :slug => 'sinatra-120', :date => Date.today, :full_title => 'Sinatra 120', :post_description => 'A Description'},
                                                     ]
   end
 
@@ -104,4 +127,5 @@ describe PostsRepository do
     posts_repository.delete_by_slug('sinatra-101-an-intro')
     expect(posts_repository.get_post_by_slug('sinatra-101-an-intro')).to eq nil
   end
+
 end
