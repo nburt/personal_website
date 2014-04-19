@@ -9,25 +9,21 @@
 </head>
 <body>
 <div id="background_picture">
-  <% if logged_in %>
-    <p id="admin_welcome">Welcome, admin!</p>
-  <% end %>
   <div id="top_header">
     <a href="/">Nathanael Burt</a>
   </div>
-  <nav id="menubar">
-    <ul>
-      <li><a href="/blog" class="<%= "current" if @current == "blog" %>">Blog</a></li>
-      <li><a href="/resume" class="<%= "current" if @current == "resume" %>">Resume</a></li>
-      <li><a href="/portfolio" class="<%= "current" if @current == "portfolio" %>">Portfolio</a></li>
-      <% if logged_in %>
-        <li><a href="/logout">Logout</a></li>
-      <% end %>
-    </ul>
+  <nav>
+    <div id="nav_container">
+      <ul>
+        <li><a href="/blog" class="<%= "current" if @current == "blog" %>">Blog</a></li>
+        <li><a href="/resume" class="<%= "current" if @current == "resume" %>">Resume</a></li>
+        <li><a href="/portfolio" class="<%= "current" if @current == "portfolio" %>">Portfolio</a></li>
+        <% if logged_in %>
+          <li><a href="/logout">Logout</a></li>
+        <% end %>
+      </ul>
+    </div>
   </nav>
-  <br>
-  <br>
-  <br>
 </div>
 <%= yield %>
 <footer>

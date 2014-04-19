@@ -8,13 +8,10 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
 </head>
 <body>
-<% if logged_in %>
-  <p id="admin_welcome">Welcome, admin!</p>
-<% end %>
 <div id="top_header">
   <a href="/">Nathanael Burt</a>
 </div>
-<nav id="menubar">
+<nav id="nav_container">
   <ul>
     <li><a href="/blog" class="<%= "current" if @current == "blog" %>">Blog</a></li>
     <li><a href="/resume" class="<%= "current" if @current == "resume" %>">Resume</a></li>
@@ -24,8 +21,6 @@
     <% end %>
   </ul>
 </nav>
-</div>
-
 <%= yield %>
 </body>
 </html>

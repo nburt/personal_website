@@ -44,11 +44,6 @@ body {
   border: 1px;
 }
 
-#admin_welcome {
-  margin: 2% 0 0 5%;
-  color: #000;
-}
-
 div.form_container {
   width: 90%;
   margin: auto;
