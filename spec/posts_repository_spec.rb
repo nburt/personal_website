@@ -80,6 +80,7 @@ describe PostsRepository do
                                                                                         :subtitle => 'An Intro',
                                                                                         :original_text => '#Header',
                                                                                         :rendered_text => %Q{<h1 id="header">Header</h1>\n},
+                                                                                        :post_description => nil,
                                                                                         :slug => 'sinatra-101-an-intro',
                                                                                         :date => Date.today.strftime('%-m/%-d/%Y')})
   end
@@ -92,6 +93,7 @@ describe PostsRepository do
                                                                                 :subtitle => 'A New Intro',
                                                                                 :original_text => '#Header2',
                                                                                 :rendered_text => %Q{<h1 id="header">Header2</h1>\n},
+                                                                                :post_description => nil,
                                                                                 :slug => 'sinatra-101-a-new-intro',
                                                                                 :date => posts_repository.get_date_by_slug('sinatra-101-a-new-intro')})
   end

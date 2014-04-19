@@ -24,6 +24,7 @@ class PostsRepository
         :subtitle => row[:subtitle],
         :original_text => row[:original_text],
         :rendered_text => row[:rendered_text],
+        :post_description => row[:post_description],
         :slug => slug,
         :date => row[:date].strftime('%-m/%-d/%Y')
       }

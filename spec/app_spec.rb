@@ -84,15 +84,16 @@ feature 'Visitor can view and visit all the pages' do
 
     fill_in 'title', :with => 'Sinatra 103'
     fill_in 'subtitle', :with => ''
+    fill_in 'post_description', :with => 'A blog description'
     fill_in 'original_text', :with => 'This is the body of my blog post'
     click_button 'Create Post'
     click_link 'Edit Blog Post'
 
-    within 'textarea' do
-      expect(page).to have_content 'This is the body of my blog post'
-    end
+    expect(page).to have_content 'This is the body of my blog post'
+    expect(page).to have_content 'A blog description'
     fill_in 'title', :with => 'New Title'
     fill_in 'subtitle', :with => 'Now there is a subtitle'
+    fill_in 'post_description', :with => 'This is a new description'
     fill_in 'original_text', :with => 'This is the new body'
     click_button 'Edit Blog Post'
     expect(page).to have_content 'Now there is a subtitle'

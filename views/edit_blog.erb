@@ -14,6 +14,8 @@
       <li><input class="textbox" type="text" name="title" value="<%= post[:title] %>"></li>
       <label for="subtitle">Edit Subtitle:</label>
       <li><input class="textbox" type="text" name="subtitle" value="<%= post[:subtitle] %>"></li>
+      <label for="post_description">Edit Blog Post Description:</label>
+      <li><textarea name="post_description" maxlength="250" cols="40" rows="6"><%= post[:post_description] %></textarea></li>
       <label>Document Type:</label>
       <li>
         <select class="dropdown" name="post_format">
