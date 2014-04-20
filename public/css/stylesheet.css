@@ -4,6 +4,12 @@ body {
   margin: 0;
 }
 
+#me {
+  width: 20%;
+  float: left;
+  margin-right: 2em;
+}
+
 #background_picture {
   background: url("/images/background.jpg") no-repeat;
   background-size: 100% 100%;
@@ -65,6 +71,11 @@ body {
   margin-bottom: 5%;
   border-radius: .2em;
   border: 1px;
+}
+
+.links {
+  color: #00749d;
+  text-decoration: none;
 }
 
 #login_form input {
@@ -231,11 +242,12 @@ article {
 }
 
 #resume_container,
-#recent_posts_container {
+#recent_posts_container,
+#about_container {
   width: 80%;
   margin: 2% auto;
   background-color: #F2F2F2;
-  padding: 1% 5%;
+  padding: 3% 3%;
 }
 
 #recent_posts_container ol {
