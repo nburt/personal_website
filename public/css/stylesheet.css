@@ -126,6 +126,11 @@ hr {
   text-align: center;
 }
 
+#read_more {
+  text-decoration: none;
+  color: #00749d;
+}
+
 #create_blog_link, #edit_blog_link, #delete_blog_link {
   border-radius: 0.5em;
   padding: .5em;
@@ -231,8 +236,8 @@ article {
   margin: 0
 }
 
-#blog_post_list {
-  padding-top: 2%;
+#blog_post_list:not(:first-child) {
+  margin-top: 5%;
 }
 
 #blog_post_list a:visited,
@@ -252,6 +257,8 @@ article {
 
 #recent_posts_container ol {
   list-style: none;
+  padding: 0 2em 2em;
+  margin: 0;
 }
 
 .section_headers {

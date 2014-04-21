@@ -205,4 +205,19 @@ feature 'Visitor can view and visit all the pages' do
     click_link 'Older Posts'
     expect(page).to have_content 'New Title 10'
   end
+
+  scenario 'there is an ellipsis and a read more link at the end of blog preview text' do
+    visit '/blog/new'
+    fill_in 'title', :with => 'New Title'
+    fill_in 'subtitle', :with => 'Now there is a subtitle'
+    fill_in 'post_description', :with => 'This is a new description'
+    fill_in 'original_text', :with => 'This is the new body'
+    click_button 'Create Post'
+
+    visit '/blog'
+    expect(page).to have_content '...'
+    click_link 'Read More'
+    expect(page).to have_content 'New Title'
+    expect(page).to have_content 'This is the new body'
+  end
 end
