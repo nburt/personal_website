@@ -82,6 +82,10 @@ hr {
   width: 90%;
 }
 
+.form_container ul {
+  list-style: none;
+}
+
 .form_list li {
   padding: 1em;
   margin: auto;
@@ -107,9 +111,17 @@ hr {
   font-size: 2em;
 }
 
+.create_blog_form li:nth-child(11) {
+  margin-bottom: .5em;
+}
+
+.create_blog_form li,
+.create_blog_form label {
+  margin-top: 1.2em;
+}
+
 .create_blog_form label {
   width: 17.5%;
-  margin-top: .2em;
   display: inline-block;
   float: left;
   padding: .2em;

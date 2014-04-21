@@ -26,7 +26,8 @@ class PostsRepository
         :rendered_text => row[:rendered_text],
         :post_description => row[:post_description],
         :slug => slug,
-        :time => row[:time].strftime('%-m/%-d/%Y')
+        :time => row[:time].strftime('%-m/%-d/%Y'),
+        :meta_description => row[:meta_description]
       }
 
       Post.new(attributes)

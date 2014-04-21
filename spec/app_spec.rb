@@ -27,14 +27,14 @@ feature 'Visitor can view and visit all the pages' do
       expect(page).to have_content 'Sinatra 103'
     end
     within '#blog_subtitle' do
-      expect(page).to have_content 'A Brief Intro'
+      expect(page).to have_content 'A new subtitle'
     end
-    expect(page).to have_content 'This is the body of my blog post'
+    expect(page).to have_content 'This is the new body'
     expect(page).to have_content Time.now.strftime('%-m/%-d/%Y')
 
     and_the 'user will see the latest blog posts on the right hand side of individual blog pages' do
       within '#blog_list_container' do
-        click_link 'Sinatra 103: A Brief Intro'
+        click_link 'Sinatra 103: A new subtitle'
       end
       within '#blog_title' do
         expect(page).to have_content 'Sinatra 103'
@@ -43,8 +43,8 @@ feature 'Visitor can view and visit all the pages' do
 
     and_the 'user can view recent blog posts on the main blog page' do
       visit '/blog'
-      expect(page).to have_content 'Sinatra 103: A Brief Intro'
-      expect(page).to have_content 'This is the description'
+      expect(page).to have_content 'Sinatra 103: A new subtitle'
+      expect(page).to have_content 'This is a new description'
     end
   end
 
@@ -69,14 +69,14 @@ feature 'Visitor can view and visit all the pages' do
   end
 
   scenario 'an admin can edit a blog that has previously been created, the fields will be populated with the post\'s original information' do
-    i_create_a_blog_post 'Sinatra 103'
+    i_create_a_blog_post 'Sinatra 103', 'This is the body of my blog post'
     click_link 'Edit Blog Post'
 
     expect(page).to have_content 'This is the body of my blog post'
-    expect(page).to have_content 'A blog description'
+    expect(page).to have_content 'This is a new description'
     fill_in 'title', :with => 'New Title'
     fill_in 'subtitle', :with => 'Now there is a subtitle'
-    fill_in 'post_description', :with => 'This is a new description'
+    fill_in 'post_description', :with => 'This is a newer description'
     fill_in 'original_text', :with => 'This is the new body'
     click_button 'Edit Blog Post'
     expect(page).to have_content 'Now there is a subtitle'
@@ -147,5 +147,10 @@ feature 'Visitor can view and visit all the pages' do
     within '#comment_container' do
       expect(page).to have_content "#{Time.now.strftime('%-m/%-d/%Y %l:%M %p')}"
     end
+  end
+
+  scenario 'admin can create meta description with post' do
+    i_create_a_blog_post 'New Title'
+    page.should have_css "meta[name='description'][content='Meta Description']", :visible => false
   end
 end

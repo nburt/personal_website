@@ -36,7 +36,8 @@ describe PostsRepository do
                                                   :slug => 'sinatra-101-an-intro',
                                                   :rendered_text => %Q{<h1 id="header">Header</h1>\n},
                                                   :original_post_format => 'markdown',
-                                                  :post_description => nil},
+                                                  :post_description => nil,
+                                                  :meta_description => nil},
                                                  {:id => id2,
                                                   :title => 'Sinatra 102',
                                                   :subtitle => '',
@@ -45,7 +46,8 @@ describe PostsRepository do
                                                   :slug => 'sinatra-102',
                                                   :rendered_text => %Q{<h1 id="header">Header</h1>\n},
                                                   :original_post_format => 'markdown',
-                                                  :post_description => nil}
+                                                  :post_description => nil,
+                                                  :meta_description => nil}
                                                ]
   end
 
@@ -101,14 +103,15 @@ describe PostsRepository do
 
   it 'should allow a user to access a table row with a slug' do
     time = Time.now
-    posts_repository.create({:title => 'Sinatra 101', :original_text => '#Header', :subtitle => 'An Intro', :slug => 'sinatra-101-an-intro', :rendered_text => %Q{<h1 id="header">Header</h1>\n}, :time => time})
+    posts_repository.create({:title => 'Sinatra 101', :original_text => '#Header', :subtitle => 'An Intro', :slug => 'sinatra-101-an-intro', :rendered_text => %Q{<h1 id="header">Header</h1>\n}, :time => time, :meta_description => 'A Meta Description'})
     expect(posts_repository.get_post_by_slug('sinatra-101-an-intro').attributes).to eq({:title => 'Sinatra 101',
                                                                                         :subtitle => 'An Intro',
                                                                                         :original_text => '#Header',
                                                                                         :rendered_text => %Q{<h1 id="header">Header</h1>\n},
                                                                                         :post_description => nil,
                                                                                         :slug => 'sinatra-101-an-intro',
-                                                                                        :time => time.strftime('%-m/%-d/%Y')})
+                                                                                        :time => time.strftime('%-m/%-d/%Y'),
+                                                                                        :meta_description => 'A Meta Description'})
   end
 
   it 'should allow an admin to update a blog post' do
@@ -121,7 +124,8 @@ describe PostsRepository do
                                                                                 :rendered_text => %Q{<h1 id="header">Header2</h1>\n},
                                                                                 :post_description => nil,
                                                                                 :slug => 'sinatra-101-a-new-intro',
-                                                                                :time => posts_repository.get_time_by_slug('sinatra-101-a-new-intro')})
+                                                                                :time => posts_repository.get_time_by_slug('sinatra-101-a-new-intro'),
+                                                                                :meta_description => nil})
   end
 
   it 'should allow an admin to update a blog post' do
