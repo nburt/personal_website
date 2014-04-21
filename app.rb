@@ -101,8 +101,9 @@ class App < Sinatra::Application
 
   post '/blog/:full_title' do
     post_id = posts_repository.get_id_by_slug(params[:full_title])
+    comment = Comment.new({:name => params[:name], :comment => params[:comment]})
     comments_repository = CommentsRepository.new(DB, post_id)
-    comments_repository.create({:name => params[:name], :comment => params[:comment]})
+    comments_repository.create(comment.attributes)
     redirect "/blog/#{params[:full_title]}"
   end
 

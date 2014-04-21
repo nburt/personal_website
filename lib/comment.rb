@@ -4,6 +4,7 @@ class Comment
 
   def initialize(attributes)
     @attributes = attributes
+    @attributes[:time] ||= Time.now
   end
 
 end
