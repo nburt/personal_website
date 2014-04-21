@@ -8,6 +8,7 @@ feature 'Visitor can view and visit all the pages' do
 
   before do
     DB[:posts].delete
+    DB[:comments].delete
     visit '/login'
     fill_in 'password', :with => ENV['PASSWORD']
     click_button 'Login'
@@ -33,7 +34,7 @@ feature 'Visitor can view and visit all the pages' do
       expect(page).to have_content 'A Brief Intro'
     end
     expect(page).to have_content 'This is the body of my blog post'
-    expect(page).to have_content Date.today.strftime('%-m/%-d/%Y')
+    expect(page).to have_content Time.now.strftime('%-m/%-d/%Y')
 
     and_the 'user will see the latest blog posts on the right hand side of individual blog pages' do
       within '#blog_list_container' do
@@ -69,7 +70,7 @@ feature 'Visitor can view and visit all the pages' do
     end
 
     expect(page).to have_content 'This is the body of my blog post'
-    expect(page).to have_content Date.today.strftime('%-m/%-d/%Y')
+    expect(page).to have_content Time.now.strftime('%-m/%-d/%Y')
 
     visit '/blog'
     expect(page).to have_content 'This is the description'
@@ -124,6 +125,8 @@ feature 'Visitor can view and visit all the pages' do
   end
 
   scenario 'if there are more then 10 blogs, the older ones will roll over onto the next page' do
+
+
     visit '/blog/new'
     fill_in 'title', :with => 'New Title 0'
     fill_in 'subtitle', :with => 'Now there is a subtitle'
@@ -202,22 +205,26 @@ feature 'Visitor can view and visit all the pages' do
     click_button 'Create Post'
 
     visit '/blog'
+    expect(page).to_not have_content 'New Title 0'
     click_link 'Older Posts'
-    expect(page).to have_content 'New Title 10'
+    expect(page).to have_content 'New Title 0'
   end
 
   scenario 'there is an ellipsis and a read more link at the end of blog preview text' do
-    visit '/blog/new'
-    fill_in 'title', :with => 'New Title'
-    fill_in 'subtitle', :with => 'Now there is a subtitle'
-    fill_in 'post_description', :with => 'This is a new description'
-    fill_in 'original_text', :with => 'This is the new body'
-    click_button 'Create Post'
-
+    i_create_a_blog_post 'New Title', 'This is the new body'
     visit '/blog'
     expect(page).to have_content '...'
     click_link 'Read More'
     expect(page).to have_content 'New Title'
     expect(page).to have_content 'This is the new body'
+  end
+
+  scenario 'visitors can comment on posts' do
+    i_create_a_blog_post 'New Title'
+    fill_in 'name', :with => 'Nate'
+    fill_in 'comment', :with => 'This is a comment'
+    click_button 'Post Comment'
+    expect(page).to have_content 'Nate'
+    expect(page).to have_content 'This is a comment'
   end
 end

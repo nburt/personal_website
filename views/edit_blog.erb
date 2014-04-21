@@ -8,7 +8,7 @@
     <form class="create_blog_form" action="/blog" method="post">
       <hr>
       <input type="hidden" name="_method" value="put">
-      <input type="hidden" name="date" value="<%= post[:date] %>">
+      <input type="hidden" name="date" value="<%= post[:time] %>">
       <input type="hidden" name="slug" value="<%= post[:slug] %>">
       <label for="title">Blog Title:</label>
       <li><input class="textbox" type="text" name="title" value="<%= post[:title] %>"></li>

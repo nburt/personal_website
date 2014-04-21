@@ -1,4 +1,4 @@
-<% if logged_in == true %>
+<% if logged_in %>
   <br>
   <div class="link_container">
     <a id="edit_blog_link" href="/blog/<%= slug %>/edit">Edit Blog Post</a>
@@ -10,7 +10,7 @@
     <ul id="blog_post_layout">
       <li>
         <div id="blog_title"><%= post[:title] %></div>
-        <span id="blog_date"><%= post[:date] %></span>
+        <span id="blog_date"><%= post[:time] %></span>
       </li>
       <li id="blog_subtitle"><%= post[:subtitle] %></li>
       <li id="rendered_text"><%= post[:rendered_text] %></li>
@@ -23,9 +23,29 @@
         <li id="sidebar_post_list">
           <a href="<%= url_host %>/blog/<%= recent_post[:slug] %>">
             <%= recent_post[:full_title] %>
-          </a> - <%= recent_post[:date].strftime('%-m/%-d/%Y') %>
+          </a> - <%= recent_post[:time].strftime('%-m/%-d/%Y') %>
         </li>
       <% end %>
     </ul>
   </div>
 </article>
+<div id="comment_container">
+  <ul id="comment_form_list">
+    <form id="comment_form" action="/blog/<%= slug %>" method="post">
+      <li><input placeholder="Name" type="text" name="name" required></li>
+      <li><textarea placeholder="Comment" name="comment" cols="30" rows="5" required></textarea></li>
+      <li>
+        <button>Post Comment</button>
+      </li>
+    </form>
+  </ul>
+  <% if comments != nil %>
+    <h3>Recent Comments</h3>
+    <ul id="comment_list">
+      <% comments.each do |comment| %>
+        <li><%= comment[:name] %></li>
+        <li><%= comment[:comment] %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>

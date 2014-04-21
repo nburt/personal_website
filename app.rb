@@ -2,6 +2,7 @@ require 'sinatra'
 require './lib/posts_repository'
 require './lib/blog_title_validator'
 require './lib/post_formatter'
+require './lib/comments_repository'
 
 class App < Sinatra::Application
 
@@ -85,14 +86,24 @@ class App < Sinatra::Application
       redirect not_found
     else
       @title = post.attributes[:title]
+      post_id = posts_repository.get_id_by_slug(slug)
+      comments_repository = CommentsRepository.new(DB, post_id)
       erb :individual_blog_page, locals: {
         :post => post.attributes,
         :logged_in => session[:logged_in],
         :recent_posts => posts_repository.get_recent_posts(0, 5),
         :url_host => request.base_url,
-        :slug => slug
+        :slug => slug,
+        :comments => comments_repository.display_all
       }
     end
+  end
+
+  post '/blog/:full_title' do
+    post_id = posts_repository.get_id_by_slug(params[:full_title])
+    comments_repository = CommentsRepository.new(DB, post_id)
+    comments_repository.create({:name => params[:name], :comment => params[:comment]})
+    redirect "/blog/#{params[:full_title]}"
   end
 
   get '/blog/:full_title/edit' do

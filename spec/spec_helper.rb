@@ -1,6 +1,7 @@
 require 'sequel'
 require 'capybara/rspec'
 require 'dotenv'
+require 'pry'
 
 Dotenv.load
 
@@ -22,4 +23,17 @@ end
 
 alias and_the the
 
+module FeatureHelpers
+  def i_create_a_blog_post(title, body='This is the new body')
+    visit '/blog/new'
+    fill_in 'title', :with => title
+    fill_in 'subtitle', :with => 'A new subtitle'
+    fill_in 'post_description', :with => 'This is a new description'
+    fill_in 'original_text', :with => body
+    click_button 'Create Post'
+  end
+end
 
+RSpec.configure do |c|
+  c.include FeatureHelpers
+end

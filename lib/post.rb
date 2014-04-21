@@ -1,10 +1,12 @@
 require './lib/post_formatter'
 
 class Post
+
   attr_reader :attributes
+
   def initialize(attributes)
     @attributes = attributes
-    @attributes[:date] ||= Date.today
+    @attributes[:time] ||= Time.now
   end
 
   def create_slug

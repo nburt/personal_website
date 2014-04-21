@@ -248,9 +248,11 @@ article {
 
 #resume_container,
 #recent_posts_container,
-#about_container {
-  width: 80%;
-  margin: 2% auto;
+#about_container,
+#comment_container {
+  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+  width: 90%;
+  margin: 2.5% auto;
   background-color: #F2F2F2;
   padding: 3% 3%;
 }
@@ -388,4 +390,58 @@ h3 {
 #not_found {
   text-align: center;
   color: #d45252;
+}
+
+#comment_form button {
+  border-radius: 0.5em;
+  padding: .5em;
+  font-size: 1.5em;
+  border-style: none;
+  background-color: #F2F2F2;
+  color: #000;
+}
+
+#comment_form button:hover {
+  cursor: pointer;
+  border-radius: 0.5em;
+  padding: .5em;
+  font-size: 1.5em;
+  border-style: none;
+  background-color: #00749d;
+  color: #fff;
+}
+
+#comment_form_list {
+  list-style: none;
+  padding: 0;
+}
+
+#comment_form input {
+  height: 2em;
+  width: 20%;
+  padding: .25em .35em;
+  border: 0.1em solid #aaa;
+  border-radius: 0.5em;
+  margin-bottom: 1em;
+}
+
+#comment_form textarea {
+  padding: .35em;
+  width: 50%;
+  height: 10em;
+  border: 0.1em solid #aaa;
+  border-radius: 0.5em;
+}
+
+#comment_list {
+  list-style: none;
+  padding: 0;
+}
+
+#comment_list li {
+  margin-bottom: 1em;
+}
+
+#comment_list li:nth-child(even) {
+  margin-bottom: 3em;
 }

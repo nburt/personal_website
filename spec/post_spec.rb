@@ -5,7 +5,8 @@ describe Post do
 
   it 'can take a slug hash and access all the attributes of a post and should initialize with the date' do
     post = Post.new({:slug => 'title2-subtitle'})
-    expect(post.attributes).to eq({:slug => 'title2-subtitle', :date => Date.today})
+    expect(post.attributes).to include({:slug => 'title2-subtitle'})
+    expect(post.attributes[:time]).to be_within(1).of(Time.now)
   end
 
   it 'should allow a user to create a slug with the title and subtitle' do
@@ -29,12 +30,13 @@ describe Post do
   end
 
   it 'returns the information for a recent post' do
-    post = Post.new({:title => 'Sinatra 101', :subtitle => 'Subtitle', :slug => 'sinatra-101-subtitle', :date => Date.today})
-    expect(post.recent_post).to eq({:title => 'Sinatra 101', :subtitle => 'Subtitle', :full_title => 'Sinatra 101: Subtitle', :slug => 'sinatra-101-subtitle', :date => Date.today})
+    post = Post.new({:title => 'Sinatra 101', :subtitle => 'Subtitle', :slug => 'sinatra-101-subtitle', :time => Time.now})
+    expect(post.recent_post).to include({:title => 'Sinatra 101', :subtitle => 'Subtitle', :slug => 'sinatra-101-subtitle', :full_title => 'Sinatra 101: Subtitle'})
+    expect(post.attributes[:time]).to be_within(1).of(Time.now)
   end
 
   it 'returns the description of a post' do
-    post = Post.new({:title => 'Sinatra 101', :subtitle => 'Subtitle', :slug => 'sinatra-101-subtitle', :date => Date.today, :description => 'A Description'})
+    post = Post.new({:title => 'Sinatra 101', :subtitle => 'Subtitle', :slug => 'sinatra-101-subtitle', :time => Time.now, :description => 'A Description'})
     expect(post.description).to eq 'A Description'
   end
 end
