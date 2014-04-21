@@ -14,6 +14,7 @@ class App < Sinatra::Application
 
   get '/' do
     @title = "Nathanael Burt | Home"
+    @meta_description = "Nathanael Burt is a web developer/software engineer specializing in test-driven development with Ruby on Rails."
     erb :index, :locals => {:logged_in => session[:logged_in]}
   end
 
@@ -39,15 +40,19 @@ class App < Sinatra::Application
 
   get '/resume' do
     @title = "Nathanael Burt | Resume"
+    @meta_description = "Check out Nathanael Burt's resume and learn why you should hire him for your next software project."
     erb :resume, :locals => {:logged_in => session[:logged_in]}
   end
 
   get '/blog' do
     @title = "Nathanael Burt | Blog"
+    @meta_description = "Gain insight into the tech industry and learn with technical how-to blogs by Nathanael Burt."
     erb :blog, :locals => {:logged_in => session[:logged_in], :recent_posts => posts_repository.get_recent_posts, :url_host => request.base_url}
   end
 
   get '/blog/page/:page_number' do
+    @title = "Nathanael Burt | Blog Page #{params[:page_number]}"
+    @meta_description = "Page #{params[:page_number]} of the list of Nathanael Burt's blogs."
     recent_posts = posts_repository.get_recent_posts(params[:page_number].to_i - 1)
     erb :older_posts, :locals => {:logged_in => session[:logged_in], :next_page => params[:page_number].to_i + 1, :previous_page => params[:page_number].to_i - 1, :recent_posts => recent_posts, :url_host => request.base_url}
   end
@@ -138,6 +143,7 @@ class App < Sinatra::Application
 
   get '/portfolio' do
     @title = "Nathanael Burt | Portfolio"
+    @meta_description = "Visit Nathanael Burt's portofolio to see the amazing web applications that he has built."
     erb :portfolio, :locals => {:logged_in => session[:logged_in]}
   end
 
