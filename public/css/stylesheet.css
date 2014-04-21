@@ -329,6 +329,11 @@ h3 {
   text-decoration: underline;
 }
 
+.h3_without_underline {
+  font-size: 1.25em;
+  text-decoration: none;
+}
+
 #blog_post_layout #rendered_text {
   line-height: 1.5em;
 }
@@ -444,4 +449,8 @@ h3 {
 
 #comment_list li:nth-child(even) {
   margin-bottom: 3em;
+}
+
+#comment_time {
+  margin-left: 5em;
 }

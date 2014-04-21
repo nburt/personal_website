@@ -226,5 +226,8 @@ feature 'Visitor can view and visit all the pages' do
     click_button 'Post Comment'
     expect(page).to have_content 'Nate'
     expect(page).to have_content 'This is a comment'
+    within '#comment_container' do
+      expect(page).to have_content "#{Time.now.strftime('%-m/%-d/%Y %l:%M %p')}"
+    end
   end
 end
