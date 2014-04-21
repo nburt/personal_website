@@ -10,4 +10,5 @@ group :development, :test do
   gem 'rspec', '~> 2.14.1'
   gem 'rerun', '~> 0.9.0'
   gem 'capybara', '~> 2.2.1'
+  gem 'pry', '~> 0.9.12.6'
 end
