@@ -21,11 +21,7 @@ feature 'Visitor can view and visit all the pages' do
       expect(page).to have_content 'Create New Blog'
     end
 
-    fill_in 'title', :with => 'Sinatra 103'
-    fill_in 'subtitle', :with => 'A Brief Intro'
-    fill_in 'post_description', :with => 'This is the description'
-    fill_in 'original_text', :with => 'This is the body of my blog post'
-    click_button 'Create Post'
+    i_create_a_blog_post 'Sinatra 103'
 
     within '#blog_title' do
       expect(page).to have_content 'Sinatra 103'
@@ -53,11 +49,7 @@ feature 'Visitor can view and visit all the pages' do
   end
 
   scenario 'a user can create a new blog post without a subtitle' do
-    visit '/blog'
-    click_link 'Create a New Blog Post'
-    within '#form_header' do
-      expect(page).to have_content 'Create New Blog'
-    end
+    visit '/blog/new'
 
     fill_in 'title', :with => 'Sinatra 103'
     fill_in 'subtitle', :with => ''
@@ -77,17 +69,7 @@ feature 'Visitor can view and visit all the pages' do
   end
 
   scenario 'an admin can edit a blog that has previously been created, the fields will be populated with the post\'s original information' do
-    visit '/blog'
-    click_link 'Create a New Blog Post'
-    within '#form_header' do
-      expect(page).to have_content 'Create New Blog'
-    end
-
-    fill_in 'title', :with => 'Sinatra 103'
-    fill_in 'subtitle', :with => ''
-    fill_in 'post_description', :with => 'A blog description'
-    fill_in 'original_text', :with => 'This is the body of my blog post'
-    click_button 'Create Post'
+    i_create_a_blog_post 'Sinatra 103'
     click_link 'Edit Blog Post'
 
     expect(page).to have_content 'This is the body of my blog post'
@@ -102,16 +84,8 @@ feature 'Visitor can view and visit all the pages' do
   end
 
   scenario 'an admin can delete a previously created blog post' do
-    visit '/blog'
-    click_link 'Create a New Blog Post'
-    within '#form_header' do
-      expect(page).to have_content 'Create New Blog'
-    end
+    i_create_a_blog_post 'Sinatra 103'
 
-    fill_in 'title', :with => 'Sinatra 103'
-    fill_in 'subtitle', :with => 'Params'
-    fill_in 'original_text', :with => 'This is the body of my blog post'
-    click_button 'Create Post'
     click_link 'Delete Blog Post'
     expect(page).to_not have_content 'Sinatra 103'
     expect(page).to_not have_content 'Params'
@@ -126,83 +100,27 @@ feature 'Visitor can view and visit all the pages' do
 
   scenario 'if there are more then 10 blogs, the older ones will roll over onto the next page' do
 
+    i_create_a_blog_post 'New Title 0'
 
-    visit '/blog/new'
-    fill_in 'title', :with => 'New Title 0'
-    fill_in 'subtitle', :with => 'Now there is a subtitle'
-    fill_in 'post_description', :with => 'This is a new description'
-    fill_in 'original_text', :with => 'This is the new body'
-    click_button 'Create Post'
+    i_create_a_blog_post 'New Title 1'
 
-    visit '/blog/new'
-    fill_in 'title', :with => 'New Title 1'
-    fill_in 'subtitle', :with => 'Now there is a subtitle'
-    fill_in 'post_description', :with => 'This is a new description'
-    fill_in 'original_text', :with => 'This is the new body'
-    click_button 'Create Post'
+    i_create_a_blog_post 'New Title 2'
 
-    visit '/blog/new'
-    fill_in 'title', :with => 'New Title 2'
-    fill_in 'subtitle', :with => 'Now there is a subtitle'
-    fill_in 'post_description', :with => 'This is a new description'
-    fill_in 'original_text', :with => 'This is the new body'
-    click_button 'Create Post'
+    i_create_a_blog_post 'New Title 3'
 
-    visit '/blog/new'
-    fill_in 'title', :with => 'New Title 3'
-    fill_in 'subtitle', :with => 'Now there is a subtitle'
-    fill_in 'post_description', :with => 'This is a new description'
-    fill_in 'original_text', :with => 'This is the new body'
-    click_button 'Create Post'
+    i_create_a_blog_post 'New Title 4'
 
-    visit '/blog/new'
-    fill_in 'title', :with => 'New Title 4'
-    fill_in 'subtitle', :with => 'Now there is a subtitle'
-    fill_in 'post_description', :with => 'This is a new description'
-    fill_in 'original_text', :with => 'This is the new body'
-    click_button 'Create Post'
+    i_create_a_blog_post 'New Title 5'
 
-    visit '/blog/new'
-    fill_in 'title', :with => 'New Title 5'
-    fill_in 'subtitle', :with => 'Now there is a subtitle'
-    fill_in 'post_description', :with => 'This is a new description'
-    fill_in 'original_text', :with => 'This is the new body'
-    click_button 'Create Post'
+    i_create_a_blog_post 'New Title 6'
 
-    visit '/blog/new'
-    fill_in 'title', :with => 'New Title 6'
-    fill_in 'subtitle', :with => 'Now there is a subtitle'
-    fill_in 'post_description', :with => 'This is a new description'
-    fill_in 'original_text', :with => 'This is the new body'
-    click_button 'Create Post'
+    i_create_a_blog_post 'New Title 7'
 
-    visit '/blog/new'
-    fill_in 'title', :with => 'New Title 7'
-    fill_in 'subtitle', :with => 'Now there is a subtitle'
-    fill_in 'post_description', :with => 'This is a new description'
-    fill_in 'original_text', :with => 'This is the new body'
-    click_button 'Create Post'
+    i_create_a_blog_post 'New Title 8'
 
-    visit '/blog/new'
-    fill_in 'title', :with => 'New Title 8'
-    fill_in 'subtitle', :with => 'Now there is a subtitle'
-    fill_in 'post_description', :with => 'This is a new description'
-    fill_in 'original_text', :with => 'This is the new body'
-    click_button 'Create Post'
+    i_create_a_blog_post 'New Title 9'
 
-    visit '/blog/new'
-    fill_in 'title', :with => 'New Title 9'
-    fill_in 'subtitle', :with => 'Now there is a subtitle'
-    fill_in 'post_description', :with => 'This is a new description'
-    fill_in 'original_text', :with => 'This is the new body'
-    click_button 'Create Post'
-
-    visit '/blog/new'
-    fill_in 'title', :with => 'New Title 10'
-    fill_in 'subtitle', :with => 'Now there is a subtitle'
-    fill_in 'post_description', :with => 'This is a new description'
-    fill_in 'original_text', :with => 'This is the new body'
-    click_button 'Create Post'
+    i_create_a_blog_post 'New Title 10'
 
     visit '/blog'
     expect(page).to_not have_content 'New Title 0'
