@@ -73,9 +73,11 @@ feature 'Visitor can view and visit all the pages' do
     click_link 'Edit Blog Post'
 
     expect(page).to have_content 'This is the body of my blog post'
+    expect(page).to have_content 'Meta Description'
     expect(page).to have_content 'This is a new description'
     fill_in 'title', :with => 'New Title'
     fill_in 'subtitle', :with => 'Now there is a subtitle'
+    fill_in 'meta_description', :with => 'New meta description'
     fill_in 'post_description', :with => 'This is a newer description'
     fill_in 'original_text', :with => 'This is the new body'
     click_button 'Edit Blog Post'
@@ -153,4 +155,5 @@ feature 'Visitor can view and visit all the pages' do
     i_create_a_blog_post 'New Title'
     page.should have_css "meta[name='description'][content='Meta Description']", :visible => false
   end
+
 end
