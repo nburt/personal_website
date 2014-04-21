@@ -404,6 +404,7 @@ h3 {
   border-style: none;
   background-color: #E0E0E0;
   color: #000;
+  margin-bottom: 1em;
 }
 
 #comment_form button:hover {
@@ -414,6 +415,7 @@ h3 {
   border-style: none;
   background-color: #00749d;
   color: #fff;
+  margin-bottom: 1em;
 }
 
 #comment_form_list {
