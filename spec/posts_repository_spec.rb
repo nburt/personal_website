@@ -37,7 +37,8 @@ describe PostsRepository do
                                                   :rendered_text => %Q{<h1 id="header">Header</h1>\n},
                                                   :original_post_format => 'markdown',
                                                   :post_description => nil,
-                                                  :meta_description => nil},
+                                                  :meta_description => nil,
+                                                  :tags => nil},
                                                  {:id => id2,
                                                   :title => 'Sinatra 102',
                                                   :subtitle => '',
@@ -47,7 +48,8 @@ describe PostsRepository do
                                                   :rendered_text => %Q{<h1 id="header">Header</h1>\n},
                                                   :original_post_format => 'markdown',
                                                   :post_description => nil,
-                                                  :meta_description => nil}
+                                                  :meta_description => nil,
+                                                  :tags => nil}
                                                ]
   end
 
@@ -88,22 +90,22 @@ describe PostsRepository do
                                                     ]
 
     expect(posts_repository.get_recent_posts(1, 10)).to eq [
-                                                      {:title => 'Sinatra 111', :subtitle => 'An Intro', :slug => 'sinatra-111-an-intro', :time => time, :full_title => 'Sinatra 111: An Intro', :post_description => 'A Description'},
-                                                      {:title => 'Sinatra 112', :subtitle => 'An Intro', :slug => 'sinatra-112-an-intro', :time => time, :full_title => 'Sinatra 112: An Intro', :post_description => 'A Description'},
-                                                      {:title => 'Sinatra 113', :subtitle => 'An Intro', :slug => 'sinatra-113-an-intro', :time => time, :full_title => 'Sinatra 113: An Intro', :post_description => 'A Description'},
-                                                      {:title => 'Sinatra 114', :subtitle => 'An Intro', :slug => 'sinatra-114-an-intro', :time => time, :full_title => 'Sinatra 114: An Intro', :post_description => 'A Description'},
-                                                      {:title => 'Sinatra 115', :subtitle => 'An Intro', :slug => 'sinatra-115-an-intro', :time => time, :full_title => 'Sinatra 115: An Intro', :post_description => 'A Description'},
-                                                      {:title => 'Sinatra 116', :subtitle => 'An Intro', :slug => 'sinatra-116-an-intro', :time => time, :full_title => 'Sinatra 116: An Intro', :post_description => 'A Description'},
-                                                      {:title => 'Sinatra 117', :subtitle => 'An Intro', :slug => 'sinatra-117-an-intro', :time => time, :full_title => 'Sinatra 117: An Intro', :post_description => 'A Description'},
-                                                      {:title => 'Sinatra 118', :subtitle => 'An Intro', :slug => 'sinatra-118-an-intro', :time => time, :full_title => 'Sinatra 118: An Intro', :post_description => 'A Description'},
-                                                      {:title => 'Sinatra 119', :subtitle => 'An Intro', :slug => 'sinatra-119-an-intro', :time => time, :full_title => 'Sinatra 119: An Intro', :post_description => 'A Description'},
-                                                      {:title => 'Sinatra 120', :subtitle => '', :slug => 'sinatra-120', :time => time, :full_title => 'Sinatra 120', :post_description => 'A Description'},
-                                                    ]
+                                                             {:title => 'Sinatra 111', :subtitle => 'An Intro', :slug => 'sinatra-111-an-intro', :time => time, :full_title => 'Sinatra 111: An Intro', :post_description => 'A Description'},
+                                                             {:title => 'Sinatra 112', :subtitle => 'An Intro', :slug => 'sinatra-112-an-intro', :time => time, :full_title => 'Sinatra 112: An Intro', :post_description => 'A Description'},
+                                                             {:title => 'Sinatra 113', :subtitle => 'An Intro', :slug => 'sinatra-113-an-intro', :time => time, :full_title => 'Sinatra 113: An Intro', :post_description => 'A Description'},
+                                                             {:title => 'Sinatra 114', :subtitle => 'An Intro', :slug => 'sinatra-114-an-intro', :time => time, :full_title => 'Sinatra 114: An Intro', :post_description => 'A Description'},
+                                                             {:title => 'Sinatra 115', :subtitle => 'An Intro', :slug => 'sinatra-115-an-intro', :time => time, :full_title => 'Sinatra 115: An Intro', :post_description => 'A Description'},
+                                                             {:title => 'Sinatra 116', :subtitle => 'An Intro', :slug => 'sinatra-116-an-intro', :time => time, :full_title => 'Sinatra 116: An Intro', :post_description => 'A Description'},
+                                                             {:title => 'Sinatra 117', :subtitle => 'An Intro', :slug => 'sinatra-117-an-intro', :time => time, :full_title => 'Sinatra 117: An Intro', :post_description => 'A Description'},
+                                                             {:title => 'Sinatra 118', :subtitle => 'An Intro', :slug => 'sinatra-118-an-intro', :time => time, :full_title => 'Sinatra 118: An Intro', :post_description => 'A Description'},
+                                                             {:title => 'Sinatra 119', :subtitle => 'An Intro', :slug => 'sinatra-119-an-intro', :time => time, :full_title => 'Sinatra 119: An Intro', :post_description => 'A Description'},
+                                                             {:title => 'Sinatra 120', :subtitle => '', :slug => 'sinatra-120', :time => time, :full_title => 'Sinatra 120', :post_description => 'A Description'},
+                                                           ]
   end
 
   it 'should allow a user to access a table row with a slug' do
     time = Time.now
-    posts_repository.create({:title => 'Sinatra 101', :original_text => '#Header', :subtitle => 'An Intro', :slug => 'sinatra-101-an-intro', :rendered_text => %Q{<h1 id="header">Header</h1>\n}, :time => time, :meta_description => 'A Meta Description'})
+    posts_repository.create({:title => 'Sinatra 101', :original_text => '#Header', :subtitle => 'An Intro', :slug => 'sinatra-101-an-intro', :rendered_text => %Q{<h1 id="header">Header</h1>\n}, :time => time, :meta_description => 'A Meta Description', :tags => 'Ruby, Rails'})
     expect(posts_repository.get_post_by_slug('sinatra-101-an-intro').attributes).to eq({:title => 'Sinatra 101',
                                                                                         :subtitle => 'An Intro',
                                                                                         :original_text => '#Header',
@@ -111,7 +113,8 @@ describe PostsRepository do
                                                                                         :post_description => nil,
                                                                                         :slug => 'sinatra-101-an-intro',
                                                                                         :time => time.strftime('%-m/%-d/%Y'),
-                                                                                        :meta_description => 'A Meta Description'})
+                                                                                        :meta_description => 'A Meta Description',
+                                                                                        :tags => 'Ruby, Rails'})
   end
 
   it 'should allow an admin to update a blog post' do
@@ -119,13 +122,14 @@ describe PostsRepository do
     posts_repository.create({:title => 'Sinatra 101', :original_text => '#Header', :subtitle => 'An Intro', :slug => 'sinatra-101-an-intro', :rendered_text => %Q{<h1 id="header">Header</h1>\n}, :time => time})
     posts_repository.update_by_slug('sinatra-101-an-intro', {:subtitle => 'A New Intro', :original_text => '#Header2', :slug => 'sinatra-101-a-new-intro', :rendered_text => %Q{<h1 id="header">Header2</h1>\n}})
     expect(posts_repository.get_post_by_slug('sinatra-101-a-new-intro').attributes).to eq({:title => 'Sinatra 101',
-                                                                                :subtitle => 'A New Intro',
-                                                                                :original_text => '#Header2',
-                                                                                :rendered_text => %Q{<h1 id="header">Header2</h1>\n},
-                                                                                :post_description => nil,
-                                                                                :slug => 'sinatra-101-a-new-intro',
-                                                                                :time => posts_repository.get_time_by_slug('sinatra-101-a-new-intro'),
-                                                                                :meta_description => nil})
+                                                                                           :subtitle => 'A New Intro',
+                                                                                           :original_text => '#Header2',
+                                                                                           :rendered_text => %Q{<h1 id="header">Header2</h1>\n},
+                                                                                           :post_description => nil,
+                                                                                           :slug => 'sinatra-101-a-new-intro',
+                                                                                           :time => posts_repository.get_time_by_slug('sinatra-101-a-new-intro'),
+                                                                                           :meta_description => nil,
+                                                                                           :tags => nil})
   end
 
   it 'should allow an admin to update a blog post' do
@@ -139,6 +143,19 @@ describe PostsRepository do
     time = Time.now
     post_id = posts_repository.create({:title => 'Sinatra 101', :original_text => '#Header', :subtitle => 'An Intro', :slug => 'sinatra-101-an-intro', :rendered_text => %Q{<h1 id="header">Header</h1>\n}, :time => time})
     expect(posts_repository.get_id_by_slug('sinatra-101-an-intro')).to eq post_id
+  end
+
+  it 'should allow you to get all the posts related to a tag' do
+    time = Time.now
+    posts_repository.create({:title => 'Sinatra 101', :original_text => '#Header', :subtitle => 'An Intro', :slug => 'sinatra-101-an-intro', :rendered_text => %Q{<h1 id="header">Header</h1>\n}, :time => time, :tags => 'Ruby, Sinatra'})
+    expect(posts_repository.get_posts_by_tag('Ruby')).to eq [{:title => 'Sinatra 101',
+                                                             :subtitle => 'An Intro',
+                                                             :rendered_text => %Q{<h1 id="header">Header</h1>\n},
+                                                             :post_description => nil,
+                                                             :slug => 'sinatra-101-an-intro',
+                                                             :time => posts_repository.get_time_by_slug('sinatra-101-an-intro'),
+                                                             :meta_description => nil,
+                                                             :tags => 'Ruby, Sinatra'}]
   end
 
 end

@@ -18,6 +18,14 @@
   </div>
   <div id="blog_list_container">
     <ul>
+      <li id="tags_header">Tags</li>
+      <% tags_array = post[:tags].split(",") %>
+      <% tags_array.map do |tag| %>
+        <% tag.strip! %>
+        <li id="tags_list"><a href="/tags/<%= tag.downcase %>"><%= tag %></a></li>
+      <% end %>
+    </ul>
+    <ul>
       <li id="sidebar_post_header">Recent Posts</li>
       <% recent_posts.each do |recent_post| %>
         <li id="sidebar_post_list">
@@ -44,7 +52,8 @@
     <ul id="comment_list">
       <% comments.each do |comment| %>
         <hr>
-        <li><%= comment[:name] %><span id="comment_time"><%= comment[:time].strftime('%-m/%-d/%Y %l:%M %p') %></span></li>
+        <li><%= comment[:name] %>
+          <span id="comment_time"><%= comment[:time].strftime('%-m/%-d/%Y %l:%M %p') %></span></li>
         <li><%= comment[:comment] %></li>
       <% end %>
     </ul>

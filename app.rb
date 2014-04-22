@@ -69,7 +69,7 @@ class App < Sinatra::Application
   post '/blog' do
     validation_result = BlogTitleValidator.new(DB).validate(params[:title], params[:subtitle])
     if validation_result.success?
-      post = Post.new({:title => params[:title], :subtitle => params[:subtitle], :original_text => params[:original_text], :original_post_format => params[:post_format], :post_description => params[:post_description], :meta_description => params[:meta_description]})
+      post = Post.new({:title => params[:title], :subtitle => params[:subtitle], :original_text => params[:original_text], :original_post_format => params[:post_format], :post_description => params[:post_description], :meta_description => params[:meta_description], :tags => params[:tags]})
       slug = post.create_slug
       rendered_text = post.render_text
       posts_repository.create(post.attributes)
@@ -78,6 +78,12 @@ class App < Sinatra::Application
       session[:message] = validation_result.error_message
       redirect '/blog/new'
     end
+  end
+
+  get '/tags/:tag' do
+    tag = params[:tag]
+    posts = posts_repository.get_posts_by_tag(tag)
+    erb :tags, :locals => {:logged_in => session[:logged_in], :posts => posts}
   end
 
   not_found do

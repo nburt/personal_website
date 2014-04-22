@@ -156,4 +156,15 @@ feature 'Visitor can view and visit all the pages' do
     page.should have_css "meta[name='description'][content='Meta Description']", :visible => false
   end
 
+  scenario 'admin can add tags to a post' do
+    i_create_a_blog_post 'New Title'
+    click_link 'Sinatra'
+    expect(page).to have_content 'New Title'
+    expect(page).to have_content 'A new subtitle'
+    visit '/blog/new-title-a-new-subtitle'
+    click_link 'Ruby'
+    expect(page).to have_content 'New Title'
+    expect(page).to have_content 'A new subtitle'
+  end
+
 end

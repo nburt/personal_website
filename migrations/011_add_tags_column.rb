@@ -1,7 +1,7 @@
 Sequel.migration do
   change do
     alter_table(:posts) do
-      add_column :meta_description, String, :size => 160
+      add_column :tags, String
     end
   end
 end

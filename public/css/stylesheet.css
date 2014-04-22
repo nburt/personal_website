@@ -249,7 +249,8 @@ article {
 #resume_container,
 #recent_posts_container,
 #about_container,
-#comment_container {
+#comment_container,
+#tagged_posts_container {
   -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
   width: 90%;
   margin: 2.5% auto;
@@ -374,16 +375,31 @@ h3 {
   margin: 0;
 }
 
-#sidebar_post_header {
+#sidebar_post_header,
+#tags_header {
   font-size: 1.5em;
   list-style: none;
   text-decoration: underline;
-  margin: .35em 0 1em;
+  margin: .35em 0 .75em;
 }
 
-#sidebar_post_list {
+#sidebar_post_list,
+#tags_list {
   margin-bottom: .75em;
   list-style: none;
+}
+
+.tagged_blogs_list {
+  list-style: none;
+  margin-top: 1%;
+}
+
+.tagged_blogs_list a {
+  color: #00749d;
+}
+
+.tagged_blogs_list:last-child {
+  margin-bottom: 5%;
 }
 
 #blog_list_container a:visited,

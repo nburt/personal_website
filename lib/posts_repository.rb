@@ -27,10 +27,35 @@ class PostsRepository
         :post_description => row[:post_description],
         :slug => slug,
         :time => row[:time].strftime('%-m/%-d/%Y'),
-        :meta_description => row[:meta_description]
+        :meta_description => row[:meta_description],
+        :tags => row[:tags]
       }
 
       Post.new(attributes)
+    end
+  end
+
+  def get_posts_by_tag(tag)
+    rows = @posts_table.where(:tags => /#{tag}/i)
+    rows_array = []
+    if rows.nil?
+      nil
+    else
+      rows.each do |row|
+        attributes = {
+          :title => row[:title],
+          :subtitle => row[:subtitle],
+          :rendered_text => row[:rendered_text],
+          :post_description => row[:post_description],
+          :slug => row[:slug],
+          :time => row[:time].strftime('%-m/%-d/%Y'),
+          :meta_description => row[:meta_description],
+          :tags => row[:tags]
+        }
+
+        rows_array << Post.new(attributes).attributes
+      end
+      rows_array
     end
   end
 

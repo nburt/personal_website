@@ -30,6 +30,7 @@ module FeatureHelpers
     fill_in 'subtitle', :with => 'A new subtitle'
     fill_in 'meta_description', :with => 'Meta Description'
     fill_in 'post_description', :with => 'This is a new description'
+    fill_in 'tags', :with => 'Sinatra, Ruby'
     fill_in 'original_text', :with => body
     click_button 'Create Post'
   end

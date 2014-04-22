@@ -1,0 +1,15 @@
+<div id="tagged_posts_container">
+  <ul>
+    <% posts.each do |post| %>
+      <li class="tagged_blogs_list"><a href="/blog/<%= post[:slug] %>"><%= post[:title] %>: <%= post[:subtitle] %></a> - <%= post[:time] %></li>
+      <p><%= post[:post_description] %>... <a id="read_more" href="/blog/<%= post[:slug] %>">Read More</a></p>
+      <% tags_array = post[:tags].split(",") %>
+      <li class="tagged_blogs_list">All tags:
+        <% tags_array.map do |tag| %>
+          <% tag.strip! %>
+          <a href="/tags/<%= tag.downcase %>"><%= tag %></a>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>
