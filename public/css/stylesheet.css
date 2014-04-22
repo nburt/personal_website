@@ -457,3 +457,7 @@ h3 {
 #comment_time {
   margin-left: 5em;
 }
+
+#comment_form button {
+  margin-top: .5em;
+}
