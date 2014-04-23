@@ -60,7 +60,7 @@ class App < Sinatra::Application
   get '/blog/page/:page_number' do
     page_number = params[:page_number].to_i
     posts_count = posts_repository.count
-    if posts_count > 10 * (page_number - 1)
+    if posts_count > 10 * (page_number)
       older_posts = true
     else
       older_posts = false

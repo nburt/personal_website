@@ -103,25 +103,15 @@ feature 'Visitor can view and visit all the pages' do
   scenario 'if there are more then 10 blogs, the older ones will roll over onto the next page' do
 
     i_create_a_blog_post 'New Title 0'
-
     i_create_a_blog_post 'New Title 1'
-
     i_create_a_blog_post 'New Title 2'
-
     i_create_a_blog_post 'New Title 3'
-
     i_create_a_blog_post 'New Title 4'
-
     i_create_a_blog_post 'New Title 5'
-
     i_create_a_blog_post 'New Title 6'
-
     i_create_a_blog_post 'New Title 7'
-
     i_create_a_blog_post 'New Title 8'
-
     i_create_a_blog_post 'New Title 9'
-
     i_create_a_blog_post 'New Title 10'
 
     visit '/blog'
@@ -170,28 +160,45 @@ feature 'Visitor can view and visit all the pages' do
   scenario 'if there are exactly 10 posts on a page, there will not be an older posts link' do
 
     i_create_a_blog_post 'New Title 1'
-
     i_create_a_blog_post 'New Title 2'
-
     i_create_a_blog_post 'New Title 3'
-
     i_create_a_blog_post 'New Title 4'
-
     i_create_a_blog_post 'New Title 5'
-
     i_create_a_blog_post 'New Title 6'
-
     i_create_a_blog_post 'New Title 7'
-
     i_create_a_blog_post 'New Title 8'
-
     i_create_a_blog_post 'New Title 9'
-
     i_create_a_blog_post 'New Title 10'
 
     visit '/blog'
     expect(page).to_not have_link 'Older Posts'
+  end
 
+  scenario 'if there are exactly 10 posts on a page after the first page, there will not be an older posts link' do
+
+    i_create_a_blog_post 'New Title 1'
+    i_create_a_blog_post 'New Title 2'
+    i_create_a_blog_post 'New Title 3'
+    i_create_a_blog_post 'New Title 4'
+    i_create_a_blog_post 'New Title 5'
+    i_create_a_blog_post 'New Title 6'
+    i_create_a_blog_post 'New Title 7'
+    i_create_a_blog_post 'New Title 8'
+    i_create_a_blog_post 'New Title 9'
+    i_create_a_blog_post 'New Title 10'
+    i_create_a_blog_post 'New Title 11'
+    i_create_a_blog_post 'New Title 12'
+    i_create_a_blog_post 'New Title 13'
+    i_create_a_blog_post 'New Title 14'
+    i_create_a_blog_post 'New Title 15'
+    i_create_a_blog_post 'New Title 16'
+    i_create_a_blog_post 'New Title 17'
+    i_create_a_blog_post 'New Title 18'
+    i_create_a_blog_post 'New Title 19'
+    i_create_a_blog_post 'New Title 20'
+
+    visit '/blog/page/2'
+    expect(page).to_not have_link 'Older Posts'
   end
 
 end
