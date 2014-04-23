@@ -394,12 +394,16 @@ h3 {
   margin-top: 1%;
 }
 
+.tagged_blogs_list ul {
+  padding: 0;
+}
+
 .tagged_blogs_list a {
   color: #00749d;
 }
 
-.tagged_blogs_list:last-child {
-  margin-bottom: 5%;
+.tagged_blogs_list:not(:first-child) {
+  margin-top: 5%;
 }
 
 #blog_list_container a:visited,
