@@ -75,7 +75,7 @@ ul.form_list {
 hr {
   background-color: #000;
   width: 100%;
-  margin: auto
+  margin: 2.5% auto 0;
 }
 
 .form_container .form_list li:first-child, .form_container .form_list li:last-child {
@@ -158,5 +158,5 @@ hr {
   cursor: pointer;
   border-radius: 0.5em;
   padding: .5em;
-  color: #000;
+  color: #fff;
 }
