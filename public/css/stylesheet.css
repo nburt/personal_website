@@ -481,3 +481,10 @@ h3 {
 #comment_form button {
   margin-top: .5em;
 }
+
+#comment_form_container {
+  width: 60%;
+  margin-left: 5%;
+  padding: 0% 2.5%;
+}
+

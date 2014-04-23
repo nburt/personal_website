@@ -38,24 +38,26 @@
   </div>
 </article>
 <div id="comment_container">
-  <ul id="comment_form_list">
-    <form id="comment_form" action="/blog/<%= slug %>" method="post">
-      <li><input placeholder="Name" type="text" name="name" required></li>
-      <li><textarea placeholder="Comment" name="comment" cols="30" rows="5" required></textarea></li>
-      <li>
-        <button>Post Comment</button>
-      </li>
-    </form>
-  </ul>
-  <% if comments != nil %>
-    <h3 class="h3_without_underline">Recent Comments</h3>
-    <ul id="comment_list">
-      <% comments.each do |comment| %>
-        <hr>
-        <li><%= comment[:name] %>
-          <span id="comment_time"><%= comment[:time].strftime('%-m/%-d/%Y %l:%M %p') %></span></li>
-        <li><%= comment[:comment] %></li>
-      <% end %>
+  <div id="comment_form_container">
+    <ul id="comment_form_list">
+      <form id="comment_form" action="/blog/<%= slug %>" method="post">
+        <li><input placeholder="Name" type="text" name="name" required></li>
+        <li><textarea placeholder="Comment" name="comment" cols="30" rows="5" required></textarea></li>
+        <li>
+          <button>Post Comment</button>
+        </li>
+      </form>
     </ul>
-  <% end %>
+    <% if comments != nil %>
+      <h3 class="h3_without_underline">Recent Comments</h3>
+      <ul id="comment_list">
+        <% comments.each do |comment| %>
+          <hr>
+          <li><%= comment[:name] %>
+            <span id="comment_time"><%= comment[:time].strftime('%-m/%-d/%Y %l:%M %p') %></span></li>
+          <li><%= comment[:comment] %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
 </div>
