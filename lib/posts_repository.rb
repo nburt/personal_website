@@ -14,6 +14,10 @@ class PostsRepository
     @posts_table.all
   end
 
+  def count
+    @posts_table.count
+  end
+
   def get_post_by_slug(slug)
     row = @posts_table[:slug => slug]
     if row.nil?

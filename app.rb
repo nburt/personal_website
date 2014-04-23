@@ -44,17 +44,31 @@ class App < Sinatra::Application
     erb :resume, :locals => {:logged_in => session[:logged_in]}
   end
 
+
   get '/blog' do
+    posts_count = posts_repository.count
+    if posts_count > 10
+      older_posts = true
+    else
+      older_posts = false
+    end
     @title = "Nathanael Burt | Blog"
     @meta_description = "Gain insight into the tech industry and learn with technical how-to blogs by Nathanael Burt."
-    erb :blog, :locals => {:logged_in => session[:logged_in], :recent_posts => posts_repository.get_recent_posts, :url_host => request.base_url}
+    erb :blog, :locals => {:logged_in => session[:logged_in], :recent_posts => posts_repository.get_recent_posts, :older_posts => older_posts}
   end
 
   get '/blog/page/:page_number' do
-    @title = "Nathanael Burt | Blog Page #{params[:page_number]}"
+    page_number = params[:page_number].to_i
+    posts_count = posts_repository.count
+    if posts_count > 10 * (page_number - 1)
+      older_posts = true
+    else
+      older_posts = false
+    end
+    @title = "Nathanael Burt | Blog Page #{page_number}"
     @meta_description = "Page #{params[:page_number]} of the list of Nathanael Burt's blogs."
-    recent_posts = posts_repository.get_recent_posts(params[:page_number].to_i - 1)
-    erb :older_posts, :locals => {:logged_in => session[:logged_in], :next_page => params[:page_number].to_i + 1, :previous_page => params[:page_number].to_i - 1, :recent_posts => recent_posts, :url_host => request.base_url}
+    recent_posts = posts_repository.get_recent_posts(page_number - 1)
+    erb :older_posts, :locals => {:logged_in => session[:logged_in], :next_page => page_number + 1, :previous_page => page_number - 1, :recent_posts => recent_posts, :older_posts => older_posts}
   end
 
   get '/blog/new' do

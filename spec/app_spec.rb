@@ -167,4 +167,31 @@ feature 'Visitor can view and visit all the pages' do
     expect(page).to have_content 'A new subtitle'
   end
 
+  scenario 'if there are exactly 10 posts on a page, there will not be an older posts link' do
+
+    i_create_a_blog_post 'New Title 1'
+
+    i_create_a_blog_post 'New Title 2'
+
+    i_create_a_blog_post 'New Title 3'
+
+    i_create_a_blog_post 'New Title 4'
+
+    i_create_a_blog_post 'New Title 5'
+
+    i_create_a_blog_post 'New Title 6'
+
+    i_create_a_blog_post 'New Title 7'
+
+    i_create_a_blog_post 'New Title 8'
+
+    i_create_a_blog_post 'New Title 9'
+
+    i_create_a_blog_post 'New Title 10'
+
+    visit '/blog'
+    expect(page).to_not have_link 'Older Posts'
+
+  end
+
 end

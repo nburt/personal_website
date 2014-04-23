@@ -8,7 +8,7 @@
 <div id="recent_posts_container">
   <ol>
     <% recent_posts.each do |post| %>
-      <li id="blog_post_list"><a href="<%= url_host %>/blog/<%= post[:slug] %>"><%= post[:full_title] %></a>
+      <li id="blog_post_list"><a href="/blog/<%= post[:slug] %>"><%= post[:full_title] %></a>
         - <%= post[:time].strftime('%-m/%-d/%Y') %></li>
       <p><%= post[:post_description] %></p>
     <% end %>
@@ -19,7 +19,7 @@
     <% else %>
       <a id="newer_posts" href="/blog/page/<%= previous_page %>">Newer Posts</a>
     <% end %>
-    <% if recent_posts.length == 10 %>
+    <% if older_posts %>
       <a class="older_posts" href="/blog/page/<%= next_page %>">Older Posts</a>
     <% end %>
   </div>

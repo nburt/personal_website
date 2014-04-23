@@ -158,4 +158,9 @@ describe PostsRepository do
                                                              :tags => 'Ruby, Sinatra'}]
   end
 
+  it 'should be able to count the total number of posts in the table' do
+    posts_repository.create({:title => 'Sinatra 101', :original_text => '#Header', :subtitle => 'An Intro', :slug => 'sinatra-101-an-intro', :rendered_text => %Q{<h1 id="header">Header</h1>\n}, :time => Time.now, :tags => 'Ruby, Sinatra'})
+    expect(posts_repository.count).to eq 1
+  end
+
 end

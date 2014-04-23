@@ -8,12 +8,12 @@
 <div id="recent_posts_container">
   <ol>
     <% recent_posts.each do |post| %>
-      <li id="blog_post_list"><a href="<%= url_host %>/blog/<%= post[:slug] %>"><%= post[:full_title] %></a>
+      <li id="blog_post_list"><a href="/blog/<%= post[:slug] %>"><%= post[:full_title] %></a>
         - <%= post[:time].strftime('%-m/%-d/%Y') %></li>
-      <p><%= post[:post_description] %>...<a id="read_more" href="<%= url_host %>/blog/<%= post[:slug] %>">Read More</a></p>
+      <p><%= post[:post_description] %>...<a id="read_more" href="/blog/<%= post[:slug] %>">Read More</a></p>
     <% end %>
   </ol>
-  <% if recent_posts.length == 10 %>
+  <% if older_posts %>
     <div class="older_posts_container">
       <a class="older_posts" href="/blog/page/2">Older Posts</a>
     </div>
