@@ -122,8 +122,12 @@ hr {
 
 .link_container {
   width: 90%;
-  margin: 2.5% auto 2.5%;
+  margin: 1.5% auto 1.5%;
   text-align: center;
+}
+
+.link_container form {
+  margin: 0;
 }
 
 #read_more {
@@ -137,15 +141,15 @@ hr {
   font-size: 1.5em;
   text-decoration: none;
   color: #000;
-  margin: 0 auto 5%;
   border: 1px solid #E0E0E0;
+  background-color: #E0E0E0;
+  display: inline-block;
 }
 
 #create_blog_link:hover, #edit_blog_link:hover, #delete_blog_link:hover {
   border: 1px solid #00749d;
   background-color: #00749d;
   color: #fff;
-  margin: 0 auto %;
   padding: .5em;
   border-radius: .5em
 }

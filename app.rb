@@ -144,14 +144,9 @@ class App < Sinatra::Application
     end
   end
 
-  get '/blog/:full_title/delete' do
-    logged_in = session[:logged_in]
-    if logged_in
-      posts_repository.delete_by_slug(params[:full_title])
-      redirect '/blog'
-    else
-      redirect not_found
-    end
+  delete '/blog/:full_title/delete' do
+    posts_repository.delete_by_slug(params[:full_title])
+    redirect '/blog'
   end
 
   put '/blog' do
@@ -195,6 +190,14 @@ class App < Sinatra::Application
     post_id = posts_repository.get_id_by_slug(params[:full_title])
     comments_repository = CommentsRepository.new(DB, post_id)
     comments_repository.update_by_id(params[:id], {:name => params[:name], :comment => params[:comment]})
+    redirect "blog/#{slug}"
+  end
+
+  delete '/blog/:full_title/comment/:id' do
+    slug = params[:full_title]
+    post_id = posts_repository.get_id_by_slug(params[:full_title])
+    comments_repository = CommentsRepository.new(DB, post_id)
+    comments_repository.delete(params[:id])
     redirect "blog/#{slug}"
   end
 

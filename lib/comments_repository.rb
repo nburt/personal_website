@@ -19,6 +19,10 @@ class CommentsRepository
     @comments_table.where(:id => id).update(attributes)
   end
 
+  def delete(id)
+    @comments_table.where(:id => id).delete
+  end
+
   def get_comment_by_id(id)
     comment = @comments_table[:id => id]
     if comment.nil?

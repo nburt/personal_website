@@ -11,5 +11,9 @@
   </table>
   <div id="comment_link_container">
     <a href="/blog/<%= slug %>/comment/<%= comment[:id] %>/edit">Edit Comment</a>
+    <form action="/blog/<%= slug %>/comment/<%= comment[:id] %>" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <button type="submit">Delete Comment</button>
+    </form>
   </div>
 </div>

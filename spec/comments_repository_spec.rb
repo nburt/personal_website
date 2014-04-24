@@ -50,4 +50,15 @@ describe CommentsRepository do
       expect(comments_repository.get_comment_by_id(id).attributes[:time]).to be_within(1).of(Time.now)
     end
   end
+
+  describe 'deleting a comment' do
+    it 'deletes a comment from the database' do
+      id = comments_repository.create :name => 'Test User', :comment => 'I am a comment'
+      id2 = comments_repository.create :name => 'Test User', :comment => 'I am another comment'
+      comments_repository.delete(id)
+      expect(comments_repository.get_comment_by_id(id)).to eq nil
+      expect(comments_repository.get_comment_by_id(id2).attributes).to include({:id => id2, :name => 'Test User', :comment => 'I am another comment'})
+      expect(comments_repository.get_comment_by_id(id2).attributes[:time]).to be_within(1).of(Time.now)
+    end
+  end
 end

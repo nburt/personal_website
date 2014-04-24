@@ -1,8 +1,10 @@
 <% if logged_in %>
-  <br>
   <div class="link_container">
     <a id="edit_blog_link" href="/blog/<%= slug %>/edit">Edit Blog Post</a>
-    <a id="delete_blog_link" href="/blog/<%= slug %>/delete">Delete Blog Post</a>
+    <form action="/blog/<%= slug %>/delete" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <button id="delete_blog_link">Delete Blog Post</button>
+    </form>
   </div>
 <% end %>
 <article>

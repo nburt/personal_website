@@ -88,7 +88,7 @@ feature 'Visitor can view and visit all the pages' do
   scenario 'an admin can delete a previously created blog post' do
     i_create_a_blog_post 'Sinatra 103'
 
-    click_link 'Delete Blog Post'
+    click_button 'Delete Blog Post'
     expect(page).to_not have_content 'Sinatra 103'
     expect(page).to_not have_content 'Params'
   end
@@ -214,6 +214,19 @@ feature 'Visitor can view and visit all the pages' do
     click_button 'Edit Comment'
     expect(page).to have_content 'Nathanael'
     expect(page).to have_content 'A comment'
+  end
+
+  scenario 'an admin can delete comments' do
+    i_create_a_blog_post 'New Title 1'
+    fill_in 'name', :with => 'Nate'
+    fill_in 'comment', :with => 'A comment'
+    click_button 'Post Comment'
+    click_link 'View Comment'
+    expect(page).to have_content 'Nate'
+    expect(page).to have_content 'A comment'
+    click_button 'Delete Comment'
+    expect(page).to_not have_content 'Nate'
+    expect(page).to_not have_content 'A comment'
   end
 
 end
