@@ -1,16 +1,15 @@
 <div id="show_comment_container">
-  <table>
-    <tr>
-      <td>Name:</td>
-      <td><%= comment[:name] %></td>
-    </tr>
-    <tr>
-      <td>Comment:</td>
-      <td><%= comment[:comment] %></td>
-    </tr>
-  </table>
+  <div id="comment_list_container">
+    <ul>
+      <li>Name:</li>
+      <li><%= comment[:name] %></li>
+      <li>Comment:</li>
+      <li><%= comment[:comment] %></li>
+    </ul>
+  </div>
   <div id="comment_link_container">
     <a href="/blog/<%= slug %>/comment/<%= comment[:id] %>/edit">Edit Comment</a>
+
     <form action="/blog/<%= slug %>/comment/<%= comment[:id] %>" method="post">
       <input type="hidden" name="_method" value="delete">
       <button type="submit">Delete Comment</button>

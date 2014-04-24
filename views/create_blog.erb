@@ -3,35 +3,44 @@
 <div class="form_container">
   <ul>
     <li>
-      <div id="form_header">Create New Blog</div><span class="required_notification">* Denotes a required field</span>
+      <div id="form_header">Create New Blog</div>
+      <span class="required_notification">* Denotes a required field</span>
     </li>
     <form class="create_blog_form" action="/blog" method="post">
-      <hr>
-      <label for="title">Blog Title: <span class="asterisk">*</span></label>
-      <li><input class="textbox" type="text" name="title" required></li>
-      <label for="subtitle">Subtitle:</label>
-      <li><input class="textbox" type="text" name="subtitle"></li>
-      <label for="meta_description">Blog Post Meta Description: <span class="asterisk">*</span></label>
-      <li><textarea name="meta_description" maxlength="160" cols="40" rows="4" required></textarea></li>
-      <label for="post_description">Blog Post Description: <span class="asterisk">*</span></label>
-      <li><textarea name="post_description" maxlength="250" cols="40" rows="4" required></textarea></li>
-      <label for="tags">Tags (separate each tag with a comma): <span class="asterisk">*</span></label>
-      <li><textarea name="tags" maxlength="250" cols="40" rows="4" required></textarea></li>
-      <label>Document Type:</label>
       <li>
+        <label for="title">Blog Title: <span class="asterisk">*</span></label>
+        <input class="textbox" type="text" name="title" required>
+      </li>
+      <li>
+        <label for="subtitle">Subtitle:</label>
+        <input class="textbox" type="text" name="subtitle">
+      </li>
+      <li>
+        <label for="meta_description">Blog Post Meta Description: <span class="asterisk">*</span></label>
+        <textarea name="meta_description" maxlength="160" cols="40" rows="4" required></textarea>
+      </li>
+      <li>
+        <label for="post_description">Blog Post Description: <span class="asterisk">*</span></label>
+        <textarea name="post_description" maxlength="250" cols="40" rows="4" required></textarea>
+      </li>
+      <li>
+        <label for="tags">Tags (separate each tag with a comma): <span class="asterisk">*</span></label>
+        <textarea name="tags" maxlength="250" cols="40" rows="4" required></textarea>
+      </li>
+      <li>
+        <label>Document Type:</label>
         <select class="dropdown" name="post_format">
           <option value="markdown">Markdown</option>
           <option value="html">HTML</option>
         </select>
       </li>
-      <label for="original_text">Blog Post Body: <span class="asterisk">*</span></label>
-      <li><textarea name="original_text" cols="40" rows="6" required></textarea></li>
-      <li><button class="form_button" type="submit">Create Post</button></li>
-      <hr>
+      <li>
+        <label for="original_text">Blog Post Body: <span class="asterisk">*</span></label>
+        <textarea class="post_body" name="original_text" cols="40" rows="6" required></textarea>
+      </li>
+      <li>
+        <button class="form_button" type="submit">Create Post</button>
+      </li>
     </form>
   </ul>
-  <br>
-  <br>
-  <br>
-  <br>
 </div>

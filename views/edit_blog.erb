@@ -6,29 +6,39 @@
       <div id="form_header">Edit Blog Post</div>
     </li>
     <form class="create_blog_form" action="/blog" method="post">
-      <hr>
       <input type="hidden" name="_method" value="put">
       <input type="hidden" name="date" value="<%= post[:time] %>">
       <input type="hidden" name="slug" value="<%= post[:slug] %>">
-      <label for="title">Blog Title:</label>
-      <li><input class="textbox" type="text" name="title" value="<%= post[:title] %>"></li>
-      <label for="subtitle">Edit Subtitle:</label>
-      <li><input class="textbox" type="text" name="subtitle" value="<%= post[:subtitle] %>"></li>
-      <label for="meta_description">Blog Post Meta Description: <span class="asterisk">*</span></label>
-      <li><textarea name="meta_description" maxlength="160" cols="40" rows="4" required>><%= post[:meta_description] %></textarea></li>
-      <label for="post_description">Edit Blog Post Description:</label>
-      <li><textarea name="post_description" maxlength="250" cols="40" rows="6"><%= post[:post_description] %></textarea></li>
-      <label>Document Type:</label>
       <li>
+        <label for="title">Blog Title:</label>
+        <input class="textbox" type="text" name="title" value="<%= post[:title] %>">
+      </li>
+      <li>
+        <label for="subtitle">Edit Subtitle:</label>
+        <input class="textbox" type="text" name="subtitle" value="<%= post[:subtitle] %>">
+      </li>
+      <li>
+        <label for="meta_description">Blog Post Meta Description: <span class="asterisk">*</span></label>
+        <textarea name="meta_description" maxlength="160" cols="40" rows="4" required>><%= post[:meta_description] %></textarea>
+      </li>
+      <li>
+        <label for="post_description">Edit Blog Post Description:</label>
+        <textarea name="post_description" maxlength="250" cols="40" rows="4"><%= post[:post_description] %></textarea>
+      </li>
+      <li>
+        <label>Document Type:</label>
         <select class="dropdown" name="post_format">
           <option value="markdown">Markdown</option>
           <option value="html">HTML</option>
         </select>
       </li>
-      <label for="original_text">Edit Blog Post Body:</label>
-      <li><textarea name="original_text" cols="40" rows="6"><%= post[:original_text] %></textarea></li>
-      <li><button class="form_button" type="submit">Edit Blog Post</button></li>
-      <hr>
+      <li>
+        <label for="original_text">Edit Blog Post Body:</label>
+        <textarea class="post_body" name="original_text" cols="40" rows="6"><%= post[:original_text] %></textarea>
+      </li>
+      <li>
+        <button class="form_button" type="submit">Edit Blog Post</button>
+      </li>
     </form>
   </ul>
 </div>
