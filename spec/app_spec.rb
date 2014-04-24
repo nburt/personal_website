@@ -201,4 +201,19 @@ feature 'Visitor can view and visit all the pages' do
     expect(page).to_not have_link 'Older Posts'
   end
 
+  scenario 'an admin can edit comments' do
+    i_create_a_blog_post 'New Title 1'
+    fill_in 'name', :with => 'Nate'
+    fill_in 'comment', :with => 'A comment'
+    click_button 'Post Comment'
+    click_link 'View Comment'
+    expect(page).to have_content 'Nate'
+    expect(page).to have_content 'A comment'
+    click_link 'Edit Comment'
+    fill_in 'name', :with => 'Nathanael'
+    click_button 'Edit Comment'
+    expect(page).to have_content 'Nathanael'
+    expect(page).to have_content 'A comment'
+  end
+
 end

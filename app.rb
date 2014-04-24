@@ -72,11 +72,12 @@ class App < Sinatra::Application
   end
 
   get '/blog/new' do
-    if session[:logged_in]
+    logged_in = session[:logged_in]
+    if logged_in
       @title = "Create Blog"
-      erb :create_blog, :layout => :admin_layout, :locals => {:logged_in => session[:logged_in]}
+      erb :create_blog, :layout => :admin_layout, :locals => {:logged_in => logged_in}
     else
-      redirect '/'
+      redirect not_found
     end
   end
 
@@ -118,7 +119,6 @@ class App < Sinatra::Application
         :post => post.attributes,
         :logged_in => session[:logged_in],
         :recent_posts => posts_repository.get_recent_posts(0, 5),
-        :url_host => request.base_url,
         :slug => slug,
         :comments => comments_repository.display_all
       }
@@ -134,21 +134,23 @@ class App < Sinatra::Application
   end
 
   get '/blog/:full_title/edit' do
-    if session[:logged_in]
+    logged_in = session[:logged_in]
+    if logged_in
       @title = "Edit Blog"
       post = posts_repository.get_post_by_slug(params[:full_title])
-      erb :edit_blog, :layout => :admin_layout, :locals => {:logged_in => session[:logged_in], :post => post.attributes}
+      erb :edit_blog, :layout => :admin_layout, :locals => {:logged_in => logged_in, :post => post.attributes}
     else
-      redirect '/blog/:full_title'
+      redirect not_found
     end
   end
 
   get '/blog/:full_title/delete' do
-    if session[:logged_in]
+    logged_in = session[:logged_in]
+    if logged_in
       posts_repository.delete_by_slug(params[:full_title])
       redirect '/blog'
     else
-      redirect '/blog/:full_title'
+      redirect not_found
     end
   end
 
@@ -158,6 +160,41 @@ class App < Sinatra::Application
     slug = post.create_slug
     rendered_text = post.render_text
     posts_repository.update_by_slug(original_slug, post.attributes)
+    redirect "blog/#{slug}"
+  end
+
+  get '/blog/:full_title/comment/:id' do
+    slug = params[:full_title]
+    logged_in = session[:logged_in]
+    comment_id = params[:id]
+    if logged_in
+      post_id = posts_repository.get_id_by_slug(params[:full_title])
+      comments_repository = CommentsRepository.new(DB, post_id)
+      comment = comments_repository.get_comment_by_id(comment_id).attributes
+      erb :show_comment, :layout => :admin_layout, :locals => {:logged_in => logged_in, :comment => comment, :slug => slug}
+    else
+      redirect not_found
+    end
+  end
+
+  get '/blog/:full_title/comment/:id/edit' do
+    slug = params[:full_title]
+    logged_in = session[:logged_in]
+    if logged_in
+      post_id = posts_repository.get_id_by_slug(params[:full_title])
+      comments_repository = CommentsRepository.new(DB, post_id)
+      comment = comments_repository.get_comment_by_id(params[:id]).attributes
+      erb :edit_comment, :layout => :admin_layout, :locals => {:logged_in => logged_in, :comment => comment, :slug => slug}
+    else
+      redirect not_found
+    end
+  end
+
+  put '/blog/:full_title/comment/:id' do
+    slug = params[:full_title]
+    post_id = posts_repository.get_id_by_slug(params[:full_title])
+    comments_repository = CommentsRepository.new(DB, post_id)
+    comments_repository.update_by_id(params[:id], {:name => params[:name], :comment => params[:comment]})
     redirect "blog/#{slug}"
   end
 

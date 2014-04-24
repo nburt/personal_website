@@ -1,0 +1,12 @@
+<div id="edit_comment_container">
+  <form action="/blog/<%= slug %>/comment/<%= comment[:id] %>" method="post">
+    <input type="hidden" name="_method" value="put">
+    <label for="name">Edit Name:</label>
+    <li><input class="textbox" type="text" name="name" value="<%= comment[:name] %>"></li>
+    <label for="comment">Edit Comment:</label>
+    <li><input class="textbox" type="text" name="comment" value="<%= comment[:comment] %>"></li>
+    <li>
+      <button type="submit">Edit Comment</button>
+    </li>
+  </form>
+</div>

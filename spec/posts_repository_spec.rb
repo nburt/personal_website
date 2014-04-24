@@ -132,7 +132,7 @@ describe PostsRepository do
                                                                                            :tags => nil})
   end
 
-  it 'should allow an admin to update a blog post' do
+  it 'should allow an admin to delete a blog post' do
     time = Time.now
     posts_repository.create({:title => 'Sinatra 101', :original_text => '#Header', :subtitle => 'An Intro', :slug => 'sinatra-101-an-intro', :rendered_text => %Q{<h1 id="header">Header</h1>\n}, :time => time})
     posts_repository.delete_by_slug('sinatra-101-an-intro')

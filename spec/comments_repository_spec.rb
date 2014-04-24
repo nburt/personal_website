@@ -32,16 +32,22 @@ describe CommentsRepository do
       let(:other_comments_repository) { CommentsRepository.new(DB, other_post_id) }
 
       before do
-        other_comments_repository.create name: 'Test User', comment: 'I am a comment'
+        other_comments_repository.create :name => 'Test User', :comment => 'I am a comment'
       end
 
       it 'does not return comments that belong to other posts' do
         expect(DB[:comments].count).to eq(1)
         expect(comments_repository.display_all.size).to eq(0)
       end
-
     end
-
   end
 
+  describe 'editing a comment' do
+    it 'edits a comment in the database' do
+      id = comments_repository.create({:name => 'Test User', :comment => 'I am a comment'})
+      comments_repository.update_by_id(id, {:name => 'Nate', :comment => 'New comment'})
+      expect(comments_repository.get_comment_by_id(id).attributes).to include({:id => id, :name => 'Nate', :comment => 'New comment'})
+      expect(comments_repository.get_comment_by_id(id).attributes[:time]).to be_within(1).of(Time.now)
+    end
+  end
 end

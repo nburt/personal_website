@@ -29,7 +29,7 @@
       <li id="sidebar_post_header">Recent Posts</li>
       <% recent_posts.each do |recent_post| %>
         <li id="sidebar_post_list">
-          <a href="<%= url_host %>/blog/<%= recent_post[:slug] %>">
+          <a href="/blog/<%= recent_post[:slug] %>">
             <%= recent_post[:full_title] %>
           </a> - <%= recent_post[:time].strftime('%-m/%-d/%Y') %>
         </li>
@@ -54,7 +54,11 @@
         <% comments.each do |comment| %>
           <hr>
           <li><%= comment[:name] %>
-            <span id="comment_time"><%= comment[:time].strftime('%-m/%-d/%Y %l:%M %p') %></span></li>
+            <span id="comment_time"><%= comment[:time].strftime('%-m/%-d/%Y %l:%M %p') %></span>
+            <% if logged_in %>
+              <span id="view_comment"><a href="/blog/<%= slug %>/comment/<%= comment[:id] %>">View Comment</a></span>
+            <% end %>
+          </li>
           <li><%= comment[:comment] %></li>
         <% end %>
       </ul>

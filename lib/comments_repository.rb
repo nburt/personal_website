@@ -15,4 +15,21 @@ class CommentsRepository
     @comments_table.where(:post_id => @post_id).all
   end
 
+  def update_by_id(id, attributes)
+    @comments_table.where(:id => id).update(attributes)
+  end
+
+  def get_comment_by_id(id)
+    comment = @comments_table[:id => id]
+    if comment.nil?
+      nil
+    else
+      attributes = {
+        :id => comment[:id],
+        :name => comment[:name],
+        :comment => comment[:comment]
+      }
+    Comment.new(attributes)
+    end
+  end
 end

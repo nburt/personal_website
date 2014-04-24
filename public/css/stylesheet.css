@@ -478,6 +478,12 @@ h3 {
   margin-left: 5em;
 }
 
+#view_comment a {
+  margin-left: 5em;
+  color: #00749d;
+  text-decoration: none;
+}
+
 #comment_form button {
   margin-top: .5em;
 }
