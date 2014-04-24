@@ -131,9 +131,11 @@ feature 'Visitor can view and visit all the pages' do
 
   scenario 'visitors can comment on posts' do
     i_create_a_blog_post 'New Title'
+    expect(page).to_not have_content 'Recent Comments'
     fill_in 'name', :with => 'Nate'
     fill_in 'comment', :with => 'This is a comment'
     click_button 'Post Comment'
+    expect(page).to have_content 'Recent Comments'
     expect(page).to have_content 'Nate'
     expect(page).to have_content 'This is a comment'
     within '#comment_container' do

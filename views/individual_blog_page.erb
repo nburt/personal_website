@@ -50,12 +50,11 @@
         </li>
       </form>
     </ul>
-    <% if comments != nil %>
+    <% if comments.count != 0 %>
       <h3 class="h3_without_underline">Recent Comments</h3>
       <ul id="comment_list">
         <% comments.each do |comment| %>
-          <hr>
-          <li><%= comment[:name] %>
+          <li id="comment_name"><%= comment[:name] %>
             <span id="comment_time"><%= comment[:time].strftime('%-m/%-d/%Y %l:%M %p') %></span>
             <% if logged_in %>
               <span id="view_comment"><a href="/blog/<%= slug %>/comment/<%= comment[:id] %>">View Comment</a></span>
