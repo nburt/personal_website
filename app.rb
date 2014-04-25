@@ -150,7 +150,7 @@ class App < Sinatra::Application
     comments_repository = CommentsRepository.new(DB, post_id)
     comments_repository.create(comment.attributes)
     email = Email.new
-    email.send(:to => "nathanael.burt@gmail.com", :from => "nathanael.burt@gmail.com", :subject => "Someone has commented on your blog", :body => "Blog slug: #{params[:full_title]}")
+    email.send(:to => "nathanael.burt@gmail.com", :from => "nathanael.burt@gmail.com", :subject => "Someone has commented on your blog", :body => "Blog page: #{request.base_url}/blog/#{params[:full_title]}")
     keen_id = users_repository.get_keen_id(request.cookies["user_id"])
     Keen.publish(:comment, {:comment => comment.attributes, :user => keen_id, :blog_slug => params[:full_title], :comment_count => comments_repository.display_all.count})
     redirect "/blog/#{params[:full_title]}"
