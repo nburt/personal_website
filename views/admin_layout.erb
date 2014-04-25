@@ -14,8 +14,8 @@
 <nav id="nav_container">
   <ul>
     <li><a href="/blog" class="<%= "current" if @current == "blog" %>">Blog</a></li>
-    <li><a href="/resume" class="<%= "current" if @current == "resume" %>">Resume</a></li>
     <li><a href="/portfolio" class="<%= "current" if @current == "portfolio" %>">Portfolio</a></li>
+    <li><a href="/resume" class="<%= "current" if @current == "resume" %>">Resume</a></li>
     <% if logged_in %>
       <li><a href="/logout">Logout</a></li>
     <% end %>
