@@ -22,3 +22,6 @@ The .env file will be ignored by git, see `.gitignore`
 1. Run tests using `rspec`.
 1. To access the admin section of the website, visit '/login' and enter your password
 1. Use <a href="https://github.com/sj26/mailcatcher">mailcatcher</a> to send emails locally
+
+###Heroku Staging
+http://nathanael-burt-blog-staging.herokuapp.com/

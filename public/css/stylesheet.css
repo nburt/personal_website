@@ -254,7 +254,8 @@ article {
 #recent_posts_container,
 #about_container,
 #comment_container,
-#tagged_posts_container {
+#tagged_posts_container,
+#portfolio_container {
   -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
   width: 90%;
   margin: 2.5% auto;
@@ -501,4 +502,41 @@ h3 {
 #comment_name {
   border-top: 1px solid black;
   padding-top: 1em;
+}
+
+.portfolio_image {
+  width: 26em;
+  float: right;
+}
+
+#portfolio_container {
+  overflow: hidden;
+}
+
+#portfolio_container a {
+  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+  color: #00749d;
+  text-decoration: none;
+}
+
+#portfolio_container h1,
+#portfolio_container p {
+  margin: 0 auto 5%;
+}
+
+#portfolio_container li,
+#portfolio_container ul {
+  margin: 2.5%;
+  padding: 0;
+}
+
+#portfolio_left {
+  width: 50%;
+  float: left;
+  position: relative;
+}
+
+#portfolio_right {
+  width: 50%;
+  float: right;
 }
