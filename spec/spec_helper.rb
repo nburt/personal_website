@@ -2,6 +2,7 @@ require 'sequel'
 require 'capybara/rspec'
 require 'dotenv'
 require 'pry'
+require 'mail'
 
 Dotenv.load
 

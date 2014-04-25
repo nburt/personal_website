@@ -6,6 +6,7 @@ gem 'sequel', '~> 4.9.0'
 gem 'pg', '~> 0.17.1'
 gem 'kramdown', '~> 1.3.3'
 gem 'keen', '~> 0.8.1'
+gem 'mail', '~> 2.5.4'
 
 group :development, :test do
   gem 'rspec', '~> 2.14.1'

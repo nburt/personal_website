@@ -3,6 +3,7 @@ require './lib/posts_repository'
 require './lib/blog_title_validator'
 require './lib/post_formatter'
 require './lib/comments_repository'
+require './lib/email'
 
 class App < Sinatra::Application
 
@@ -130,6 +131,8 @@ class App < Sinatra::Application
     comment = Comment.new({:name => params[:name], :comment => params[:comment]})
     comments_repository = CommentsRepository.new(DB, post_id)
     comments_repository.create(comment.attributes)
+    email = Email.new
+    email.send(:to => "nathanael.burt@gmail.com", :from => "nathanael.burt@gmail.com", :subject => "Someone has commented on your blog", :body => "Blog slug: #{params[:full_title]}")
     redirect "/blog/#{params[:full_title]}"
   end
 
