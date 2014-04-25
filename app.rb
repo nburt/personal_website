@@ -1,15 +1,32 @@
 require 'sinatra'
+require 'sinatra/cookies'
+require 'keen'
 require './lib/posts_repository'
 require './lib/blog_title_validator'
 require './lib/post_formatter'
 require './lib/comments_repository'
+require './lib/users_repository'
+require 'mail'
 
 class App < Sinatra::Application
 
+  helpers Sinatra::Cookies
+
   enable :sessions
+  set :session_secret, ENV['SESSION_SECRET']
 
   def posts_repository
     @posts_repository ||= PostsRepository.new(DB)
+  end
+
+  def users_repository
+    @users_repository ||= UsersRepository.new(DB)
+  end
+
+  before do
+    if cookies["user_id"] == nil
+      response.set_cookie "user_id", {:value => users_repository.create_user, :expires => Time.now + (60 * 60 * 24 * 30 * 12 * 30), :path => "/"}
+    end
   end
 
   get '/' do
@@ -130,6 +147,8 @@ class App < Sinatra::Application
     comment = Comment.new({:name => params[:name], :comment => params[:comment]})
     comments_repository = CommentsRepository.new(DB, post_id)
     comments_repository.create(comment.attributes)
+    keen_id = users_repository.get_keen_id(request.cookies["user_id"])
+    Keen.publish(:comment, {:comment => comment.attributes, :user => keen_id, :blog_slug => params[:full_title], :comment_count => comments_repository.display_all.count})
     redirect "/blog/#{params[:full_title]}"
   end
 
