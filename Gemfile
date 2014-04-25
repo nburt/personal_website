@@ -6,6 +6,7 @@ gem 'sequel', '~> 4.9.0'
 gem 'pg', '~> 0.17.1'
 gem 'kramdown', '~> 1.3.3'
 gem 'keen', '~> 0.8.1'
+gem 'sinatra-contrib', '~> 1.4.2'
 gem 'mail', '~> 2.5.4'
 
 group :development, :test do
