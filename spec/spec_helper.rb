@@ -3,6 +3,7 @@ require 'capybara/rspec'
 require 'dotenv'
 require 'pry'
 require 'mail'
+require 'keen'
 
 Dotenv.load
 

@@ -7,6 +7,7 @@ require './lib/post_formatter'
 require './lib/comments_repository'
 require './lib/users_repository'
 require './lib/email'
+require './lib/keen_publisher'
 require 'mail'
 
 
@@ -34,6 +35,10 @@ class App < Sinatra::Application
   get '/' do
     @title = "Nathanael Burt | Home"
     @meta_description = "Nathanael Burt is a web developer/software engineer specializing in test-driven development with Ruby on Rails."
+    if ENV['ANALYTICS'] && request.cookies["user_id"] != nil
+      keen_id = users_repository.get_keen_id(request.cookies["user_id"])
+      KeenPublisher.new(:home, :user => keen_id).publish
+    end
     erb :index, :locals => {:logged_in => session[:logged_in]}
   end
 
@@ -60,6 +65,10 @@ class App < Sinatra::Application
   get '/resume' do
     @title = "Nathanael Burt | Resume"
     @meta_description = "Check out Nathanael Burt's resume and learn why you should hire him for your next software project."
+    if ENV['ANALYTICS']
+      keen_id = users_repository.get_keen_id(request.cookies["user_id"])
+      KeenPublisher.new(:resume, :user => keen_id).publish
+    end
     erb :resume, :locals => {:logged_in => session[:logged_in]}
   end
 
@@ -85,8 +94,12 @@ class App < Sinatra::Application
       older_posts = false
     end
     @title = "Nathanael Burt | Blog Page #{page_number}"
-    @meta_description = "Page #{params[:page_number]} of the list of Nathanael Burt's blogs."
+    @meta_description = "Page #{page_number} of the list of Nathanael Burt's blogs."
     recent_posts = posts_repository.get_recent_posts(page_number - 1)
+    if ENV['ANALYTICS']
+      keen_id = users_repository.get_keen_id(request.cookies["user_id"])
+      KeenPublisher.new(:blog_list, :user => keen_id, :page => "/blog/page/#{page_number}", :recent_posts => recent_posts).publish
+    end
     erb :older_posts, :locals => {:logged_in => session[:logged_in], :next_page => page_number + 1, :previous_page => page_number - 1, :recent_posts => recent_posts, :older_posts => older_posts}
   end
 
@@ -117,6 +130,10 @@ class App < Sinatra::Application
   get '/tags/:tag' do
     tag = params[:tag]
     posts = posts_repository.get_posts_by_tag(tag)
+    if ENV['ANALYTICS']
+      keen_id = users_repository.get_keen_id(request.cookies["user_id"])
+      KeenPublisher.new(:tags_list, :user => keen_id, :tag => tag).publish
+    end
     erb :tags, :locals => {:logged_in => session[:logged_in], :posts => posts}
   end
 
@@ -134,6 +151,10 @@ class App < Sinatra::Application
       @meta_description = post.attributes[:meta_description]
       post_id = posts_repository.get_id_by_slug(slug)
       comments_repository = CommentsRepository.new(DB, post_id)
+      if ENV['ANALYTICS']
+        keen_id = users_repository.get_keen_id(request.cookies["user_id"])
+        KeenPublisher.new(:blog_post, :user => keen_id, :title => "#{post.attributes[:title]}: #{post.attributes[:subtitle]}", :tags => post.attributes[:tags]).publish
+      end
       erb :individual_blog_page, locals: {
         :post => post.attributes,
         :logged_in => session[:logged_in],
@@ -151,8 +172,10 @@ class App < Sinatra::Application
     comments_repository.create(comment.attributes)
     email = Email.new
     email.send(:to => "nathanael.burt@gmail.com", :from => "nathanael.burt@gmail.com", :subject => "Someone has commented on your blog", :body => "Blog page: #{request.base_url}/blog/#{params[:full_title]}")
-    keen_id = users_repository.get_keen_id(request.cookies["user_id"])
-    Keen.publish(:comment, {:comment => comment.attributes, :user => keen_id, :blog_slug => params[:full_title], :comment_count => comments_repository.display_all.count})
+    if ENV['ANALYTICS']
+      keen_id = users_repository.get_keen_id(request.cookies["user_id"])
+      KeenPublisher.new(:comment, {:comment => comment.attributes, :user => keen_id, :blog_slug => params[:full_title], :comment_count => comments_repository.display_all.count}).publish
+    end
     redirect "/blog/#{params[:full_title]}"
   end
 
@@ -227,6 +250,10 @@ class App < Sinatra::Application
   get '/portfolio' do
     @title = "Nathanael Burt | Portfolio"
     @meta_description = "Visit Nathanael Burt's portofolio to see the amazing web applications that he has built."
+    if ENV['ANALYTICS']
+      keen_id = users_repository.get_keen_id(request.cookies["user_id"])
+      KeenPublisher.new(:portfolio, :user => keen_id).publish
+    end
     erb :portfolio, :locals => {:logged_in => session[:logged_in]}
   end
 
