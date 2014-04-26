@@ -245,7 +245,9 @@ article {
 }
 
 #blog_post_list a:visited,
-#blog_post_list a:link {
+#blog_post_list a:link,
+#post_container a:visited,
+#post_container a:link {
   color: #00749d;
   text-decoration: none;
 }
@@ -360,19 +362,20 @@ h3 {
 #blog_post_layout #rendered_text .image_left {
   float: left;
   padding: 1.5em 1.5em 1.5em 0;
-  width: 20%;
+  width: 45%;
 }
 
 #blog_post_layout #rendered_text .image_right {
   float: right;
   padding: 1.5em 1.5em 1.5em 0;
-  width: 20%;
+  width: 45%;
 }
 
 #blog_post_layout #rendered_text .image_full {
   clear: both;
   padding: 1.5em 1.5em 1.5em 0;
-  width: 70%;
+  width: 100%;
+  margin: auto;
 }
 
 #blog_list_container ul {
