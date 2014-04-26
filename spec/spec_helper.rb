@@ -40,3 +40,7 @@ end
 RSpec.configure do |c|
   c.include FeatureHelpers
 end
+
+Mail.defaults do
+  delivery_method :smtp, address: "localhost", port: 1025
+end

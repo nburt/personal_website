@@ -1,6 +1,7 @@
 <% if logged_in %>
   <div class="link_container">
     <a id="edit_blog_link" href="/blog/<%= slug %>/edit">Edit Blog Post</a>
+
     <form action="/blog/<%= slug %>/delete" method="post">
       <input type="hidden" name="_method" value="delete">
       <button id="delete_blog_link">Delete Blog Post</button>
@@ -21,10 +22,12 @@
   <div id="blog_list_container">
     <ul>
       <li id="tags_header">Tags</li>
-      <% tags_array = post[:tags].split(",") %>
-      <% tags_array.map do |tag| %>
-        <% tag.strip! %>
-        <li id="tags_list"><a href="/tags/<%= tag.downcase %>"><%= tag %></a></li>
+      <% if post[:tags] != nil %>
+        <% tags_array = post[:tags].split(",") %>
+        <% tags_array.map do |tag| %>
+          <% tag.strip! %>
+          <li id="tags_list"><a href="/tags/<%= tag.downcase %>"><%= tag %></a></li>
+        <% end %>
       <% end %>
     </ul>
     <ul>
@@ -57,7 +60,8 @@
           <li id="comment_name"><%= comment[:name] %>
             <span id="comment_time"><%= comment[:time].strftime('%-m/%-d/%Y %l:%M %p') %></span>
             <% if logged_in %>
-              <span id="view_comment"><a href="/blog/<%= slug %>/comment/<%= comment[:id] %>">View Comment</a></span>
+                      <span id="view_comment"><a href="/blog/<%= slug %>/comment/<%= comment[:id] %>">View
+                        Comment</a></span>
             <% end %>
           </li>
           <li><%= comment[:comment] %></li>
