@@ -271,6 +271,11 @@ article {
   margin: 0;
 }
 
+#recent_posts_container a {
+  color: #00749d;
+  text-decoration: none;
+}
+
 .section_headers {
   font-size: 2em;
   margin: .5em 0 .5em 0;
