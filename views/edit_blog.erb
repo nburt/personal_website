@@ -26,6 +26,10 @@
         <textarea name="post_description" maxlength="250" cols="40" rows="4"><%= post[:post_description] %></textarea>
       </li>
       <li>
+        <label for="tags">Tags (separate each tag with a comma): <span class="asterisk">*</span></label>
+        <textarea name="tags" maxlength="250" cols="40" rows="4" required></textarea>
+      </li>
+      <li>
         <label>Document Type:</label>
         <select class="dropdown" name="post_format">
           <option value="markdown">Markdown</option>
