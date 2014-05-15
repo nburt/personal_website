@@ -19,7 +19,7 @@ The .env file will be ignored by git, see `.gitignore`
 1. Run the migrations in the development database using `rake db:migrate`.
 1. `rerun rackup`
     * running rerun will reload app when file changes are detected
-1. Run tests using `rspec`.
+1. Run tests using `rspec`. Make sure you have run `mailcatcher` from the command line first or three of the tests will fail.
 1. To access the admin section of the website, visit '/login' and enter your password
 1. Use <a href="https://github.com/sj26/mailcatcher">mailcatcher</a> to send emails locally
 
