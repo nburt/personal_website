@@ -199,7 +199,7 @@ class App < Sinatra::Application
     original_slug = params[:slug]
     post = Post.new(:title => params[:title], :subtitle => params[:subtitle], :original_text => params[:original_text], :original_post_format => params[:post_format])
     slug = post.create_slug
-    rendered_text = post.render_text
+    post.render_text
     posts_repository.update_by_slug(original_slug, post.attributes)
     redirect "blog/#{slug}"
   end
