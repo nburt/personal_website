@@ -257,7 +257,7 @@ article {
 #about_container,
 #comment_container,
 #tagged_posts_container,
-#portfolio_container {
+.portfolio_container {
   -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
   width: 90%;
   margin: 2.5% auto;
@@ -517,34 +517,34 @@ h3 {
   float: right;
 }
 
-#portfolio_container {
+.portfolio_container {
   overflow: hidden;
 }
 
-#portfolio_container a {
+.portfolio_container a {
   -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
   color: #00749d;
   text-decoration: none;
 }
 
-#portfolio_container h1,
-#portfolio_container p {
+.portfolio_container h1,
+.portfolio_container p {
   margin: 0 auto 5%;
 }
 
-#portfolio_container li,
-#portfolio_container ul {
+.portfolio_container li,
+.portfolio_container ul {
   margin: 2.5%;
   padding: 0;
 }
 
-#portfolio_left {
+.portfolio_left {
   width: 50%;
   float: left;
   position: relative;
 }
 
-#portfolio_right {
+.portfolio_right {
   width: 50%;
   float: right;
 }
