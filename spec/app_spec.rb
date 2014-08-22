@@ -130,6 +130,7 @@ feature 'Visitor can view and visit all the pages' do
   end
 
   scenario 'visitors can comment on posts' do
+    pending
     i_create_a_blog_post 'New Title'
     expect(page).to_not have_content 'Recent Comments'
     fill_in 'name', :with => 'Nate'
@@ -204,6 +205,7 @@ feature 'Visitor can view and visit all the pages' do
   end
 
   scenario 'an admin can edit comments' do
+    pending
     i_create_a_blog_post 'New Title 1'
     fill_in 'name', :with => 'Nate'
     fill_in 'comment', :with => 'A comment'
@@ -219,6 +221,7 @@ feature 'Visitor can view and visit all the pages' do
   end
 
   scenario 'an admin can delete comments' do
+    pending
     i_create_a_blog_post 'New Title 1'
     fill_in 'name', :with => 'Nate'
     fill_in 'comment', :with => 'A comment'

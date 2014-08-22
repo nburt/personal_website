@@ -42,31 +42,4 @@
     </ul>
   </div>
 </article>
-<div id="comment_container">
-  <div id="comment_form_container">
-    <ul id="comment_form_list">
-      <form id="comment_form" action="/blog/<%= slug %>" method="post">
-        <li><input placeholder="Name" type="text" name="name" required></li>
-        <li><textarea placeholder="Comment" name="comment" cols="30" rows="5" required></textarea></li>
-        <li>
-          <button>Post Comment</button>
-        </li>
-      </form>
-    </ul>
-    <% if comments.count != 0 %>
-      <h3 class="h3_without_underline">Recent Comments</h3>
-      <ul id="comment_list">
-        <% comments.each do |comment| %>
-          <li id="comment_name"><%= comment[:name] %>
-            <span id="comment_time"><%= comment[:time].strftime('%-m/%-d/%Y %l:%M %p') %></span>
-            <% if logged_in %>
-                      <span id="view_comment"><a href="/blog/<%= slug %>/comment/<%= comment[:id] %>">View
-                        Comment</a></span>
-            <% end %>
-          </li>
-          <li><%= comment[:comment] %></li>
-        <% end %>
-      </ul>
-    <% end %>
-  </div>
-</div>
+

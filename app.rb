@@ -165,19 +165,19 @@ class App < Sinatra::Application
     end
   end
 
-  post '/blog/:full_title' do
-    post_id = posts_repository.get_id_by_slug(params[:full_title])
-    comment = Comment.new({:name => params[:name], :comment => params[:comment]})
-    comments_repository = CommentsRepository.new(DB, post_id)
-    comments_repository.create(comment.attributes)
-    email = Email.new
-    email.send(:to => "nathanael.burt@gmail.com", :from => "nathanael.burt@gmail.com", :subject => "Someone has commented on your blog", :body => "Blog page: #{request.base_url}/blog/#{params[:full_title]}")
-    if ENV['ANALYTICS'] != "false"
-      keen_id = users_repository.get_keen_id(request.cookies["user_id"])
-      KeenPublisher.new(:comment, {:comment => comment.attributes, :user => keen_id, :blog_slug => params[:full_title], :comment_count => comments_repository.display_all.count}).publish
-    end
-    redirect "/blog/#{params[:full_title]}"
-  end
+  # post '/blog/:full_title' do
+  #   post_id = posts_repository.get_id_by_slug(params[:full_title])
+  #   comment = Comment.new({:name => params[:name], :comment => params[:comment]})
+  #   comments_repository = CommentsRepository.new(DB, post_id)
+  #   comments_repository.create(comment.attributes)
+  #   email = Email.new
+  #   email.send(:to => "nathanael.burt@gmail.com", :from => "nathanael.burt@gmail.com", :subject => "Someone has commented on your blog", :body => "Blog page: #{request.base_url}/blog/#{params[:full_title]}")
+  #   if ENV['ANALYTICS'] != "false"
+  #     keen_id = users_repository.get_keen_id(request.cookies["user_id"])
+  #     KeenPublisher.new(:comment, {:comment => comment.attributes, :user => keen_id, :blog_slug => params[:full_title], :comment_count => comments_repository.display_all.count}).publish
+  #   end
+  #   redirect "/blog/#{params[:full_title]}"
+  # end
 
   get '/blog/:full_title/edit' do
     logged_in = session[:logged_in]
