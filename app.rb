@@ -26,11 +26,11 @@ class App < Sinatra::Application
     @users_repository ||= UsersRepository.new(DB)
   end
 
-  before do
-    if cookies["user_id"] == nil
-      response.set_cookie "user_id", {:value => users_repository.create_user, :expires => Time.now + (60 * 60 * 24 * 30 * 12 * 30), :path => "/"}
-    end
-  end
+  # before do
+  #   if cookies["user_id"] == nil
+  #     response.set_cookie "user_id", {:value => users_repository.create_user, :expires => Time.now + (60 * 60 * 24 * 30 * 12 * 30), :path => "/"}
+  #   end
+  # end
 
   get '/' do
     @title = "Nathanael Burt | Home"
